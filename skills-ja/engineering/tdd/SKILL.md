@@ -1,6 +1,6 @@
 ---
-name: matt-tdd
-description: red-green-refactor ループによるテスト駆動開発。機能追加・バグ修正で TDD を使うとき、垂直スライス（vertical slice）での実装、red-green-refactor、test-first development を求められたときに使用。Test-driven development with red-green-refactor loop. Use when user wants to build features or fix bugs using TDD, mentions "red-green-refactor", wants integration tests, or asks for test-first development.
+name: tdd
+description: red-green-refactor ループによるテスト駆動開発。機能追加・バグ修正で TDD を使うとき、垂直スライス（vertical slice）での実装、red-green-refactor、test-first development を求められたときに使用。
 ---
 
 # テスト駆動開発 (TDD)

@@ -6,31 +6,42 @@
 
 - **オリジナル**: `skills/` ディレクトリ配下に原文をそのまま保持（upstream 追従用）
 - **日本語版**: `skills-ja/` ディレクトリ配下に配置
-- **skill 名**: ローカル既存 skill との衝突を避けるため `matt-` プレフィックス付き
-- **trigger**: frontmatter の `description` に日英両言語のトリガーワードを併記
+- **skill 名**: 原文と同名（プラグイン namespace で自動的に衝突回避）
+- **trigger**: frontmatter の `description` は **日本語専用**（英語トリガーは原文 plugin 側で発火）
+- **訳語**: `translate-tech-docs` skill の GLOSSARY Tier 1 ルールに準拠（Module / Seam / regression test 等は原語維持）
 
 ## クイックスタート
 
-### Claude Code plugin として install
+### 本家プラグインと併用する設計
 
 ```bash
-# .claude/settings.json または対話で plugin を追加
+# 英語トリガー用（Matt 本家）
+/plugin install mattpocock/skills
+
+# 日本語トリガー用（本フォーク）
 /plugin install EOR-Effulgence/skills
 ```
 
-`/plugin install` で skills-ja/ 配下 14 件が読み込まれる。
+ユーザーの発話言語で自然に棲み分けされる:
 
-### ローカル skill として直配置
+| 発話 | 発火する skill |
+|---|---|
+| `diagnose this` / `debug this` | `mattpocock-skills:diagnose` |
+| `これを診断して` / `規律でデバッグ` | `matt-pocock-skills-ja:diagnose` |
+| `grill me` | `mattpocock-skills:grill-me` |
+| `壁打ちして` / `設計を焼いて` | `matt-pocock-skills-ja:grill-me` |
+
+### ローカル skill として直配置（plugin 経由でない場合）
 
 ```bash
 # fork を任意の場所に clone
-cd ~/your/work/dir
-git clone https://github.com/EOR-Effulgence/skills.git matt-skills
+git clone https://github.com/EOR-Effulgence/skills.git ~/work/skills-ja
 
-# skills-ja/ の各 skill を ~/.claude/skills/ に symlink
-ln -s ~/your/work/dir/matt-skills/skills-ja/engineering/matt-tdd ~/.claude/skills/matt-tdd
-# 必要な skill を個別に link
+# skills-ja/ の必要な skill を ~/.claude/skills/ に symlink
+ln -s ~/work/skills-ja/skills-ja/engineering/tdd ~/.claude/skills/tdd-ja
 ```
+
+直配置する場合は **本家との衝突回避**のため、自分で接尾辞（例: `-ja`）を付けることを推奨。
 
 ## 収録 skill 一覧（14 件）
 
@@ -38,33 +49,33 @@ ln -s ~/your/work/dir/matt-skills/skills-ja/engineering/matt-tdd ~/.claude/skill
 
 | skill | 用途 |
 |---|---|
-| `matt-grill-with-docs` | 既存ドメインモデルに照らした計画の壁打ち + CONTEXT.md / ADR 即時更新 |
-| `matt-tdd` | 垂直スライス TDD（red-green-refactor）。水平スライス禁止 |
-| `matt-diagnose` | 難バグ・パフォーマンス回帰の規律あるデバッグループ |
-| `matt-improve-codebase-architecture` | Deep Modules ベースのリファクタ機会探索 |
-| `matt-to-prd` | 会話を PRD 化して issue に投稿 |
-| `matt-to-issues` | 計画 / spec / PRD を独立 issue に分割 |
-| `matt-triage` | issue を状態機械ラベルで分類 |
-| `matt-zoom-out` | コードのより広い文脈・高次視点を提示 |
-| `matt-prototype` | 使い捨てプロトタイプ（CLI またはUI バリエーション） |
-| `matt-setup` | プロジェクト固有設定（issue tracker / triage ラベル / ドキュメント置き場）の初期化 |
+| `grill-with-docs` | 既存ドメインモデルに照らした計画の壁打ち + CONTEXT.md / ADR 即時更新 |
+| `tdd` | 垂直スライス TDD（red-green-refactor）。水平スライス禁止 |
+| `diagnose` | 難バグ・performance regression の規律ある診断ループ |
+| `improve-codebase-architecture` | Deep Module ベースのリファクタ機会探索 |
+| `to-prd` | 会話を PRD 化して issue に投稿 |
+| `to-issues` | 計画 / spec / PRD を独立 issue に分割 |
+| `triage` | issue を state machine ラベルで分類 |
+| `zoom-out` | コードのより広い文脈・高次視点を提示 |
+| `prototype` | 使い捨てプロトタイプ（CLI または UI バリエーション） |
+| `setup` | プロジェクト固有設定（issue tracker / triage ラベル / ドキュメント置き場）の初期化 |
 
 ### productivity (4)
 
 | skill | 用途 |
 |---|---|
-| `matt-grill-me` | 計画 / 設計について容赦なく質問されるセッション |
-| `matt-handoff` | 会話を引き継ぎドキュメントに圧縮 |
-| `matt-caveman` | 超圧縮通信モード（トークン使用量 ~75% 削減） |
-| `matt-write-a-skill` | 新規 skill を構造化して作成 |
+| `grill-me` | 計画 / 設計について容赦なく質問されるセッション |
+| `handoff` | 会話を引き継ぎドキュメントに圧縮 |
+| `caveman` | 超圧縮通信モード（トークン使用量 ~75% 削減） |
+| `write-a-skill` | 新規 skill を構造化して作成 |
 
-## 既存ローカル skill との関係
+## 訳語ルール
 
-このユーザーは既に `handoff` / `diagnose` / `grill-me` / `grill-with-docs` / `write-a-skill` をローカル `~/.claude/skills/` に持っているため、`matt-` プレフィックスで衝突を回避している。
+`~/.claude/skills/translate-tech-docs/` で管理する 3 ファイル（GLOSSARY.md / PRINCIPLES.md / STYLE.md）に従って訳出している:
 
-両方を使い分けたい場合:
-- 軽量・即応性重視: 既存ローカル版
-- Matt 流の厳密さ重視: `matt-*` 版
+- **Tier 1**: 原語維持（GoF / DDD / Ousterhout / Feathers / 固有プロセス概念 / 略号）
+- **Tier 2**: 必ず訳す（regression / hypothesis / falsifiable 等）
+- **Tier 3**: 文脈依存（domain / component / boundary 等）
 
 ## upstream 同期手順
 

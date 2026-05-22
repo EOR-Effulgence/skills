@@ -1,6 +1,6 @@
 ---
-name: matt-improve-codebase-architecture
-description: CONTEXT.md のドメイン用語と docs/adr/ の決定事項を踏まえつつ、コードベースに潜む「深化（deepening）」の機会を炙り出す。アーキテクチャ改善、リファクタリング機会の発見、密結合 Module の統合、テスト可能性や AI 走査性の向上を望むときに使用。Find deepening opportunities in a codebase, informed by the domain language in CONTEXT.md and the decisions in docs/adr/. Use when the user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more testable and AI-navigable.
+name: improve-codebase-architecture
+description: CONTEXT.md のドメイン用語と docs/adr/ の決定事項を踏まえつつ、コードベースに潜む「深化（deepening）」の機会を炙り出す。アーキテクチャ改善、リファクタリング機会の発見、密結合 Module の統合、テスト可能性や AI 走査性の向上を望むときに使用。
 ---
 
 # コードベースアーキテクチャの改善
