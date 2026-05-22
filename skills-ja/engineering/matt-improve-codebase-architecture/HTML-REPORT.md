@@ -60,7 +60,7 @@
 
 ### Mermaid graph（依存・コールフローの主力）
 
-「X が Y を呼び、Y が Z を呼ぶ、ほら散らかってる」を伝えるときは Mermaid の `flowchart` または `graph` を使う。パラシュート降下で置かれた感が出ないよう、Tailwind スタイルのカードで包む。`classDef` で leakage 辺を赤に、deep モジュールを暗色にする。「before: 6 ラウンドトリップ、after: 1 つ」みたいなときは sequence diagram がよく効く。
+「X が Y を呼び、Y が Z を呼ぶ、ほら散らかってる」を伝えるときは Mermaid の `flowchart` または `graph` を使う。パラシュート降下で置かれた感が出ないよう、Tailwind スタイルのカードで包む。`classDef` で leakage 辺を赤に、deep Module を暗色にする。「before: 6 ラウンドトリップ、after: 1 つ」みたいなときは sequence diagram がよく効く。
 
 ```html
 <div class="rounded-lg border border-slate-200 bg-white p-4">
@@ -77,7 +77,7 @@
 
 ### 手作りの boxes-and-arrows（Mermaid のレイアウトと闘うとき）
 
-モジュールを border とラベル付きの `<div>` に。矢印は relative コンテナの上に絶対配置したインライン SVG の `<line>` / `<path>`。"after" の図を「太枠の deep モジュール 1 つ + 内部はグレーアウト」のように見せたいときに伸ばすやつ — Mermaid では適切な重さで描画されない。
+Module を border とラベル付きの `<div>` に。矢印は relative コンテナの上に絶対配置したインライン SVG の `<line>` / `<path>`。"after" の図を「太枠の deep Module 1 つ + 内部はグレーアウト」のように見せたいときに伸ばすやつ — Mermaid では適切な重さで描画されない。
 
 ### Cross-section（層状の shallowness に良い）
 
@@ -85,7 +85,7 @@
 
 ### Mass diagram（「interface が implementation と同じ幅」に良い）
 
-モジュールごとに 2 つの矩形 — interface の面積を表すもの、implementation の面積を表すもの。Before: interface 矩形が implementation 矩形とほぼ同じ高さ（shallow）。After: interface 矩形が短く、implementation 矩形が高い（deep）。
+Module ごとに 2 つの矩形 — interface の面積を表すもの、implementation の面積を表すもの。Before: interface 矩形が implementation 矩形とほぼ同じ高さ（shallow）。After: interface 矩形が短く、implementation 矩形が高い（deep）。
 
 ### Call-graph collapse
 
@@ -96,7 +96,7 @@ Before: 入れ子の box で描画された関数呼び出しのツリー。Afte
 - corporate-dashboard ではなく editorial に寄せる。余白を惜しまない。見出しに serif も可（`font-serif` は stone/slate と相性がいい）。
 - 色は控えめに: アクセント 1 つ（emerald か indigo）+ leakage の赤 + warning の amber。
 - 図は高さ ~320px に抑え、before/after が横並びで快適に収まるように。
-- 図内のモジュールラベルは `text-xs uppercase tracking-wider` — UI ではなく schematic に読めるように。
+- 図内の Module ラベルは `text-xs uppercase tracking-wider` — UI ではなく schematic に読めるように。
 - スクリプトは Tailwind CDN と Mermaid ESM import の 2 つだけ。レポートはそれ以外は static — アプリコードなし、Mermaid 自身の描画以外にインタラクションなし。
 
 ## Top recommendation セクション
