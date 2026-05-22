@@ -46,7 +46,7 @@ disable-model-invocation: true
 
 **セクション B — Triage label vocabulary.**
 
-> 説明: `triage` スキルが入ってきた issue を処理するとき、状態機械を進める — evaluation 待ち、reporter 待ち、AFK エージェントが拾える状態、人間向けの状態、won't fix。そのためには、ユーザーが*実際に設定している*文字列に一致するラベル（あるいは issue tracker の同等物）を適用する必要がある。リポジトリがすでに別のラベル名（例: `needs-triage` ではなく `bug:triage`）を使っているなら、ここでマップして、スキルが正しいラベルを適用して重複を作らないようにする。
+> 説明: `triage` スキルが入ってきた issue を処理するとき、state machine を進める — evaluation 待ち、reporter 待ち、AFK エージェントが拾える状態、人間向けの状態、won't fix。そのためには、ユーザーが*実際に設定している*文字列に一致するラベル（あるいは issue tracker の同等物）を適用する必要がある。リポジトリがすでに別のラベル名（例: `needs-triage` ではなく `bug:triage`）を使っているなら、ここでマップして、スキルが正しいラベルを適用して重複を作らないようにする。
 
 5 つの正典役割:
 
