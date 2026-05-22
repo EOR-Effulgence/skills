@@ -14,7 +14,7 @@ description: CONTEXT.md のドメイン用語と docs/adr/ の決定事項を踏
 - **Module** — interface と implementation を持つもの（関数・クラス・パッケージ・スライス）。
 - **Interface** — 呼び出し側が Module を使うために知らなければならない一切: 型、不変条件、エラーモード、順序、設定。型シグネチャだけではない。
 - **Implementation** — 中身のコード。
-- **Depth** — interface から得られるレバレッジ。小さな interface の裏に大量のふるまいがある状態。**Deep** = 高レバレッジ。**Shallow** = interface が implementation とほぼ同じ複雑さ。
+- **Depth** — interface から得られる Leverage。小さな interface の裏に大量のふるまいがある状態。**Deep** = 高 Leverage。**Shallow** = interface が implementation とほぼ同じ複雑さ。
 - **Seam** — interface が存在する場所。その場所を編集せずに振る舞いを変えられる地点。（「boundary」ではなくこれを使う。）
 - **Adapter** — seam で interface を満たす具体物。
 - **Leverage** — 呼び出し側が depth から得るもの。

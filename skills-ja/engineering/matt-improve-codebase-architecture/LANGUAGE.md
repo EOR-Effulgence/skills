@@ -16,7 +16,7 @@ _避ける_: API, signature（狭すぎる — それらは型レベルの面だ
 Module の内部 — コード本体。**Adapter** とは別物: あるものは大きな implementation を持つ小さな adapter（Postgres repo）にも、小さな implementation を持つ大きな adapter（in-memory fake）にもなりうる。seam が話題のときは「adapter」、それ以外では「implementation」に手を伸ばす。
 
 **Depth**
-interface でのレバレッジ — 呼び出し側（あるいはテスト）が学ばねばならない interface 1 単位あたりで行使できるふるまいの量。**deep** な Module = 小さな interface の裏に大量のふるまいがある。**shallow** な Module = interface が implementation とほぼ同じ複雑さ。
+interface での Leverage — 呼び出し側（あるいはテスト）が学ばねばならない interface 1 単位あたりで行使できるふるまいの量。**deep** な Module = 小さな interface の裏に大量のふるまいがある。**shallow** な Module = interface が implementation とほぼ同じ複雑さ。
 
 **Seam** _(Michael Feathers より)_
 その場所を編集せずに振る舞いを変えられる場所。Module の interface が「存在する」*位置*。seam をどこに置くかは独自の設計判断で、何を裏に置くかとは別物。
