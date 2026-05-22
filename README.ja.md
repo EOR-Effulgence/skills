@@ -12,14 +12,19 @@
 
 ## クイックスタート
 
-### 本家プラグインと併用する設計
+### Marketplace 経由で本家 + JA 両方を install
+
+このフォークは **marketplace** として機能し、本家と JA 版の両方を一括登録できる:
 
 ```bash
-# 英語トリガー用（Matt 本家）
-/plugin install mattpocock/skills
+# Claude Code 内で
+/plugin marketplace add EOR-Effulgence/skills
 
-# 日本語トリガー用（本フォーク）
-/plugin install EOR-Effulgence/skills
+# 英語版（本家）を install
+/plugin install mattpocock-skills@eor-skills
+
+# 日本語版を install
+/plugin install matt-pocock-skills-ja@eor-skills
 ```
 
 ユーザーの発話言語で自然に棲み分けされる:
