@@ -1,6 +1,6 @@
 ---
-name: matt-handoff
-description: 現在の会話を、別のエージェントが引き継げる引き継ぎドキュメントに圧縮する。次セッションへ作業を渡す、ハンドオフを書きたいときに使用。Compact the current conversation into a handoff document for another agent to pick up.
+name: handoff
+description: 現在の会話を、別のエージェントが引き継げる引き継ぎドキュメントに圧縮する。次セッションへ作業を渡す、ハンドオフを書きたいときに使用。
 argument-hint: "次セッションは何に使うのか？"
 ---
 

@@ -1,6 +1,6 @@
 ---
-name: matt-grill-with-docs
-description: 既存のドメインモデルに対して計画をぶつけ、用語を研ぎ澄まし、判断が固まり次第その場でドキュメント（CONTEXT.md / ADR）を更新する壁打ちセッション。プロジェクトの用語と決定事項に照らして計画を圧力テストしたいときに使用。Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates documentation (CONTEXT.md, ADRs) inline. Use when user wants to stress-test a plan against their project's language and documented decisions.
+name: grill-with-docs
+description: 既存のドメインモデルに対して計画をぶつけ、用語を研ぎ澄まし、判断が固まり次第その場でドキュメント（CONTEXT.md / ADR）を更新する壁打ちセッション。プロジェクトの用語と決定事項に照らして計画を圧力テストしたいときに使用。
 ---
 
 <what-to-do>

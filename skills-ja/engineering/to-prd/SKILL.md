@@ -1,6 +1,6 @@
 ---
-name: matt-to-prd
-description: 現在の会話コンテキストを PRD に変換し、プロジェクトの issue tracker に公開する。現在のコンテキストから PRD を作成したいときに使用。Turn the current conversation context into a PRD and publish it to the project issue tracker. Use when user wants to create a PRD from the current context.
+name: to-prd
+description: 現在の会話コンテキストを PRD に変換し、プロジェクトの issue tracker に公開する。現在のコンテキストから PRD を作成したいときに使用。
 ---
 
 このスキルは現在の会話コンテキストとコードベース理解を取り、PRD を生成する。ユーザーへインタビューしてはいけない — すでに知っていることを統合するだけだ。

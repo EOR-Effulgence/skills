@@ -1,6 +1,6 @@
 ---
-name: matt-triage
-description: トリアージロール群が駆動するステートマシンで Issue をさばく。Issue を作成・トリアージしたい、入ってくるバグや機能要望をレビューしたい、AFK エージェント向けに Issue を整えたい、Issue ワークフローを管理したいときに使用。Triage issues through a state machine driven by triage roles. Use when user wants to create an issue, triage issues, review incoming bugs or feature requests, prepare issues for an AFK agent, or manage issue workflow.
+name: triage
+description: トリアージロール群が駆動するステートマシンで Issue をさばく。Issue を作成・トリアージしたい、入ってくるバグや機能要望をレビューしたい、AFK エージェント向けに Issue を整えたい、Issue ワークフローを管理したいときに使用。
 ---
 
 # Triage

@@ -1,6 +1,6 @@
 ---
-name: matt-prototype
-description: 設計を確定する前に、使い捨てプロトタイプで設計を肉付けする。状態 / ビジネスロジックの問いには「実行可能なターミナルアプリ」を、UI の問いには「1 つのルートで切り替えられる複数の極端に異なる UI バリアント」を生成する 2 分岐構成。プロトタイプを作りたい、データモデルや状態マシンの妥当性を確かめたい、UI のモックを作りたい、設計の選択肢を検討したい、「これプロトタイプ作って」「触らせて」「いくつかデザイン試して」と言われたときに使用。Build a throwaway prototype to flesh out a design before committing to it. Routes between two branches — a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route. Use when the user wants to prototype, sanity-check a data model or state machine, mock up a UI, explore design options, or says "prototype this", "let me play with it", "try a few designs".
+name: prototype
+description: 設計を確定する前に、使い捨てプロトタイプで設計を肉付けする。状態 / ビジネスロジックの問いには「実行可能なターミナルアプリ」を、UI の問いには「1 つのルートで切り替えられる複数の極端に異なる UI バリアント」を生成する 2 分岐構成。プロトタイプを作りたい、データモデルや状態マシンの妥当性を確かめたい、UI のモックを作りたい、設計の選択肢を検討したい、「これプロトタイプ作って」「触らせて」「いくつかデザイン試して」と言われたときに使用。
 ---
 
 # Prototype

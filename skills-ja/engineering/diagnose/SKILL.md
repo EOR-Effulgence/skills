@@ -1,6 +1,6 @@
 ---
-name: matt-diagnose
-description: 難しいバグや performance regression に対する規律ある診断ループ。再現 → 最小化 → 仮説 → 計装 → 修正 → regression test。ユーザーが「これを診断して」「これをデバッグして」と言ったとき、バグを報告したとき、何かが壊れている / 例外を投げている / 失敗していると言ったとき、または performance regression を説明したときに使用。Disciplined diagnosis loop for hard bugs and performance regressions. Reproduce → minimise → hypothesise → instrument → fix → regression-test. Use when user says "diagnose this" / "debug this", reports a bug, says something is broken/throwing/failing, or describes a performance regression.
+name: diagnose
+description: 難しいバグや performance regression に対する規律ある診断ループ。再現 → 最小化 → 仮説 → 計装 → 修正 → regression test。ユーザーが「これを診断して」「これをデバッグして」と言ったとき、バグを報告したとき、何かが壊れている / 例外を投げている / 失敗していると言ったとき、または performance regression を説明したときに使用。
 ---
 
 # Diagnose

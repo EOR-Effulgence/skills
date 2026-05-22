@@ -1,6 +1,6 @@
 ---
-name: matt-setup
-description: AGENTS.md/CLAUDE.md に `## Agent skills` ブロック、そして `docs/agents/` を立ち上げて、エンジニアリング系スキル群にこのリポジトリの issue tracker（GitHub もしくはローカル markdown）、triage ラベル語彙、ドメインドキュメントの配置を教える。`to-issues`・`to-prd`・`triage`・`diagnose`・`tdd`・`improve-codebase-architecture`・`zoom-out` を初めて使う前、あるいは issue tracker / triage labels / domain docs についてのコンテキストが欠けているように見えるときに実行。Sets up an `## Agent skills` block in AGENTS.md/CLAUDE.md and `docs/agents/` so the engineering skills know this repo's issue tracker (GitHub or local markdown), triage label vocabulary, and domain doc layout. Run before first use of `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out` — or if those skills appear to be missing context about the issue tracker, triage labels, or domain docs.
+name: setup
+description: AGENTS.md/CLAUDE.md に `## Agent skills` ブロック、そして `docs/agents/` を立ち上げて、エンジニアリング系スキル群にこのリポジトリの issue tracker（GitHub もしくはローカル markdown）、triage ラベル語彙、ドメインドキュメントの配置を教える。`to-issues`・`to-prd`・`triage`・`diagnose`・`tdd`・`improve-codebase-architecture`・`zoom-out` を初めて使う前、あるいは issue tracker / triage labels / domain docs についてのコンテキストが欠けているように見えるときに実行。
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
-name: matt-to-issues
-description: 計画・仕様・PRD を、トレーサー弾（vertical slice）方式でプロジェクトの issue tracker 上の独立して着手可能な issue 群に分割する。計画を issue に変換したい、実装チケットを起票したい、作業を issue に分解したいときに使用。Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues.
+name: to-issues
+description: 計画・仕様・PRD を、トレーサー弾（vertical slice）方式でプロジェクトの issue tracker 上の独立して着手可能な issue 群に分割する。計画を issue に変換したい、実装チケットを起票したい、作業を issue に分解したいときに使用。
 ---
 
 # To Issues

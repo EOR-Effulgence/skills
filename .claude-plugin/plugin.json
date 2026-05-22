@@ -1,19 +1,19 @@
 {
   "name": "matt-pocock-skills-ja",
   "skills": [
-    "./skills-ja/engineering/matt-diagnose",
-    "./skills-ja/engineering/matt-grill-with-docs",
-    "./skills-ja/engineering/matt-triage",
-    "./skills-ja/engineering/matt-improve-codebase-architecture",
-    "./skills-ja/engineering/matt-setup",
-    "./skills-ja/engineering/matt-tdd",
-    "./skills-ja/engineering/matt-to-issues",
-    "./skills-ja/engineering/matt-to-prd",
-    "./skills-ja/engineering/matt-zoom-out",
-    "./skills-ja/engineering/matt-prototype",
-    "./skills-ja/productivity/matt-caveman",
-    "./skills-ja/productivity/matt-grill-me",
-    "./skills-ja/productivity/matt-handoff",
-    "./skills-ja/productivity/matt-write-a-skill"
+    "./skills-ja/engineering/diagnose",
+    "./skills-ja/engineering/grill-with-docs",
+    "./skills-ja/engineering/triage",
+    "./skills-ja/engineering/improve-codebase-architecture",
+    "./skills-ja/engineering/setup",
+    "./skills-ja/engineering/tdd",
+    "./skills-ja/engineering/to-issues",
+    "./skills-ja/engineering/to-prd",
+    "./skills-ja/engineering/zoom-out",
+    "./skills-ja/engineering/prototype",
+    "./skills-ja/productivity/caveman",
+    "./skills-ja/productivity/grill-me",
+    "./skills-ja/productivity/handoff",
+    "./skills-ja/productivity/write-a-skill"
   ]
 }
