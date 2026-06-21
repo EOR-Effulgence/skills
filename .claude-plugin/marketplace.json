@@ -4,7 +4,7 @@
   "plugins": [
     {
       "name": "matt-pocock-skills-ja",
-      "source": { "source": "github", "repo": "EOR-Effulgence/skills" },
+      "source": "./",
       "description": "Matt Pocock's engineering/productivity skills (Japanese localization). Triggers fire on Japanese keywords. 日本語版 — 「壁打ち」「規律でデバッグ」等の日本語トリガーで発火"
     },
     {
