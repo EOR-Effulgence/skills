@@ -48,31 +48,42 @@ ln -s ~/work/skills-ja/skills-ja/engineering/tdd ~/.claude/skills/tdd-ja
 
 直配置する場合は **本家との衝突回避**のため、自分で接尾辞（例: `-ja`）を付けることを推奨。
 
-## 収録 skill 一覧（14 件）
+## 収録 skill 一覧（23 件）
 
-### engineering (10)
+本家 `mattpocock/skills` の promoted skill (engineering 17 + productivity 5) を全て日本語化し、`caveman`（本家削除済み・fork 固有）を維持している。
+
+### engineering (17)
 
 | skill | 用途 |
 |---|---|
-| `grill-with-docs` | 既存ドメインモデルに照らした計画の壁打ち + CONTEXT.md / ADR 即時更新 |
-| `tdd` | 垂直スライス TDD（red-green-refactor）。水平スライス禁止 |
-| `diagnose` | 難バグ・performance regression の規律ある診断ループ |
-| `improve-codebase-architecture` | Deep Module ベースのリファクタ機会探索 |
-| `to-prd` | 会話を PRD 化して issue に投稿 |
-| `to-issues` | 計画 / spec / PRD を独立 issue に分割 |
+| `ask-matt` | どの skill / flow を使うか案内する router |
+| `diagnosing-bugs` | 難バグ・performance regression の規律ある診断ループ |
+| `grill-with-docs` | 既存ドメインモデルに照らした計画の壁打ち（`/domain-modeling` + `/grilling`） |
 | `triage` | issue を state machine ラベルで分類 |
-| `zoom-out` | コードのより広い文脈・高次視点を提示 |
-| `prototype` | 使い捨てプロトタイプ（CLI または UI バリエーション） |
-| `setup` | プロジェクト固有設定（issue tracker / triage ラベル / ドキュメント置き場）の初期化 |
+| `improve-codebase-architecture` | deepening 機会の探索（Module ベースのリファクタ） |
+| `setup-matt-pocock-skills` | プロジェクト固有設定（issue tracker / triage ラベル / ドキュメント置き場）の初期化 |
+| `tdd` | 垂直スライス TDD（red-green-refactor）。水平スライス禁止 |
+| `to-spec` | 会話を spec 化して issue tracker に投稿 |
+| `to-tickets` | 計画 / spec を tracer bullet の独立 ticket に分割 |
+| `wayfinder` | decision ticket を subagent で潰していく探索 |
+| `implement` | spec / ticket を TDD + code-review で実装 |
+| `prototype` | 使い捨てプロトタイプ（CLI logic または UI バリエーション） |
+| `research` | background agent で調査し Markdown にまとめる |
+| `domain-modeling` | ドメインモデリング + CONTEXT.md / ADR 整備 |
+| `codebase-design` | Ousterhout 流 deep module 設計（design it twice / deepening） |
+| `code-review` | 変更を dimension 別にレビュー |
+| `resolving-merge-conflicts` | merge / rebase conflict を意図を汲んで解消 |
 
-### productivity (4)
+### productivity (6)
 
 | skill | 用途 |
 |---|---|
-| `grill-me` | 計画 / 設計について容赦なく質問されるセッション |
+| `grill-me` | 計画 / 設計を容赦なく詰める interview（`/grilling`） |
+| `grilling` | grill 系スキルが使う共通 primitive（壁打ちセッション） |
 | `handoff` | 会話を引き継ぎドキュメントに圧縮 |
-| `caveman` | 超圧縮通信モード（トークン使用量 ~75% 削減） |
-| `write-a-skill` | 新規 skill を構造化して作成 |
+| `teach` | 学習ミッション設計（fluency / storage strength） |
+| `writing-great-skills` | 優れた skill を設計・記述（progressive disclosure 等） |
+| `caveman` | 超圧縮通信モード（トークン使用量 ~75% 削減、fork 固有） |
 
 ## 訳語ルール
 
