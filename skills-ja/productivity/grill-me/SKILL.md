@@ -1,10 +1,7 @@
 ---
 name: grill-me
-description: 計画や設計について、共通理解に達するまで容赦なくユーザーに質問し、意思決定ツリーの各枝を解消していく。計画を圧力テストしたい、設計を焼いてほしい、「grill me」と発したときに使用。
+description: 計画や設計を研ぎ澄ますための容赦ない interview。A relentless interview to sharpen a plan or design. 日本語トリガー例 / "計画を詰めて" "設計をストレステスト" / English / "grill me" "stress-test my plan"
+disable-model-invocation: true
 ---
 
-この計画のあらゆる側面について、共通理解に達するまで容赦なく質問してくれ。設計ツリーの各枝を歩き、判断間の依存を 1 つずつ解消する。質問ごとに、あなたが推奨する答えも提示する。
-
-質問は **1 つずつ** 出す。
-
-コードベースを探索すれば答えが分かる質問は、ユーザーに聞かずに探索する。
+`/grilling` セッションを実行する。

@@ -1,19 +1,28 @@
 {
   "name": "matt-pocock-skills-ja",
   "skills": [
-    "./skills-ja/engineering/diagnose",
+    "./skills-ja/engineering/ask-matt",
+    "./skills-ja/engineering/diagnosing-bugs",
     "./skills-ja/engineering/grill-with-docs",
     "./skills-ja/engineering/triage",
     "./skills-ja/engineering/improve-codebase-architecture",
-    "./skills-ja/engineering/setup",
+    "./skills-ja/engineering/setup-matt-pocock-skills",
     "./skills-ja/engineering/tdd",
-    "./skills-ja/engineering/to-issues",
-    "./skills-ja/engineering/to-prd",
-    "./skills-ja/engineering/zoom-out",
+    "./skills-ja/engineering/to-spec",
+    "./skills-ja/engineering/to-tickets",
+    "./skills-ja/engineering/wayfinder",
+    "./skills-ja/engineering/implement",
     "./skills-ja/engineering/prototype",
-    "./skills-ja/productivity/caveman",
+    "./skills-ja/engineering/research",
+    "./skills-ja/engineering/domain-modeling",
+    "./skills-ja/engineering/codebase-design",
+    "./skills-ja/engineering/code-review",
+    "./skills-ja/engineering/resolving-merge-conflicts",
     "./skills-ja/productivity/grill-me",
+    "./skills-ja/productivity/grilling",
     "./skills-ja/productivity/handoff",
-    "./skills-ja/productivity/write-a-skill"
+    "./skills-ja/productivity/teach",
+    "./skills-ja/productivity/writing-great-skills",
+    "./skills-ja/productivity/caveman"
   ]
 }

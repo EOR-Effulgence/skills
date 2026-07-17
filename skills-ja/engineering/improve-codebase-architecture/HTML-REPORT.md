@@ -1,8 +1,8 @@
-# HTML レポートフォーマット
+# HTML Report Format
 
-アーキテクチャレビューは OS の temp ディレクトリに置く 1 枚の自己完結 HTML ファイルとして描画する。Tailwind と Mermaid はどちらも CDN から。グラフ形の図は Mermaid に任せ、より編集的なビジュアル（質量図・断面図）は手作りの div とインライン SVG で扱う。両者を混ぜる — Mermaid に全部頼ると、すぐに generic な見た目になる。
+アーキテクチャ review は、OS の temp ディレクトリ内の単一の自己完結した HTML ファイルとして描画する。Tailwind と Mermaid はどちらも CDN から来る。Mermaid はグラフ状の図を確実に扱う。手組みの div とインライン SVG は、よりエディトリアルなビジュアル（質量図、断面図）を扱う。両者を混ぜろ — すべてを Mermaid に頼るな、汎用的に見え始める。
 
-## 足場（Scaffold）
+## Scaffold
 
 ```html
 <!doctype html>
@@ -16,8 +16,8 @@
       mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
     </script>
     <style>
-      /* Tailwind で綺麗にカバーできないもの用の小さな custom layer:
-         破線の seam、手描き風の矢頭など */
+      /* small custom layer for things Tailwind doesn't cover cleanly:
+         dashed seam lines, hand-drawn-feeling arrow heads, etc. */
       .seam { stroke-dasharray: 4 4; }
       .leak { stroke: #dc2626; }
       .deep { background: linear-gradient(135deg, #0f172a, #1e293b); }
@@ -33,34 +33,34 @@
 </html>
 ```
 
-## ヘッダー
+## Header
 
-レポジトリ名、日付、コンパクトな凡例: solid box = module、破線 = seam、赤い矢印 = leakage、太い暗色の box = deep module。導入の段落は不要 — まっすぐ候補に入る。
+リポジトリ名、日付、そしてコンパクトな凡例: 実線ボックス = module、破線 = seam、赤い矢印 = leakage、太い暗色ボックス = deep module。導入段落は無し — まっすぐ候補へ入る。
 
-## Candidate カード
+## Candidate card
 
-図が荷重を担う。散文は薄く・平易に・[LANGUAGE.md](LANGUAGE.md) の語彙を儀式なしに使う。
+図が重みを担う。散文はまばらで平易、そして glossary 用語（`/codebase-design` skill 由来）を仰々しさなしに使う。
 
 各候補は 1 つの `<article>`:
 
 - **Title** — 短く、deepening に名前を付ける（例: "Collapse the Order intake pipeline"）。
-- **Badge row** — 推奨度（`Strong` = emerald、`Worth exploring` = amber、`Speculative` = slate）、加えて依存カテゴリのタグ（`in-process`、`local-substitutable`、`ports & adapters`、`mock`）。
-- **Files** — 等幅フォントのリスト、`font-mono text-sm`。
-- **Before / After diagram** — 中心物。2 列、横並び。下のパターン参照。
-- **Problem** — 一文。何が痛いか。
+- **Badge row** — recommendation strength（`Strong` = emerald、`Worth exploring` = amber、`Speculative` = slate）、加えて依存カテゴリのタグ（`in-process`、`local-substitutable`、`ports & adapters`、`mock`）。
+- **Files** — 等幅リスト、`font-mono text-sm`。
+- **Before / After diagram** — 中心。2 カラム、横並び。下記のパターン参照。
+- **Problem** — 一文。何が痛むか。
 - **Solution** — 一文。何が変わるか。
-- **Wins** — 箇条書き、各 ≤6 語。例: 「Tests hit one interface」「Pricing logic stops leaking」「Delete 4 shallow wrappers」。
-- **ADR callout**（該当する場合）— amber 色のボックスに 1 行。
+- **Wins** — 箇条書き、各 6 語以内。例: "Tests hit one interface"、"Pricing logic stops leaking"、"Delete 4 shallow wrappers"。
+- **ADR callout**（該当する場合）— amber 色のボックス内に一行。
 
-説明の段落を入れない。図が段落なしには理解されないなら、図を描き直せ。
+説明の段落は無し。図を理解するのに段落が要るなら、図を描き直せ。
 
-## 図のパターン
+## Diagram patterns
 
-候補に合うパターンを選ぶ。混ぜる。すべての図を同じに見せない — バラエティが本質だ。
+候補に合うパターンを選べ。混ぜろ。すべての図を同じに見せるな — variety が肝の一部だ。
 
-### Mermaid graph（依存・コールフローの主力）
+### Mermaid graph (the workhorse for dependencies / call flow)
 
-「X が Y を呼び、Y が Z を呼ぶ、ほら散らかってる」を伝えるときは Mermaid の `flowchart` または `graph` を使う。パラシュート降下で置かれた感が出ないよう、Tailwind スタイルのカードで包む。`classDef` で leakage 辺を赤に、deep Module を暗色にする。「before: 6 ラウンドトリップ、after: 1 つ」みたいなときは sequence diagram がよく効く。
+要点が "X calls Y calls Z, and look at the mess" のときは Mermaid の `flowchart` または `graph` を使う。パラシュートで降ってきたように感じないよう、Tailwind でスタイルしたカードで包め。classDef で leakage エッジを赤に、deep module を暗色にスタイルする。シーケンス図は "before: 6 round-trips; after: 1" によく効く。
 
 ```html
 <div class="rounded-lg border border-slate-200 bg-white p-4">
@@ -75,49 +75,49 @@
 </div>
 ```
 
-### 手作りの boxes-and-arrows（Mermaid のレイアウトと闘うとき）
+### Hand-built boxes-and-arrows (when Mermaid's layout fights you)
 
-Module を border とラベル付きの `<div>` に。矢印は relative コンテナの上に絶対配置したインライン SVG の `<line>` / `<path>`。"after" の図を「太枠の deep Module 1 つ + 内部はグレーアウト」のように見せたいときに伸ばすやつ — Mermaid では適切な重さで描画されない。
+Module を境界とラベル付きの `<div>` として。矢印を、relative なコンテナ上に絶対配置したインライン SVG の `<line>` や `<path>` 要素として。"after" の図を、内部がグレーアウトした 1 つの太枠 deep module のように感じさせたいときにこれを使う — Mermaid はそれを正しい重みで描画しない。
 
-### Cross-section（層状の shallowness に良い）
+### Cross-section (good for layered shallowness)
 
-水平な帯（`h-12 border-l-4`）を積んで、呼び出しが通る層を示す。Before: 何もしていない薄い層が 6 つ。After: 統合された責務 1 つを示す太い帯 1 つ。
+呼び出しが通過するレイヤーを示すために水平の帯（`h-12 border-l-4`）を積む。Before: 何もしない 6 枚の薄いレイヤー。After: 統合された責務でラベル付けされた 1 枚の厚い帯。
 
-### Mass diagram（「interface が implementation と同じ幅」に良い）
+### Mass diagram (good for "interface as wide as implementation")
 
-Module ごとに 2 つの矩形 — interface の面積を表すもの、implementation の面積を表すもの。Before: interface 矩形が implementation 矩形とほぼ同じ高さ（shallow）。After: interface 矩形が短く、implementation 矩形が高い（deep）。
+Module ごとに 2 つの長方形 — 1 つは interface の表面積、もう 1 つは implementation。Before: interface の長方形が implementation の長方形とほぼ同じ高さ（shallow）。After: interface の長方形が低く、implementation の長方形が高い（deep）。
 
 ### Call-graph collapse
 
-Before: 入れ子の box で描画された関数呼び出しのツリー。After: 同じツリーが 1 つの box に折り畳まれ、いまや内部となった呼び出しが薄く中に表示される。
+Before: 関数呼び出しのツリーをネストしたボックスとして描画。After: 同じツリーが 1 つのボックスに崩れ、内部化された呼び出しがその中に薄く表示される。
 
-## スタイル指針
+## Style guidance
 
-- corporate-dashboard ではなく editorial に寄せる。余白を惜しまない。見出しに serif も可（`font-serif` は stone/slate と相性がいい）。
-- 色は控えめに: アクセント 1 つ（emerald か indigo）+ leakage の赤 + warning の amber。
-- 図は高さ ~320px に抑え、before/after が横並びで快適に収まるように。
-- 図内の Module ラベルは `text-xs uppercase tracking-wider` — UI ではなく schematic に読めるように。
-- スクリプトは Tailwind CDN と Mermaid ESM import の 2 つだけ。レポートはそれ以外は static — アプリコードなし、Mermaid 自身の描画以外にインタラクションなし。
+- コーポレートダッシュボードではなくエディトリアル寄りに。ゆとりある余白。見出しにはセリフも可（`font-serif` は stone/slate とよく合う）。
+- 色は控えめに: 1 つのアクセント（emerald か indigo）に加え、leakage に赤、warning に amber。
+- before/after がスクロールなしで快適に横並びになるよう、図は ~320px の高さに保つ。
+- 図の中の module ラベルには `text-xs uppercase tracking-wider` を使う — UI ではなく schematic に読めるべきだ。
+- スクリプトは Tailwind CDN と Mermaid ESM import のみ。それ以外レポートは静的だ — アプリコードは無く、Mermaid 自身の描画を超えるインタラクティビティも無い。
 
-## Top recommendation セクション
+## Top recommendation section
 
-少し大きめのカード 1 つ。候補名、理由を一文、そのカードへのアンカーリンク。それだけ。
+より大きなカードを 1 つ。候補名、なぜかを一文、そのカードへのアンカーリンク。それだけ。
 
-## トーン
+## Tone
 
-平易な日本語/英語、簡潔に — ただしアーキテクチャの名詞と動詞は [LANGUAGE.md](LANGUAGE.md) からそのまま持ってくる。簡潔さは流れることの言い訳にならない。
+平易な英語で簡潔に — ただしアーキテクチャの名詞と動詞は `/codebase-design` skill からそのまま来る。簡潔さは流れる言い訳にならない。
 
-**そのまま使う:** module, interface, implementation, depth, deep, shallow, seam, adapter, leverage, locality。
+**必ずこう使え:** module、interface、implementation、depth、deep、shallow、seam、adapter、leverage、locality。
 
-**置き換えない:** component, service, unit（module の代わりに） · API, signature（interface の代わりに） · boundary（seam の代わりに） · layer, wrapper（module を意図しているときの代わりに）。
+**決して置き換えるな:** component、service、unit（module の代わりに）· API、signature（interface の代わりに）· boundary（seam の代わりに）· layer、wrapper（module を意味するときの module の代わりに）。
 
-**スタイルに合う言い回し:**
+**このスタイルに合う言い回し:**
 
 - "Order intake module is shallow — interface nearly matches the implementation."
 - "Pricing leaks across the seam."
 - "Deepen: one interface, one place to test."
 - "Two adapters justify the seam: HTTP in prod, in-memory in tests."
 
-**Wins の箇条書き**は得るものを用語集の言葉で名指す: *"locality: bugs concentrate in one module"*、*"leverage: one interface, N call sites"*、*"interface shrinks; implementation absorbs the wrappers"*。「easier to maintain」や「cleaner code」とは書かない — それらは用語集にない、居場所を得ていない。
+**Wins の箇条書き** は gain を glossary 用語で名指す: *"locality: bugs concentrate in one module"*、*"leverage: one interface, N call sites"*、*"interface shrinks; implementation absorbs the wrappers"*。*"easier to maintain"* や *"cleaner code"* とは書くな — それらの用語は glossary に無く、居場所を稼いでいない。
 
-ヘッジなし、咳払いなし、「ちなみに…」なし。文が箇条書きにできるなら箇条書きにする。箇条書きが削れるなら削る。用語が [LANGUAGE.md](LANGUAGE.md) になければ、新語を作る前に既存の言葉に手を伸ばす。
+ヘッジも、前置きも、"it's worth noting that…" も無し。一文が箇条書きにできるなら、箇条書きにしろ。箇条書きが削れるなら、削れ。ある用語が `/codebase-design` の glossary に無いなら、新しいものを発明する前に glossary にあるものへ手を伸ばせ。

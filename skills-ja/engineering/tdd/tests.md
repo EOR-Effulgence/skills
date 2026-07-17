@@ -2,10 +2,10 @@
 
 ## 良いテスト
 
-**統合スタイル（Integration-style）**: 内部のモックではなく、本物のインターフェースを経由してテストする。
+**統合スタイル（Integration-style）**: 内部の mock ではなく、本物の interface を経由してテストする。
 
 ```typescript
-// GOOD: 観測可能なふるまいをテスト
+// GOOD: Tests observable behavior
 test("user can checkout with valid cart", async () => {
   const cart = createCart();
   cart.add(product);
@@ -16,10 +16,10 @@ test("user can checkout with valid cart", async () => {
 
 特徴:
 
-- ユーザー / 呼び出し側が気にするふるまいをテスト
-- 公開 API のみを使う
-- 内部リファクタを生き延びる
-- 「何を」記述し、「どう」は記述しない
+- ユーザー / 呼び出し側が気にする振る舞いをテストする
+- public API のみを使う
+- 内部の refactor を生き延びる
+- 「何を（WHAT）」を記述し、「どう（HOW）」は記述しない
 - 1 テストあたり論理的アサーション 1 個
 
 ## 悪いテスト
@@ -27,7 +27,7 @@ test("user can checkout with valid cart", async () => {
 **実装詳細テスト（Implementation-detail tests）**: 内部構造に密結合している。
 
 ```typescript
-// BAD: 実装の詳細をテスト
+// BAD: Tests implementation details
 test("checkout calls paymentService.process", async () => {
   const mockPayment = jest.mock(paymentService);
   await checkout(cart, payment);
@@ -37,25 +37,41 @@ test("checkout calls paymentService.process", async () => {
 
 危険信号:
 
-- 内部の協力者（collaborator）をモックしている
+- 内部の協調オブジェクトを mock している
 - private メソッドをテストしている
 - 呼び出し回数 / 順序にアサートしている
-- ふるまいが変わっていないのにリファクタで落ちる
-- テスト名が「どう」を記述している（「何を」ではない）
-- インターフェース経由ではなく外部手段で検証している
+- 振る舞いが変わっていないのに refactor で落ちる
+- テスト名が「何を」ではなく「どう」を記述している
+- interface 経由ではなく外部手段で検証している
 
 ```typescript
-// BAD: インターフェースを迂回して検証
+// BAD: Bypasses interface to verify
 test("createUser saves to database", async () => {
   await createUser({ name: "Alice" });
   const row = await db.query("SELECT * FROM users WHERE name = ?", ["Alice"]);
   expect(row).toBeDefined();
 });
 
-// GOOD: インターフェース経由で検証
+// GOOD: Verifies through interface
 test("createUser makes user retrievable", async () => {
   const user = await createUser({ name: "Alice" });
   const retrieved = await getUser(user.id);
   expect(retrieved.name).toBe("Alice");
+});
+```
+
+**同語反復テスト（Tautological tests）**: 期待値が実装を言い換えているだけなので、構造上必ずパスする。
+
+```typescript
+// BAD: Expected value is recomputed the way the code computes it
+test("calculateTotal sums line items", () => {
+  const items = [{ price: 10 }, { price: 5 }];
+  const expected = items.reduce((sum, i) => sum + i.price, 0);
+  expect(calculateTotal(items)).toBe(expected);
+});
+
+// GOOD: Expected value is an independent, known literal
+test("calculateTotal sums line items", () => {
+  expect(calculateTotal([{ price: 10 }, { price: 5 }])).toBe(15);
 });
 ```

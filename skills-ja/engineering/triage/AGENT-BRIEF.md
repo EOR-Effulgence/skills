@@ -1,158 +1,197 @@
-# エージェントブリーフの書き方
+# Writing Agent Briefs
 
-エージェントブリーフは、Issue が `ready-for-agent` に動いた時に投稿する構造化コメント。AFK エージェントが作業の拠り所にする**権威ある仕様書**だ。元の Issue 本文と議論はコンテキストにすぎず、エージェントブリーフこそが**契約**である。
+agent brief とは、Issue や PR が `ready-for-agent` に移ったときに投稿する構造化コメントだ。AFK エージェントが作業の拠り所にする権威ある仕様書である。元の body と議論はコンテキストにすぎず、agent brief こそが契約（contract）だ。
 
-## 原則
+brief は **エージェントが何をすべきか** を述べ、それは両方の surface に及ぶ: Issue なら、ゼロから変更を作ること; PR なら、*既存の diff に対して* 残された作業 — 仕上げる、隙間を埋める、レビュー指摘に対応する。どちらでも原則は同じで、下記の PR 例がその違いを示す。
 
-### 精度よりも耐久性
+## Principles
 
-Issue は `ready-for-agent` のまま数日から数週間放置されることがある。その間にコードベースは変わる。ファイルがリネーム・移動・リファクタされても、ブリーフが有用なまま残るように書け。
+### Durability over precision
 
-- **やる**: インターフェース、型、ふるまいの契約を記述する
-- **やる**: エージェントが探すべき・変更すべき具体的な型名、関数シグネチャ、設定形状を挙げる
-- **やらない**: ファイルパスを参照する — 古くなる
-- **やらない**: 行番号を参照する
-- **やらない**: 現在の実装構造がそのまま残ると仮定する
+Issue は数日から数週間 `ready-for-agent` に留まることがある。その間にコードベースは変わる。ファイルが rename・移動・refactor されても有用であり続けるように brief を書く。
 
-### 手続きではなくふるまい
+- **やる**: Interface、型、振る舞いの契約を記述する
+- **やる**: エージェントが探すべき / 変更すべき、具体的な型・関数シグネチャ・config の形を名指しする
+- **やるな**: ファイルパスを参照する — 陳腐化する
+- **やるな**: 行番号を参照する
+- **やるな**: 現在の実装構造がそのまま残ると仮定する
 
-システムが**何を**すべきかを書け。**どう**実装するかは書かない。エージェントは新鮮な目でコードベースを探索し、自身で実装判断をする。
+### Behavioral, not procedural
 
-- **良い**: 「`SkillConfig` 型はオプショナルな `schedule` フィールド（型: `CronExpression`）を受け取れるようにする」
-- **悪い**: 「src/types/skill.ts を開いて 42 行目に schedule フィールドを追加」
-- **良い**: 「ユーザーが `/triage` を引数なしで実行したら、注意が必要な Issue のサマリが見える」
-- **悪い**: 「main ハンドラ関数に switch 文を足す」
+システムが **何を** すべきかを記述し、**どう** 実装するかは書かない。エージェントはコードベースを新鮮に探索し、自分で実装判断を下す。
 
-### 完全な受け入れ基準
+- **良い:** "The `SkillConfig` type should accept an optional `schedule` field of type `CronExpression`"
+- **悪い:** "Open src/types/skill.ts and add a schedule field on line 42"
+- **良い:** "When a user runs `/triage` with no arguments, they should see a summary of issues needing attention"
+- **悪い:** "Add a switch statement in the main handler function"
 
-エージェントは「いつ終わったか」を知る必要がある。すべてのエージェントブリーフは、具体的でテスト可能な受け入れ基準を持つ。各基準は独立に検証可能であること。
+### Complete acceptance criteria
 
-- **良い**: 「`gh issue list --label needs-triage` が初期分類済みの Issue を返す」
-- **悪い**: 「トリアージが正しく動くこと」
+エージェントは、いつ完了したかを知る必要がある。すべての agent brief は、具体的でテスト可能な acceptance criteria を持たねばならない。各基準は独立に検証可能であるべきだ。
 
-### 明示的なスコープ境界
+- **良い:** "Running `gh issue list --label needs-triage` returns issues that have been through initial classification"
+- **悪い:** "Triage should work correctly"
 
-何がスコープ外かを明記する。これによりエージェントが過剰実装したり隣接機能を勝手に想定するのを防ぐ。
+### Explicit scope boundaries
 
-## テンプレート
+何がスコープ外かを述べる。これはエージェントが gold-plating したり、隣接機能について勝手な仮定をするのを防ぐ。
+
+## Template
 
 ```markdown
 ## Agent Brief
 
 **Category:** bug / enhancement
-**Summary:** やるべきことの 1 行説明
+**Summary:** one-line description of what needs to happen
 
 **Current behavior:**
-今何が起きているか。bug の場合は壊れている挙動。
-enhancement の場合は、機能が乗る現状。
+Describe what happens now. For bugs, this is the broken behavior.
+For enhancements, this is the status quo the feature builds on.
 
 **Desired behavior:**
-エージェントの作業が完了したあと、何が起きるべきか。
-エッジケースとエラー条件について具体的に書く。
+Describe what should happen after the agent's work is complete.
+Be specific about edge cases and error conditions.
 
 **Key interfaces:**
-- `TypeName` — 何をなぜ変えるか
-- `functionName()` の戻り値の型 — 現在何を返すか / 何を返すべきか
-- 設定形状 — 必要な新しい設定オプション
+- `TypeName` — what needs to change and why
+- `functionName()` return type — what it currently returns vs what it should return
+- Config shape — any new configuration options needed
 
 **Acceptance criteria:**
-- [ ] 具体的・テスト可能な基準 1
-- [ ] 具体的・テスト可能な基準 2
-- [ ] 具体的・テスト可能な基準 3
+- [ ] Specific, testable criterion 1
+- [ ] Specific, testable criterion 2
+- [ ] Specific, testable criterion 3
 
 **Out of scope:**
-- この Issue では変更・対応すべきでないもの
-- 関連しているように見えるが別物の隣接機能
+- Thing that should NOT be changed or addressed in this issue
+- Adjacent feature that might seem related but is separate
 ```
 
-## 例
+## Examples
 
-### 良いエージェントブリーフ（bug）
+### Good agent brief (bug)
 
 ```markdown
 ## Agent Brief
 
 **Category:** bug
-**Summary:** Skill description の切り詰めが単語の途中で切れて、壊れた出力になっている
+**Summary:** Skill description truncation drops mid-word, producing broken output
 
 **Current behavior:**
-skill description が 1024 文字を超えると、単語境界を無視して
-ぴったり 1024 文字で切り詰められる。その結果、説明が単語の途中で
-終わってしまう（例: "Use when the user wants to confi"）。
+When a skill description exceeds 1024 characters, it is truncated at exactly
+1024 characters regardless of word boundaries. This produces descriptions
+that end mid-word (e.g. "Use when the user wants to confi").
 
 **Desired behavior:**
-切り詰めは 1024 文字以下の最後の単語境界で行い、切り詰めを示す
-"..." を末尾に付与する。
+Truncation should break at the last word boundary before 1024 characters
+and append "..." to indicate truncation.
 
 **Key interfaces:**
-- `SkillMetadata` 型の `description` フィールド — 型自体の変更は不要だが、
-  これを埋めるバリデーション / 処理ロジックが単語境界を尊重する必要がある
-- SKILL.md の frontmatter を読んで description を抽出する関数
+- The `SkillMetadata` type's `description` field — no type change needed,
+  but the validation/processing logic that populates it needs to respect
+  word boundaries
+- Any function that reads SKILL.md frontmatter and extracts the description
 
 **Acceptance criteria:**
-- [ ] 1024 文字未満の description は変更されない
-- [ ] 1024 文字超の description は、1024 文字以下の最後の単語境界で
-      切り詰められる
-- [ ] 切り詰められた description は "..." で終わる
-- [ ] "..." を含めた合計長は 1024 文字を超えない
+- [ ] Descriptions under 1024 chars are unchanged
+- [ ] Descriptions over 1024 chars are truncated at the last word boundary
+      before 1024 chars
+- [ ] Truncated descriptions end with "..."
+- [ ] The total length including "..." does not exceed 1024 chars
 
 **Out of scope:**
-- 1024 文字制限そのものの変更
-- 複数行 description のサポート
+- Changing the 1024 char limit itself
+- Multi-line description support
 ```
 
-### 良いエージェントブリーフ（enhancement）
+### Good agent brief (enhancement)
 
 ```markdown
 ## Agent Brief
 
 **Category:** enhancement
-**Summary:** 却下した機能要望を追跡する `.out-of-scope/` ディレクトリ対応を追加
+**Summary:** Add `.out-of-scope/` directory support for tracking rejected feature requests
 
 **Current behavior:**
-機能要望が却下されると、Issue は `wontfix` ラベルとコメント付きで
-クローズされる。判断とその理由を残す永続的な記録は存在しない。
-将来似た要望が来たら、メンテナは過去の議論を思い出すか検索する
-ことになる。
+When a feature request is rejected, the issue is closed with a `wontfix` label
+and a comment. There is no persistent record of the decision or reasoning.
+Future similar requests require the maintainer to recall or search for the
+prior discussion.
 
 **Desired behavior:**
-却下された機能要望は `.out-of-scope/<concept>.md` に文書化される。
-ファイルは判断・理由、その機能を要求したすべての Issue へのリンクを
-含む。新規 Issue のトリアージ時、これらのファイルがマッチ確認に
-使われる。
+Rejected feature requests should be documented in `.out-of-scope/<concept>.md`
+files that capture the decision, reasoning, and links to all issues that
+requested the feature. When triaging new issues, these files should be
+checked for matches.
 
 **Key interfaces:**
-- `.out-of-scope/` 配下の markdown ファイル形式 — 各ファイルは
-  `# Concept Name` 見出し、`**Decision:**` 行、`**Reason:**` 行、
-  Issue リンクを含む `**Prior requests:**` リストを持つ
-- トリアージワークフローは早い段階で全 `.out-of-scope/*.md` を読み、
-  概念類似度で新規 Issue と突き合わせる
+- Markdown file format in `.out-of-scope/` — each file should have a
+  `# Concept Name` heading, a `**Decision:**` line, a `**Reason:**` line,
+  and a `**Prior requests:**` list with issue links
+- The triage workflow should read all `.out-of-scope/*.md` files early
+  and match incoming issues against them by concept similarity
 
 **Acceptance criteria:**
-- [ ] enhancement を wontfix としてクローズすると、`.out-of-scope/` に
-      ファイルが作成または更新される
-- [ ] ファイルは判断・理由・クローズした Issue へのリンクを含む
-- [ ] 一致する `.out-of-scope/` ファイルがすでにあれば、重複作成ではなく
-      "Prior requests" リストに追記される
-- [ ] トリアージ時、既存の `.out-of-scope/` ファイルがチェックされ、
-      新規 Issue が過去の却下とマッチしたら表面化される
+- [ ] Closing a feature as wontfix creates/updates a file in `.out-of-scope/`
+- [ ] The file includes the decision, reasoning, and link to the closed issue
+- [ ] If a matching `.out-of-scope/` file already exists, the new issue is
+      appended to its "Prior requests" list rather than creating a duplicate
+- [ ] During triage, existing `.out-of-scope/` files are checked and surfaced
+      when a new issue matches a prior rejection
 
 **Out of scope:**
-- マッチングの自動化（人間が確認する）
-- 過去に却下された機能の再オープン
-- バグ報告（`.out-of-scope/` 行きは enhancement 却下のみ）
+- Automated matching (human confirms the match)
+- Reopening previously rejected features
+- Bug reports (only enhancement rejections go to `.out-of-scope/`)
 ```
 
-### 悪いエージェントブリーフ
+### Good agent brief (PR)
+
+PR の場合、"Current behavior" は diff の状態を記述し、brief はエージェントにゼロから作らせるのではなく、それを仕上げる / 直すよう求める。
 
 ```markdown
 ## Agent Brief
 
-**Summary:** triage のバグを直して
+**Category:** enhancement
+**Summary:** Finish the contributor's `--json` output flag for `triage list`
+
+**Current behavior:**
+The PR adds a `--json` flag that serializes the issue list to JSON. The happy
+path works and the diff matches the project's command structure. Two gaps
+remain: errors are still printed as human text (not JSON), and the new flag has
+no test coverage.
+
+**Desired behavior:**
+With `--json`, all output — including errors — is well-formed JSON on stdout,
+and the command's exit codes are unchanged. The existing human-readable output
+is untouched when the flag is absent.
+
+**Key interfaces:**
+- The command's error path should emit `{ "error": string }` under `--json`
+  instead of the plain-text error
+- Reuse the existing serializer the PR already added; don't introduce a second
+
+**Acceptance criteria:**
+- [ ] `triage list --json` emits valid JSON for both success and error cases
+- [ ] Exit codes match the non-JSON command
+- [ ] A test covers the `--json` success output and one error case
+- [ ] Default (non-JSON) output is byte-for-byte unchanged
+
+**Out of scope:**
+- Adding `--json` to any other command
+- Changing the JSON shape of the success payload the PR already defined
+```
+
+### Bad agent brief
+
+```markdown
+## Agent Brief
+
+**Summary:** Fix the triage bug
 
 **What to do:**
-triage のあれが壊れてる。メインのファイルを見て直して。
-150 行目あたりの関数に問題がある。
+The triage thing is broken. Look at the main file and fix it.
+The function around line 150 has the issue.
 
 **Files to change:**
 - src/triage/handler.ts (line 150)
@@ -160,9 +199,9 @@ triage のあれが壊れてる。メインのファイルを見て直して。
 ```
 
 これがダメな理由:
-- カテゴリなし
-- 曖昧な説明（「triage のあれが壊れてる」）
-- 古くなるファイルパスと行番号を参照
-- 受け入れ基準なし
-- スコープ境界なし
-- 現状とあるべき挙動の説明なし
+- category が無い
+- 説明が曖昧（"the triage thing is broken"）
+- 陳腐化するファイルパスと行番号を参照している
+- acceptance criteria が無い
+- scope の境界が無い
+- current と desired の振る舞いの記述が無い
