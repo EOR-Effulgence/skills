@@ -48,6 +48,37 @@ ln -s ~/work/skills-ja/skills-ja/engineering/tdd ~/.claude/skills/tdd-ja
 
 直配置する場合は **本家との衝突回避**のため、自分で接尾辞（例: `-ja`）を付けることを推奨。
 
+### Grok Build TUI（EN + JA 両立）
+
+Grok は `~/.grok/skills/` を user skill として読む。EN と JA は同名のため、JA 側は **`-ja` 接尾辞**で両立させる:
+
+```bash
+# このリポジトリ直下で
+./scripts/link-skills-grok.sh
+
+# 確認
+grok inspect | grep -E 'tdd|grill-me|diagnosing-bugs'
+
+# 使い方
+# /tdd      → 英語
+# /tdd-ja   → 日本語
+# /grill-me / /grill-me-ja も同様
+
+# やり直し・削除
+./scripts/link-skills-grok.sh              # 再リンク
+./scripts/link-skills-grok.sh --uninstall  # 本スクリプトが入れた分だけ削除
+./scripts/link-skills-grok.sh --dry-run    # 予行
+```
+
+| 側 | 配置 | 例 |
+|----|------|-----|
+| EN | `~/.grok/skills/{name}` → `skills/...` への symlink | `/tdd` |
+| JA | `~/.grok/skills/{name}-ja/`（`name` を書き換えた SKILL.md + companion symlink） | `/tdd-ja` |
+
+JA の companion（`tests.md` 等）は fork へ symlink のため、**fork 編集は次回 skill 読込から反映**される。`name` 行だけは wrapper の SKILL.md にコピーされているので、JA の `name` / 本体を大きく変えたらスクリプトを再実行する。
+
+**注意**: Claude Code の plugin（`mattpocock-skills` / `matt-pocock-skills-ja`）が有効だと、同名 skill が Grok 上でも二重登録される。Grok 専用の `~/.grok/skills` を正にするなら、Grok の `/plugins` で両 plugin を disable するか、Claude 側で uninstall する。
+
 ## 収録 skill 一覧（23 件）
 
 本家 `mattpocock/skills` の promoted skill (engineering 17 + productivity 5) を全て日本語化し、`caveman`（本家削除済み・fork 固有）を維持している。
