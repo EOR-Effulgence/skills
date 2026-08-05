@@ -34,11 +34,14 @@
     "./skills-ja/engineering/codebase-design",
     "./skills-ja/engineering/code-review",
     "./skills-ja/engineering/resolving-merge-conflicts",
+    "./skills-ja/engineering/wizard",
     "./skills-ja/productivity/grill-me",
     "./skills-ja/productivity/grilling",
     "./skills-ja/productivity/handoff",
     "./skills-ja/productivity/teach",
-    "./skills-ja/productivity/writing-great-skills",
+    "./skills-ja/productivity/to-questionnaire",
+    "./skills-ja/productivity/wait-what",
+    "./skills-ja/productivity/writing-for-agents",
     "./skills-ja/productivity/caveman"
   ]
 }

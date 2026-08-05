@@ -1,6 +1,6 @@
 # Issue tracker: Local Markdown
 
-このリポジトリの issue と spec（spec を PRD として知っているかもしれない）は `.scratch/` 配下の markdown ファイルとして存在する。
+このリポジトリの issue と spec は `.scratch/` 配下の markdown ファイルとして存在する。
 
 ## 規約
 

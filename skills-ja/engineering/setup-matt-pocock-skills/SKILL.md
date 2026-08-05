@@ -37,7 +37,7 @@ engineering skills が前提とするリポジトリ単位の設定を scaffold 
 
 **Section A — Issue tracker.**
 
-> 説明: 「issue tracker」とはこのリポジトリの issue が存在する場所だ。`to-tickets`、`triage`、`to-spec`、`qa` のような skills はそこから読み書きする — `gh issue create` を呼ぶのか、`.scratch/` 配下に markdown ファイルを書くのか、あるいは別のワークフローに従うのかを知る必要がある。このリポジトリで実際に作業を追跡している場所を選ぶ。
+> 説明: 「issue tracker」とはこのリポジトリの issue が存在する場所だ。`to-tickets`、`triage`、`to-spec` のような skills はそこから読み書きする — `gh issue create` を呼ぶのか、`.scratch/` 配下に markdown ファイルを書くのか、あるいは別のワークフローに従うのかを知る必要がある。このリポジトリで実際に作業を追跡している場所を選ぶ。
 
 デフォルトの姿勢: これらの skills は GitHub 向けに設計された。`git remote` が GitHub を指していればそれを提案する。`git remote` が GitLab（`gitlab.com` またはセルフホストのホスト）を指していれば GitLab を提案する。それ以外（またはユーザーが好む場合）は次を提示する:
 

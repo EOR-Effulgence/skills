@@ -1,6 +1,7 @@
 {
   "name": "eor-skills",
   "owner": { "name": "EOR-Effulgence" },
+  "description": "Matt Pocock's agent skills in both the English original and a Japanese localization — install either or both. 本家の英語版と日本語版の skill セットを一括で install できる marketplace。",
   "plugins": [
     {
       "name": "matt-pocock-skills-ja",

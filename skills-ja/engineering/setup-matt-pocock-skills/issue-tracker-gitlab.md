@@ -1,6 +1,6 @@
 # Issue tracker: GitLab
 
-このリポジトリの issue と PRD は GitLab issue として存在する。すべての操作に [`glab`](https://gitlab.com/gitlab-org/cli) CLI を使う。
+このリポジトリの issue と spec は GitLab issue として存在する。すべての操作に [`glab`](https://gitlab.com/gitlab-org/cli) CLI を使う。
 
 ## 規約
 

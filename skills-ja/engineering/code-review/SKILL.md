@@ -1,12 +1,12 @@
 ---
 name: code-review
-description: 固定点（commit / branch / tag / merge-base）以降の変更を、Standards 軸（コードがこのリポジトリの文書化されたコーディング標準に従っているか）と Spec 軸（コードが起点となった issue/PRD の要求に合致しているか）の 2 軸でレビューする。両レビューを parallel sub-agent で走らせ、並べて報告する。Review changes since a fixed point along two axes — Standards and Spec — running both reviews in parallel sub-agents and reporting them side by side. 日本語トリガー例 / "このブランチをレビューして" "PR をレビューして" "X 以降の変更をレビュー" / English / "review this branch" "review since X"
+description: 固定点（commit / branch / tag / merge-base）以降の変更を、Standards 軸（コードがこのリポジトリの文書化されたコーディング標準に従っているか）と Spec 軸（コードが起点となった issue/spec の要求に合致しているか）の 2 軸でレビューする。両レビューを parallel sub-agent で走らせ、並べて報告する。Review changes since a fixed point along two axes — Standards and Spec — running both reviews in parallel sub-agents and reporting them side by side. 日本語トリガー例 / "このブランチをレビューして" "PR をレビューして" "X 以降の変更をレビュー" / English / "review this branch" "review since X"
 ---
 
 ユーザーが指定した固定点と `HEAD` の間の diff を 2 軸でレビューする:
 
 - **Standards** — コードがこのリポジトリの文書化されたコーディング標準に準拠しているか?
-- **Spec** — コードが起点となった issue / PRD / spec を忠実に実装しているか?
+- **Spec** — コードが起点となった issue / spec を忠実に実装しているか?
 
 両軸は **parallel sub-agent** として走らせ、互いの context を汚染しないようにする。その後、このスキルが両者の findings を集約する。
 
@@ -28,7 +28,7 @@ diff コマンドを一度だけ確定する: `git diff <fixed-point>...HEAD`（
 
 1. commit メッセージ内の issue 参照（`#123`、`Closes #45`、GitLab の `!67` など）— `docs/agents/issue-tracker.md` のワークフローで fetch する。
 2. ユーザーが引数として渡したパス。
-3. branch 名や機能に一致する、`docs/`、`specs/`、`.scratch/` 配下の PRD/spec ファイル。
+3. branch 名や機能に一致する、`docs/`、`specs/`、`.scratch/` 配下の spec ファイル。
 4. 何も見つからなければ、spec の場所をユーザーに尋ねる。無いと言われた場合、**Spec** sub-agent は skip して「no spec available」と報告する。
 
 ### 3. standards の出所を特定する

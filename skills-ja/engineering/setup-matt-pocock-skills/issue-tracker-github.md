@@ -1,6 +1,6 @@
 # Issue tracker: GitHub
 
-このリポジトリの issue と PRD は GitHub issue として存在する。すべての操作に `gh` CLI を使う。
+このリポジトリの issue と spec は GitHub issue として存在する。すべての操作に `gh` CLI を使う。
 
 ## 規約
 
