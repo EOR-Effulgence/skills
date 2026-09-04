@@ -81,7 +81,7 @@ link_en() {
       run ln -sfn "$src" "$target"
       log "EN  relink $name -> $src"
     elif [[ -f "$target/$MARKER" ]]; then
-      # previously installed as JA wrapper with same name — shouldn't happen
+      # previously installed as JA wrapper with same name, shouldn't happen
       run rm -rf "$target"
       run ln -sfn "$src" "$target"
       log "EN  replace $name -> $src"

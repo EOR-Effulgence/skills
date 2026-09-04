@@ -4,4 +4,4 @@ description: 計画や設計を研ぎ澄ますための容赦ないインタビ�
 disable-model-invocation: true
 ---
 
-`/domain-modeling` skill を使いながら `/grilling` セッションを実行する。
+Skill tool を "grilling" と "domain-modeling" の 2 回呼ぶ。

@@ -1,22 +1,22 @@
 ---
 name: to-spec
-description: 現在の会話を spec に変換し、プロジェクトの issue tracker に公開する — インタビューはせず、すでに議論した内容を統合するだけ。Turn the current conversation into a spec and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed. 日本語トリガー例 / "spec を作って" "この会話から spec 化して" / English / "create a spec from this conversation"
+description: 現在の会話を spec に変換し、プロジェクトの issue tracker に公開する。インタビューはせず、すでに議論した内容を統合するだけ。Turn the current conversation into a spec and publish it to the project issue tracker, with no interview, just synthesis of what you've already discussed. 日本語トリガー例 / "spec を作って" "この会話から spec 化して" / English / "create a spec from this conversation"
 disable-model-invocation: true
 ---
 
-このスキルは現在の会話コンテキストとコードベース理解を取り、spec（この文書は PRD として知っているかもしれない）を生成する。ユーザーへインタビューしてはいけない — すでに知っていることを統合するだけだ。
+このスキルは現在の会話コンテキストとコードベース理解を取り、spec を生成する。ユーザーへインタビューしてはいけない。すでに知っていることを統合するだけだ。
 
-issue tracker と triage ラベルの語彙は事前に提示されているはずだ — もし無ければ `/setup-matt-pocock-skills` を走らせる。
+issue tracker と triage ラベルの語彙は事前に提示されているはずだ。もし無ければ、ユーザーに `/setup-matt-pocock-skills` の実行を促せ。
 
 ## Process
 
 1. まだ探索していなければ、コードベースの現状を理解するためリポジトリを探索する。spec 全体を通してプロジェクトの domain glossary の語彙を使い、触る領域の ADR を尊重する。
 
-2. その機能をテストする seam をスケッチする。新しい seam より既存の seam を優先する。可能な限り高い位置の seam を使う。新しい seam が必要なら、できる限り高い地点で提案する。コードベース全体で seam の数は少ないほどよい — 理想は 1 つだ。
+2. その機能をテストする seam をスケッチする。新しい seam より既存の seam を優先する。可能な限り高い位置の seam を使う。新しい seam が必要なら、できる限り高い地点で提案する。コードベース全体で seam の数は少ないほどよい。理想は 1 つだ。
 
 これらの seam がユーザーの期待と一致するか確認する。
 
-3. 下記テンプレートで spec を書き、プロジェクトの issue tracker に公開する。`ready-for-agent` の triage ラベルを付ける — 追加 triage は不要。
+3. 下記テンプレートで spec を書き、プロジェクトの issue tracker に公開する。`ready-for-agent` の triage ラベルを付ける。追加 triage は不要。
 
 <spec-template>
 
@@ -54,7 +54,7 @@ issue tracker と triage ラベルの語彙は事前に提示されているは�
 
 具体的なファイルパスやコードスニペットは含めない。すぐ古びる可能性がある。
 
-例外: プロトタイプが、散文より正確に意思決定をエンコードするスニペット（state machine、reducer、schema、type shape）を生んだ場合、それを該当の判断にインラインで貼り、プロトタイプ由来であることを簡潔に明記する。意思決定の核となる部分だけに刈り込む — 動くデモではなく、重要な要点だけ。
+例外: プロトタイプが、散文より正確に意思決定をエンコードするスニペット（state machine、reducer、schema、type shape）を生んだ場合、それを該当の判断にインラインで貼り、プロトタイプ由来であることを簡潔に明記する。意思決定の核となる部分だけに刈り込む。動くデモではなく、重要な要点だけ。
 
 ## Testing Decisions
 

@@ -11,21 +11,21 @@ description: deep module を設計するための共通語彙。ユーザーが�
 
 これらの用語は正確にそのまま使う。「component」「service」「API」「boundary」で置き換えるな。一貫した言葉を使うことがすべての要点だ。
 
-**Module** — Interface と Implementation を持つあらゆるもの。意図的にスケール非依存にしている。関数、クラス、パッケージ、あるいは tier をまたぐスライスでもよい。_避ける_: unit, component, service。
+**Module**: Interface と Implementation を持つあらゆるもの。意図的にスケール非依存にしている。関数、クラス、パッケージ、あるいは tier をまたぐスライスでもよい。_避ける_: unit, component, service。
 
-**Interface** — 呼び出し側が module を正しく使うために知らねばならないすべて。型シグネチャだけでなく、不変条件、順序制約、error mode、必要な設定、性能特性も含む。_避ける_: API, signature（狭すぎる。型レベルの表層しか指さない）。
+**Interface**: 呼び出し側が module を正しく使うために知らねばならないすべて。型シグネチャだけでなく、不変条件、順序制約、error mode、必要な設定、性能特性も含む。_避ける_: API, signature（狭すぎる。型レベルの表層しか指さない）。
 
-**Implementation** — module の内側にあるもの、そのコード本体。**Adapter** とは区別する。あるものは小さな Adapter に大きな Implementation を持つ場合（Postgres repo）もあれば、大きな Adapter に小さな Implementation を持つ場合（in-memory fake）もある。Seam が話題のときは「adapter」を、それ以外では「implementation」を使う。
+**Implementation**: module の内側にあるもの、そのコード本体。**Adapter** とは区別する。あるものは小さな Adapter に大きな Implementation を持つ場合（Postgres repo）もあれば、大きな Adapter に小さな Implementation を持つ場合（in-memory fake）もある。Seam が話題のときは「adapter」を、それ以外では「implementation」を使う。
 
-**Depth** — Interface における Leverage。学ばねばならない Interface の単位あたり、呼び出し側（またはテスト）が行使できる振る舞いの量。大量の振る舞いが小さな Interface の背後にあるとき module は **deep** であり、Interface が Implementation とほぼ同じくらい複雑なとき **shallow** だ。
+**Depth**: Interface における Leverage。学ばねばならない Interface の単位あたり、呼び出し側（またはテスト）が行使できる振る舞いの量。大量の振る舞いが小さな Interface の背後にあるとき module は **deep** であり、Interface が Implementation とほぼ同じくらい複雑なとき **shallow** だ。
 
-**Seam** _(Michael Feathers)_ — その場所を編集せずに振る舞いを変えられる箇所。module の Interface が存在する *位置*。Seam をどこに置くかは、その背後に何を置くかとは別の、それ自体独立した設計判断だ。_避ける_: boundary（DDD の bounded context と意味が衝突する）。
+**Seam** _(Michael Feathers)_: その場所を編集せずに振る舞いを変えられる箇所。module の Interface が存在する *位置*。Seam をどこに置くかは、その背後に何を置くかとは別の、それ自体独立した設計判断だ。_避ける_: boundary（DDD の bounded context と意味が衝突する）。
 
-**Adapter** — Seam において Interface を満たす具体物。実体（中身が何か）ではなく *役割*（どのスロットを埋めるか）を表す。
+**Adapter**: Seam において Interface を満たす具体物。実体（中身が何か）ではなく *役割*（どのスロットを埋めるか）を表す。
 
-**Leverage** — 呼び出し側が Depth から得るもの。学ぶ Interface の単位あたり、より多くの能力。1 つの Implementation が N 個の call site と M 個のテストにわたって元を取る。
+**Leverage**: 呼び出し側が Depth から得るもの。学ぶ Interface の単位あたり、より多くの能力。1 つの Implementation が N 個の call site と M 個のテストにわたって元を取る。
 
-**Locality** — 保守側が Depth から得るもの。変更、バグ、知識、検証が、呼び出し側に散らばるのではなく 1 箇所に集中する。1 度直せば、どこでも直る。
+**Locality**: 保守側が Depth から得るもの。変更、バグ、知識、検証が、呼び出し側に散らばるのではなく 1 箇所に集中する。1 度直せば、どこでも直る。
 
 ## Deep vs shallow
 
@@ -110,5 +110,5 @@ Interface を設計するときは、こう問え:
 
 ## さらに深く
 
-- **依存を踏まえてクラスタを deepen する** — [DEEPENING.md](DEEPENING.md) を参照: 依存カテゴリ、Seam の規律、そして layer を重ねるのではなく置き換えるテスト手法。
-- **代替 Interface を探索する** — [DESIGN-IT-TWICE.md](DESIGN-IT-TWICE.md) を参照: 並列サブエージェントを立ち上げて Interface を複数の極端に異なるやり方で設計し、Depth・Locality・Seam の配置で比較する。
+- **依存を踏まえてクラスタを deepen する**: [DEEPENING.md](DEEPENING.md) を参照。 依存カテゴリ、Seam の規律、そして layer を重ねるのではなく置き換えるテスト手法。
+- **代替 Interface を探索する**: [DESIGN-IT-TWICE.md](DESIGN-IT-TWICE.md) を参照。 並列サブエージェントを立ち上げて Interface を複数の極端に異なるやり方で設計し、Depth・Locality・Seam の配置で比較する。

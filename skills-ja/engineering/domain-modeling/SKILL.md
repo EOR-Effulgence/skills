@@ -1,6 +1,6 @@
 ---
 name: domain-modeling
-description: プロジェクトの domain model を構築し研ぎ澄ます。ユーザーが domain の用語や Ubiquitous Language を確定したいとき、architectural decision を記録したいとき、または別のスキルが domain model を保守する必要があるときに使用。Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record an architectural decision, or when another skill needs to maintain the domain model. 日本語トリガー例 / "ドメインモデルを固めたい" "用語を統一したい" "ADR を書きたい" / English / "pin down the ubiquitous language" "record an architectural decision"
+description: プロジェクトの domain model を構築し研ぎ澄ます。コードベースの用語を議論するとき、`CONTEXT.md` を書く / 編集するとき、ADR を記録する / 編集するときに使用。Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a CONTEXT.md, or recording or editing an ADR. 日本語トリガー例 / "ドメインモデルを固めたい" "用語を統一したい" "ADR を書きたい" / English / "pin down the ubiquitous language" "record an architectural decision"
 ---
 
 # Domain Modeling

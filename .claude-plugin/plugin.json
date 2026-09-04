@@ -1,5 +1,21 @@
 {
   "name": "matt-pocock-skills-ja",
+  "version": "1.2.3",
+  "description": "Matt Pocock's agent skills for real engineering (Japanese localization): 日本語トリガーで発火する grilling / spec・ticket フロー / TDD / code review / domain modeling などの skill セット。",
+  "author": {
+    "name": "EOR-Effulgence"
+  },
+  "repository": "https://github.com/EOR-Effulgence/skills",
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "skills",
+    "japanese",
+    "tdd",
+    "code-review",
+    "domain-modeling",
+    "productivity"
+  ],
   "skills": [
     "./skills-ja/engineering/ask-matt",
     "./skills-ja/engineering/diagnosing-bugs",
@@ -18,11 +34,14 @@
     "./skills-ja/engineering/codebase-design",
     "./skills-ja/engineering/code-review",
     "./skills-ja/engineering/resolving-merge-conflicts",
+    "./skills-ja/engineering/wizard",
     "./skills-ja/productivity/grill-me",
     "./skills-ja/productivity/grilling",
     "./skills-ja/productivity/handoff",
     "./skills-ja/productivity/teach",
-    "./skills-ja/productivity/writing-great-skills",
+    "./skills-ja/productivity/to-questionnaire",
+    "./skills-ja/productivity/wait-what",
+    "./skills-ja/productivity/writing-for-agents",
     "./skills-ja/productivity/caveman"
   ]
 }

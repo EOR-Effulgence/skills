@@ -1,4 +1,4 @@
-# Matt Pocock Skills — 日本語版
+# Matt Pocock Skills 日本語版
 
 [mattpocock/skills](https://github.com/mattpocock/skills) のフォーク版に、**日本語化された skill セット** を追加したもの。
 
@@ -79,11 +79,11 @@ JA の companion（`tests.md` 等）は fork へ symlink のため、**fork 編�
 
 **注意**: Claude Code の plugin（`mattpocock-skills` / `matt-pocock-skills-ja`）が有効だと、同名 skill が Grok 上でも二重登録される。Grok 専用の `~/.grok/skills` を正にするなら、Grok の `/plugins` で両 plugin を disable するか、Claude 側で uninstall する。
 
-## 収録 skill 一覧（23 件）
+## 収録 skill 一覧（26 件）
 
-本家 `mattpocock/skills` の promoted skill (engineering 17 + productivity 5) を全て日本語化し、`caveman`（本家削除済み・fork 固有）を維持している。
+本家 `mattpocock/skills` の promoted skill (engineering 18 + productivity 7) を全て日本語化し、`caveman`（本家削除済み・fork 固有）を維持している。
 
-### engineering (17)
+### engineering (18)
 
 | skill | 用途 |
 |---|---|
@@ -98,22 +98,25 @@ JA の companion（`tests.md` 等）は fork へ symlink のため、**fork 編�
 | `to-tickets` | 計画 / spec を tracer bullet の独立 ticket に分割 |
 | `wayfinder` | decision ticket を subagent で潰していく探索 |
 | `implement` | spec / ticket を TDD + code-review で実装 |
-| `prototype` | 使い捨てプロトタイプ（CLI logic または UI バリエーション） |
+| `prototype` | 使い捨てプロトタイプ（共有可能な HTML logic デモ または UI バリエーション） |
 | `research` | background agent で調査し Markdown にまとめる |
 | `domain-modeling` | ドメインモデリング + CONTEXT.md / ADR 整備 |
 | `codebase-design` | Ousterhout 流 deep module 設計（design it twice / deepening） |
 | `code-review` | 変更を dimension 別にレビュー |
 | `resolving-merge-conflicts` | merge / rebase conflict を意図を汲んで解消 |
+| `wizard` | 人間にしか踏めない手順を案内する対話的 bash wizard を生成 |
 
-### productivity (6)
+### productivity (8)
 
 | skill | 用途 |
 |---|---|
 | `grill-me` | 計画 / 設計を容赦なく詰める interview（`/grilling`） |
-| `grilling` | grill 系スキルが使う共通 primitive（壁打ちセッション） |
+| `grilling` | grill 系スキルが使う共通 primitive（frontier をラウンド単位で詰める） |
 | `handoff` | 会話を引き継ぎドキュメントに圧縮 |
 | `teach` | 学習ミッション設計（fluency / storage strength） |
-| `writing-great-skills` | 優れた skill を設計・記述（progressive disclosure 等） |
+| `to-questionnaire` | 他人しか答えられない事項を questionnaire 化 |
+| `wait-what` | 伝わらなかった説明を平易な言葉で言い直させる |
+| `writing-for-agents` | agent が読む文書（skill / AGENTS.md 等）の書き方リファレンス |
 | `caveman` | 超圧縮通信モード（トークン使用量 ~75% 削減、fork 固有） |
 
 ## 訳語ルール

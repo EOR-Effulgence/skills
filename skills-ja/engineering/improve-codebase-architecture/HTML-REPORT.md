@@ -1,6 +1,6 @@
 # HTML Report Format
 
-アーキテクチャ review は、OS の temp ディレクトリ内の単一の自己完結した HTML ファイルとして描画する。Tailwind と Mermaid はどちらも CDN から来る。Mermaid はグラフ状の図を確実に扱う。手組みの div とインライン SVG は、よりエディトリアルなビジュアル（質量図、断面図）を扱う。両者を混ぜろ — すべてを Mermaid に頼るな、汎用的に見え始める。
+アーキテクチャ review は、OS の temp ディレクトリ内の単一の自己完結した HTML ファイルとして描画する。Tailwind と Mermaid はどちらも CDN から来る。Mermaid はグラフ状の図を確実に扱う。手組みの div とインライン SVG は、よりエディトリアルなビジュアル（質量図、断面図）を扱う。両者を混ぜろ。すべてを Mermaid に頼るな、汎用的に見え始める。
 
 ## Scaffold
 
@@ -9,7 +9,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Architecture review — {{repo name}}</title>
+    <title>Architecture review: {{repo name}}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="module">
       import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -35,7 +35,7 @@
 
 ## Header
 
-リポジトリ名、日付、そしてコンパクトな凡例: 実線ボックス = module、破線 = seam、赤い矢印 = leakage、太い暗色ボックス = deep module。導入段落は無し — まっすぐ候補へ入る。
+リポジトリ名、日付、そしてコンパクトな凡例: 実線ボックス = module、破線 = seam、赤い矢印 = leakage、太い暗色ボックス = deep module。導入段落は無し。まっすぐ候補へ入る。
 
 ## Candidate card
 
@@ -43,20 +43,20 @@
 
 各候補は 1 つの `<article>`:
 
-- **Title** — 短く、deepening に名前を付ける（例: "Collapse the Order intake pipeline"）。
-- **Badge row** — recommendation strength（`Strong` = emerald、`Worth exploring` = amber、`Speculative` = slate）、加えて依存カテゴリのタグ（`in-process`、`local-substitutable`、`ports & adapters`、`mock`）。
-- **Files** — 等幅リスト、`font-mono text-sm`。
-- **Before / After diagram** — 中心。2 カラム、横並び。下記のパターン参照。
-- **Problem** — 一文。何が痛むか。
-- **Solution** — 一文。何が変わるか。
-- **Wins** — 箇条書き、各 6 語以内。例: "Tests hit one interface"、"Pricing logic stops leaking"、"Delete 4 shallow wrappers"。
-- **ADR callout**（該当する場合）— amber 色のボックス内に一行。
+- **Title**: 短く、deepening に名前を付ける（例: "Collapse the Order intake pipeline"）。
+- **Badge row**: recommendation strength（`Strong` = emerald、`Worth exploring` = amber、`Speculative` = slate）、加えて依存カテゴリのタグ（`in-process`、`local-substitutable`、`ports & adapters`、`mock`）。
+- **Files**: 等幅リスト、`font-mono text-sm`。
+- **Before / After diagram**: 中心。2 カラム、横並び。下記のパターン参照。
+- **Problem**: 一文。何が痛むか。
+- **Solution**: 一文。何が変わるか。
+- **Wins**: 箇条書き、各 6 語以内。例: "Tests hit one interface"、"Pricing logic stops leaking"、"Delete 4 shallow wrappers"。
+- **ADR callout**（該当する場合）: amber 色のボックス内に一行。
 
 説明の段落は無し。図を理解するのに段落が要るなら、図を描き直せ。
 
 ## Diagram patterns
 
-候補に合うパターンを選べ。混ぜろ。すべての図を同じに見せるな — variety が肝の一部だ。
+候補に合うパターンを選べ。混ぜろ。すべての図を同じに見せるな。variety が肝の一部だ。
 
 ### Mermaid graph (the workhorse for dependencies / call flow)
 
@@ -77,7 +77,7 @@
 
 ### Hand-built boxes-and-arrows (when Mermaid's layout fights you)
 
-Module を境界とラベル付きの `<div>` として。矢印を、relative なコンテナ上に絶対配置したインライン SVG の `<line>` や `<path>` 要素として。"after" の図を、内部がグレーアウトした 1 つの太枠 deep module のように感じさせたいときにこれを使う — Mermaid はそれを正しい重みで描画しない。
+Module を境界とラベル付きの `<div>` として。矢印を、relative なコンテナ上に絶対配置したインライン SVG の `<line>` や `<path>` 要素として。"after" の図を、内部がグレーアウトした 1 つの太枠 deep module のように感じさせたいときにこれを使う。Mermaid はそれを正しい重みで描画しない。
 
 ### Cross-section (good for layered shallowness)
 
@@ -85,7 +85,7 @@ Module を境界とラベル付きの `<div>` として。矢印を、relative �
 
 ### Mass diagram (good for "interface as wide as implementation")
 
-Module ごとに 2 つの長方形 — 1 つは interface の表面積、もう 1 つは implementation。Before: interface の長方形が implementation の長方形とほぼ同じ高さ（shallow）。After: interface の長方形が低く、implementation の長方形が高い（deep）。
+Module ごとに 2 つの長方形を描く。1 つは interface の表面積、もう 1 つは implementation。Before: interface の長方形が implementation の長方形とほぼ同じ高さ（shallow）。After: interface の長方形が低く、implementation の長方形が高い（deep）。
 
 ### Call-graph collapse
 
@@ -96,8 +96,8 @@ Before: 関数呼び出しのツリーをネストしたボックスとして描
 - コーポレートダッシュボードではなくエディトリアル寄りに。ゆとりある余白。見出しにはセリフも可（`font-serif` は stone/slate とよく合う）。
 - 色は控えめに: 1 つのアクセント（emerald か indigo）に加え、leakage に赤、warning に amber。
 - before/after がスクロールなしで快適に横並びになるよう、図は ~320px の高さに保つ。
-- 図の中の module ラベルには `text-xs uppercase tracking-wider` を使う — UI ではなく schematic に読めるべきだ。
-- スクリプトは Tailwind CDN と Mermaid ESM import のみ。それ以外レポートは静的だ — アプリコードは無く、Mermaid 自身の描画を超えるインタラクティビティも無い。
+- 図の中の module ラベルには `text-xs uppercase tracking-wider` を使う。UI ではなく schematic に読めるべきだ。
+- スクリプトは Tailwind CDN と Mermaid ESM import のみ。それ以外レポートは静的だ。アプリコードは無く、Mermaid 自身の描画を超えるインタラクティビティも無い。
 
 ## Top recommendation section
 
@@ -105,7 +105,7 @@ Before: 関数呼び出しのツリーをネストしたボックスとして描
 
 ## Tone
 
-平易な英語で簡潔に — ただしアーキテクチャの名詞と動詞は `/codebase-design` skill からそのまま来る。簡潔さは流れる言い訳にならない。
+平易な英語で簡潔に。ただしアーキテクチャの名詞と動詞は `/codebase-design` skill からそのまま来る。簡潔さは流れる言い訳にならない。
 
 **必ずこう使え:** module、interface、implementation、depth、deep、shallow、seam、adapter、leverage、locality。
 
@@ -113,11 +113,11 @@ Before: 関数呼び出しのツリーをネストしたボックスとして描
 
 **このスタイルに合う言い回し:**
 
-- "Order intake module is shallow — interface nearly matches the implementation."
+- "Order intake module is shallow: interface nearly matches the implementation."
 - "Pricing leaks across the seam."
 - "Deepen: one interface, one place to test."
 - "Two adapters justify the seam: HTTP in prod, in-memory in tests."
 
-**Wins の箇条書き** は gain を glossary 用語で名指す: *"locality: bugs concentrate in one module"*、*"leverage: one interface, N call sites"*、*"interface shrinks; implementation absorbs the wrappers"*。*"easier to maintain"* や *"cleaner code"* とは書くな — それらの用語は glossary に無く、居場所を稼いでいない。
+**Wins の箇条書き** は gain を glossary 用語で名指す: *"locality: bugs concentrate in one module"*、*"leverage: one interface, N call sites"*、*"interface shrinks; implementation absorbs the wrappers"*。*"easier to maintain"* や *"cleaner code"* とは書くな。それらの用語は glossary に無く、居場所を稼いでいない。
 
 ヘッジも、前置きも、"it's worth noting that…" も無し。一文が箇条書きにできるなら、箇条書きにしろ。箇条書きが削れるなら、削れ。ある用語が `/codebase-design` の glossary に無いなら、新しいものを発明する前に glossary にあるものへ手を伸ばせ。
