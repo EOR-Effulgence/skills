@@ -36,7 +36,7 @@ OK: "Bug in auth middleware. Token expiry check use `<` not `<=`. Fix:"
 
 以下では一時的に caveman を解除: セキュリティ警告、不可逆操作の確認、断片の順序が誤読を招く可能性のある多段手順、ユーザーが明確化を要求または質問を繰り返したとき。明確化パートが済んだら caveman に戻る。
 
-例 — 破壊的オペ:
+破壊的オペの例:
 
 > **Warning:** This will permanently delete all rows in the `users` table and cannot be undone.
 >

@@ -1,6 +1,6 @@
 ---
 name: triage
-description: Issue と外部 PR を、トリアージロールからなる state machine で流す — 分類し、検証し、必要なら詰め、agent 向けの brief を書く。Move issues and external PRs through a state machine of triage roles — categorise, verify, grill if needed, and write agent-ready briefs. 日本語トリガー例 / "Issue を作成して" "トリアージして" "入ってきたバグをレビューして" "AFK エージェント向けに Issue を整えて" / English / "triage this" "prepare issues for an AFK agent"
+description: Issue と外部 PR を、トリアージロールからなる state machine で流す。分類し、検証し、必要なら詰め、agent 向けの brief を書く。Move issues and external PRs through a state machine of triage roles, categorising, verifying, grilling if needed, and writing agent-ready briefs. 日本語トリガー例 / "Issue を作成して" "トリアージして" "入ってきたバグをレビューして" "AFK エージェント向けに Issue を整えて" / English / "triage this" "prepare issues for an AFK agent"
 disable-model-invocation: true
 ---
 
@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 プロジェクトの Issue トラッカー上で、Issue をトリアージロールからなる小さな state machine を通して流す。
 
-このリポジトリが外部の pull request を request surface として扱う場合（Issue トラッカーの config を参照）、トリアージはそれらもカバーする: **PR とはコードが添付された Issue だ** — 同じロール、同じ state、同じ machine を使い、下記で「for a PR」と記した差分だけが加わる。裸の `#42` は、トラッカーの config に従って Issue か PR に解決する。
+このリポジトリが外部の pull request を request surface として扱う場合（Issue トラッカーの config を参照）、トリアージはそれらもカバーする: **PR とはコードが添付された Issue だ**。同じロール、同じ state、同じ machine を使い、下記で「for a PR」と記した差分だけが加わる。裸の `#42` は、トラッカーの config に従って Issue か PR に解決する。
 
 トリアージ中に Issue トラッカーへ投稿するコメント・Issue は、**必ず**この disclaimer で始めること:
 
@@ -18,31 +18,31 @@ disable-model-invocation: true
 
 ## Reference docs
 
-- [AGENT-BRIEF.md](AGENT-BRIEF.md) — 長持ちする agent brief の書き方
-- [OUT-OF-SCOPE.md](OUT-OF-SCOPE.md) — `.out-of-scope/` knowledge base の仕組み
+- [AGENT-BRIEF.md](AGENT-BRIEF.md): 長持ちする agent brief の書き方
+- [OUT-OF-SCOPE.md](OUT-OF-SCOPE.md): `.out-of-scope/` knowledge base の仕組み
 
 ## Roles
 
 2 つの **category** ロール:
 
-- `bug` — 何かが壊れている
-- `enhancement` — 新機能または改善
+- `bug`: 何かが壊れている
+- `enhancement`: 新機能または改善
 
 5 つの **state** ロール:
 
-- `needs-triage` — メンテナが評価する必要がある
-- `needs-info` — 報告者からの追加情報を待っている
-- `ready-for-agent` — 完全に仕様化済み、AFK エージェントに渡せる
-- `ready-for-human` — 人間による実装が必要
-- `wontfix` — 対応しない
+- `needs-triage`: メンテナが評価する必要がある
+- `needs-info`: 報告者からの追加情報を待っている
+- `ready-for-agent`: 完全に仕様化済み、AFK エージェントに渡せる
+- `ready-for-human`: 人間による実装が必要
+- `wontfix`: 対応しない
 
 PR の場合、同じ state を添付コードに対して読む: `ready-for-agent` は brief が添付済みで、エージェントが diff に対して次の一手を打つべき状態を意味する; `ready-for-human` は人間が merge できる状態を意味する。
 
 トリアージ済みの Issue はいずれも、ちょうど 1 つの category ロールと 1 つの state ロールを持つべきだ。state ロールが矛盾する場合は、それを指摘し、他の何かをする前にメンテナに確認する。
 
-これらは正準（canonical）なロール名だ — Issue トラッカーで実際に使われる label 文字列は異なることがある。その対応表は渡されているはずだ。なければ、ユーザーに `/setup-matt-pocock-skills` の実行を促せ。
+これらは正準（canonical）なロール名であり、Issue トラッカーで実際に使われる label 文字列は異なることがある。その対応表は渡されているはずだ。なければ、ユーザーに `/setup-matt-pocock-skills` の実行を促せ。
 
-State transition: label の無い Issue は通常まず `needs-triage` へ行く; そこから `needs-info`、`ready-for-agent`、`ready-for-human`、`wontfix` のいずれかへ移る。`needs-info` は報告者が返答すると `needs-triage` へ戻る。メンテナはいつでも上書きできる — 異常に見える transition は指摘し、進める前に確認する。
+State transition: label の無い Issue は通常まず `needs-triage` へ行く; そこから `needs-info`、`ready-for-agent`、`ready-for-human`、`wontfix` のいずれかへ移る。`needs-info` は報告者が返答すると `needs-triage` へ戻る。メンテナはいつでも上書きできる。異常に見える transition は指摘し、進める前に確認する。
 
 ## Invocation
 
@@ -57,33 +57,33 @@ State transition: label の無い Issue は通常まず `needs-triage` へ行く
 
 Issue トラッカーに問い合わせ、古いものから順に 3 つの bucket を提示する:
 
-1. **Unlabeled** — 一度もトリアージされていない。
-2. **`needs-triage`** — 評価が進行中。
-3. **前回のトリアージノート以降に報告者の活動がある `needs-info`** — 再評価が必要。
+1. **Unlabeled**: 一度もトリアージされていない。
+2. **`needs-triage`**: 評価が進行中。
+3. **前回のトリアージノート以降に報告者の活動がある `needs-info`**: 再評価が必要。
 
-PR がスコープに入る場合、これらの bucket に外部 PR を含め、各行に `[PR]` または `[issue]` をタグ付けする。Discovery が表に出すのは *外部* PR のみだ（誰を外部とみなすかはトラッカーの config が定義する） — コラボレータの作業中 PR はトリアージ作業ではない。このフィルタは discovery 専用だ; 明示的に名指しされた PR は、author に関わらず常にトリアージする。
+PR がスコープに入る場合、これらの bucket に外部 PR を含め、各行に `[PR]` または `[issue]` をタグ付けする。Discovery が表に出すのは *外部* PR のみだ（誰を外部とみなすかはトラッカーの config が定義する）。コラボレータの作業中 PR はトリアージ作業ではない。このフィルタは discovery 専用だ; 明示的に名指しされた PR は、author に関わらず常にトリアージする。
 
 件数と、項目ごとに 1 行のサマリーを表示する。メンテナに選ばせる。
 
 ## Triage a specific issue or PR
 
-1. **コンテキストを集める。** Issue または PR の全体（body、コメント、label、author、日付; PR なら diff も）を読む。過去のトリアージノートを解析し、解決済みの質問を再度尋ねないようにする。プロジェクトの domain glossary を使ってコードベースを探索し、その領域の ADR を尊重する。コードベースに対して 2 つのチェックを走らせる: (a) **冗長性（redundancy）** — 要求された振る舞いの既存実装を、リクエストの文言だけでなく domain の概念で検索し、どこを探したか報告する。見つかれば、それは実装済みの `wontfix`（step 5）だ。(b) **過去の却下（prior rejection）** — `.out-of-scope/*.md` を読み、このリクエストに似たものを表に出す。
+1. **コンテキストを集める。** Issue または PR の全体（body、コメント、label、author、日付; PR なら diff も）を読む。過去のトリアージノートを解析し、解決済みの質問を再度尋ねないようにする。プロジェクトの domain glossary を使ってコードベースを探索し、その領域の ADR を尊重する。コードベースに対して 2 つのチェックを走らせる: (a) **冗長性（redundancy）**: 要求された振る舞いの既存実装を、リクエストの文言だけでなく domain の概念で検索し、どこを探したか報告する。見つかれば、それは実装済みの `wontfix`（step 5）だ。(b) **過去の却下（prior rejection）**: `.out-of-scope/*.md` を読み、このリクエストに似たものを表に出す。
 
 2. **推奨する。** メンテナに、category と state の推奨を根拠付きで伝え、加えてリクエストに関連するコードベースの短いサマリー（実装済みかどうかを含む）を伝える。指示を待つ。
 
-3. **主張を検証する。** どんな詰めよりも先に、主張が成り立つか確かめる。bug なら、報告者の手順から再現する。PR なら、diff が主張どおりに動くか確かめる — checkout して、関連するテストやコマンドを走らせる。何が起きたかを報告する: 確認できた（コードパス付き）、失敗した、または詳細不足（強い `needs-info` シグナル）。検証が確認できると、agent brief は格段に強くなる。
+3. **主張を検証する。** どんな詰めよりも先に、主張が成り立つか確かめる。bug なら、報告者の手順から再現する。PR なら、diff が主張どおりに動くか確かめる。checkout して、関連するテストやコマンドを走らせる。何が起きたかを報告する: 確認できた（コードパス付き）、失敗した、または詳細不足（強い `needs-info` シグナル）。検証が確認できると、agent brief は格段に強くなる。
 
-4. **詰める（必要なら）。** リクエストに肉付けが必要なら、Skill tool を "grilling" と "domain-modeling" の 2 回呼ぶ — 一度に 1 ラウンド分の質問を投げて形になるまで詰め、domain の用語を研ぎ澄まし、判断が固まり次第 `CONTEXT.md`/ADR をその場で更新する。
+4. **詰める（必要なら）。** リクエストに肉付けが必要なら、Skill tool を "grilling" と "domain-modeling" の 2 回呼ぶ。一度に 1 ラウンド分の質問を投げて形になるまで詰め、domain の用語を研ぎ澄まし、判断が固まり次第 `CONTEXT.md`/ADR をその場で更新する。
 
 5. **結果を適用する:**
-   - `ready-for-agent` — agent brief コメントを投稿する（[AGENT-BRIEF.md](AGENT-BRIEF.md)）。
-   - `ready-for-human` — agent brief と同じ構造だが、なぜ委譲できないか（判断が必要、外部アクセスが必要、設計判断、手動テスト）を注記する。
-   - `needs-info` — トリアージノートを投稿する（下記テンプレート）。
-   - `wontfix` — close する。コメントは *理由* による:
-     - **実装済み（Already implemented）** — その変更はすでにコードベースに存在する。どこにあるか示す; `.out-of-scope/` には**書かない**（あの KB は *却下された* リクエスト用であって、作られたもの用ではない）。
-     - **却下（bug）** — 丁寧に説明し、close する。
-     - **却下（enhancement）** — `.out-of-scope/` に書き、コメントからそこへリンクし、close する（[OUT-OF-SCOPE.md](OUT-OF-SCOPE.md)）。
-   - `needs-triage` — ロールを適用する。部分的な進捗があれば任意でコメント。
+   - `ready-for-agent`: agent brief コメントを投稿する（[AGENT-BRIEF.md](AGENT-BRIEF.md)）。
+   - `ready-for-human`: agent brief と同じ構造だが、なぜ委譲できないか（判断が必要、外部アクセスが必要、設計判断、手動テスト）を注記する。
+   - `needs-info`: トリアージノートを投稿する（下記テンプレート）。
+   - `wontfix`: close する。コメントは *理由* による:
+     - **実装済み（Already implemented）**: その変更はすでにコードベースに存在する。どこにあるか示す; `.out-of-scope/` には**書かない**（あの KB は *却下された* リクエスト用であって、作られたもの用ではない）。
+     - **却下（bug）**: 丁寧に説明し、close する。
+     - **却下（enhancement）**: `.out-of-scope/` に書き、コメントからそこへリンクし、close する（[OUT-OF-SCOPE.md](OUT-OF-SCOPE.md)）。
+   - `needs-triage`: ロールを適用する。部分的な進捗があれば任意でコメント。
 
 ## Quick state override
 

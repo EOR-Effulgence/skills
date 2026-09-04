@@ -1,4 +1,4 @@
-# Matt Pocock Skills — 日本語版
+# Matt Pocock Skills 日本語版
 
 [mattpocock/skills](https://github.com/mattpocock/skills) のフォーク版に、**日本語化された skill セット** を追加したもの。
 

@@ -4,7 +4,7 @@ description: 自分だけでは答えきれない判断を、他の誰かに記�
 disable-model-invocation: true
 ---
 
-ユーザーが一人では答えられないものを **questionnaire** に変える — 相手 1 人に渡して非同期で記入してもらう、あるいはミーティングで一緒に埋める Markdown 文書だ。相手はユーザーに欠けている知識を持っている。questionnaire はそれを引き出す。
+ユーザーが一人では答えられないものを **questionnaire** に変える。相手 1 人に渡して非同期で記入してもらう、あるいはミーティングで一緒に埋める Markdown 文書だ。相手はユーザーに欠けている知識を持っている。questionnaire はそれを引き出す。
 
 **主題ではなく、送付を詰めろ。** ユーザーに対しては _送付_ についてだけ interview する。それは常に答えられるからだ: 誰に送るのか、何を返してほしいのか。文書内の質問は、そのうえで **相手が知っていることとユーザーが必要としていることの隔たり** を狙う。
 
@@ -16,7 +16,7 @@ disable-model-invocation: true
 
 ## Document structure
 
-文書は **discovery questionnaire** として枠付けろ: ユーザーには context が無く、相手がそれを握っている。質問は重要な順に並べる — 非同期ということは 1 回しか機会が無いかもしれない — そして数個を超えたら `##` 見出しでテーマ別にまとめる。下のテンプレートを使って書け。
+文書は **discovery questionnaire** として枠付けろ: ユーザーには context が無く、相手がそれを握っている。質問は重要な順に並べる（非同期ということは 1 回しか機会が無いかもしれない）。そして数個を超えたら `##` 見出しでテーマ別にまとめる。下のテンプレートを使って書け。
 
 <questionnaire-template>
 
@@ -24,7 +24,7 @@ disable-model-invocation: true
 
 **Purpose:** why this questionnaire exists and the decision riding on it.
 
-**From:** <the user> — **To:** <the recipient> — **How your answers will be used:** <where they go>
+**From:** <the user> / **To:** <the recipient> / **How your answers will be used:** <where they go>
 
 ## Context
 
@@ -32,11 +32,11 @@ One paragraph orienting a recipient who wasn't in the user's head. Enough to ans
 
 ## How to answer
 
-Deadline and rough effort. Partial answers and "I don't know" are useful — flag anything you're unsure of rather than skipping it.
+Deadline and rough effort. Partial answers and "I don't know" are useful: flag anything you're unsure of rather than skipping it.
 
 ## <Theme heading>
 
-One `##` section per theme. Under each, its questions, most-important-first. Every question is one idea — never compound — with an answer stub directly beneath, and a one-line _why this matters_ only where the question could be misread or invite a throwaway answer.
+One `##` section per theme. Under each, its questions, most-important-first. Every question is one idea, never compound, with an answer stub directly beneath, and a one-line _why this matters_ only where the question could be misread or invite a throwaway answer.
 
 <question-example>
 ### What load is the system expected to handle at launch?

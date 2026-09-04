@@ -10,9 +10,9 @@
 - **issue にコメント**: `glab issue note <number> --message "..."`。GitLab はコメントを "note" と呼ぶ。
 - **ラベル付与 / 解除**: `glab issue update <number> --label "..."` / `--unlabel "..."`。複数ラベルはカンマ区切り、またはフラグを繰り返す。
 - **クローズ**: `glab issue close <number>`。`glab issue close` は終了コメントを受け付けないので、`glab issue note <number> --message "..."` で説明を先に投稿してからクローズする。
-- **Merge request**: GitLab は PR を "merge request" と呼ぶ。`glab mr create`、`glab mr view`、`glab mr note` などを使う — `gh pr ...` と同じ形で、`pr` の位置に `mr`、`comment`/`--body` の位置に `note`/`--message` を置く。
+- **Merge request**: GitLab は PR を "merge request" と呼ぶ。`glab mr create`、`glab mr view`、`glab mr note` などを使う。`gh pr ...` と同じ形で、`pr` の位置に `mr`、`comment`/`--body` の位置に `note`/`--message` を置く。
 
-リポジトリは `git remote -v` から推測する — clone の中で実行すれば `glab` が自動でこれをやる。
+リポジトリは `git remote -v` から推測する。clone の中で実行すれば `glab` が自動でこれをやる。
 
 ## Merge request を triage の surface として
 
@@ -40,7 +40,7 @@ GitLab issue を作る。
 
 - **Map**: `wayfinder:map` ラベルを付けた 1 つの issue。Notes / Decisions-so-far / Fog の body を保持する。`glab issue create --label wayfinder:map`。（native epic を持つ GitLab のティアでは、代わりに epic が map を保持してもよい。ラベル付き issue はどこでも動く。）
 - **Child ticket**: description の先頭に `Part of #<map>` を持ち、`wayfinder:<type>`（`research`/`prototype`/`grilling`/`task`）ラベルを持つ issue。claim されると、チケットは駆動している dev にアサインされる。
-- **Blocking**: GitLab の **native blocking link** — canonical で UI 上でも見える表現。`/blocked_by #<n>` クイックアクションを note として投稿して追加する（`glab issue note <child> --message "/blocked_by #<blocker>"`）。native blocking link は Premium/Ultimate の機能だ。free ティア（または利用不可の場合）は、description の先頭の `Blocked by: #<n>, #<n>` 行にフォールバックする。すべての blocker が close されればチケットは unblock される。
-- **Frontier query**: `glab issue list -F json` を map の child にスコープし、open な blocker を持つもの — open な issue への native な `blocked_by` link（`glab api projects/:id/issues/:iid/links`）、または `Blocked by` 行の open な issue — や assignee のあるものを落とす。map の順序で最初のものが勝つ。
-- **Claim**: `glab issue update <n> --assignee @me` — セッション最初の書き込み。
+- **Blocking**: GitLab の **native blocking link**（canonical で UI 上でも見える表現）。`/blocked_by #<n>` クイックアクションを note として投稿して追加する（`glab issue note <child> --message "/blocked_by #<blocker>"`）。native blocking link は Premium/Ultimate の機能だ。free ティア（または利用不可の場合）は、description の先頭の `Blocked by: #<n>, #<n>` 行にフォールバックする。すべての blocker が close されればチケットは unblock される。
+- **Frontier query**: `glab issue list -F json` を map の child にスコープし、open な blocker を持つもの（open な issue への native な `blocked_by` link（`glab api projects/:id/issues/:iid/links`）、または `Blocked by` 行の open な issue）や assignee のあるものを落とす。map の順序で最初のものが勝つ。
+- **Claim**: `glab issue update <n> --assignee @me`。セッション最初の書き込み。
 - **Resolve**: `glab issue note <n> --message "<answer>"`、次に `glab issue close <n>`、次に map の Decisions-so-far に context ポインタ（gist + リンク）を追記する。

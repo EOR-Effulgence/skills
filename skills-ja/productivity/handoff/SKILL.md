@@ -5,7 +5,7 @@ argument-hint: "次セッションは何に使うのか？"
 disable-model-invocation: true
 ---
 
-新しいエージェントが作業を継続できるよう、現在の会話を要約した handoff ドキュメントを書く。保存先は **ユーザー OS の temporary ディレクトリ** — 現在のワークスペースには保存しない。
+新しいエージェントが作業を継続できるよう、現在の会話を要約した handoff ドキュメントを書く。保存先は **ユーザー OS の temporary ディレクトリ**。現在のワークスペースには保存しない。
 
 ドキュメントには「suggested skills」セクションを含め、次のエージェントが Skill tool で呼ぶべき skill を名指しする。
 

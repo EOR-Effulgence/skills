@@ -2,8 +2,8 @@
 
 リポジトリ内の `.out-of-scope/` ディレクトリは、却下された機能リクエストの永続的な記録を保存する。目的は 2 つ:
 
-1. **組織的記憶（institutional memory）** — なぜその機能が却下されたか。Issue が close されても理由が失われないようにする
-2. **重複排除（deduplication）** — 過去の却下に一致する新しい Issue が来たとき、スキルは再議論せずに以前の決定を表に出せる
+1. **組織的記憶（institutional memory）**: なぜその機能が却下されたか。Issue が close されても理由が失われないようにする
+2. **重複排除（deduplication）**: 過去の却下に一致する新しい Issue が来たとき、スキルは再議論せずに以前の決定を表に出せる
 
 ## Directory structure
 
@@ -18,7 +18,7 @@
 
 ## File format
 
-ファイルはくだけた読みやすいスタイルで書く — データベースのエントリというより短い設計ドキュメントに近い。段落・コードサンプル・例を使い、初めて目にする人にも理由が明快で有用になるようにする。
+ファイルはくだけた読みやすいスタイルで書く。データベースのエントリというより短い設計ドキュメントに近い。段落・コードサンプル・例を使い、初めて目にする人にも理由が明快で有用になるようにする。
 
 ```markdown
 # Dark Mode
@@ -48,9 +48,9 @@ interface ThemeConfig {
 
 ## Prior requests
 
-- #42 — "Add dark mode support"
-- #87 — "Night theme for accessibility"
-- #134 — "Dark theme option"
+- #42: "Add dark mode support"
+- #87: "Night theme for accessibility"
+- #134: "Dark theme option"
 ```
 
 ### Naming the file
@@ -59,31 +59,31 @@ interface ThemeConfig {
 
 ### Writing the reason
 
-理由は実質的でなければならない — 「これは要らない」ではなく、なぜかを書く。良い理由が参照するもの:
+理由は実質的でなければならない。「これは要らない」ではなく、なぜかを書く。良い理由が参照するもの:
 
 - プロジェクトのスコープや哲学（"This project focuses on X; theming is a downstream concern"）
 - 技術的制約（"Supporting this would require Y, which conflicts with our Z architecture"）
 - 戦略的判断（"We chose to use A instead of B because..."）
 
-理由は長持ちするものであるべきだ。一時的な状況（"we're too busy right now"）への言及は避ける — それは本当の却下ではなく、先送りだ。
+理由は長持ちするものであるべきだ。一時的な状況（"we're too busy right now"）への言及は避ける。それは本当の却下ではなく、先送りだ。
 
 ## When to check `.out-of-scope/`
 
 トリアージ中（Step 1: Gather context）、`.out-of-scope/` の全ファイルを読む。新しい Issue を評価するとき:
 
 - リクエストが既存の out-of-scope 概念に一致するか確認する
-- 一致はキーワードではなく概念の類似で判断する — "night theme" は `dark-mode.md` に一致する
-- 一致があればメンテナに表に出す: "This is similar to `.out-of-scope/dark-mode.md` — we rejected this before because [reason]. Do you still feel the same way?"
+- 一致はキーワードではなく概念の類似で判断する。"night theme" は `dark-mode.md` に一致する
+- 一致があればメンテナに表に出す: "This is similar to `.out-of-scope/dark-mode.md`: we rejected this before because [reason]. Do you still feel the same way?"
 
 メンテナは次のいずれかを選べる:
 
-- **Confirm** — 新しい Issue が既存ファイルの "Prior requests" リストに追加され、close される
-- **Reconsider** — out-of-scope ファイルが削除または更新され、Issue は通常のトリアージへ進む
-- **Disagree** — Issue 同士は関連するが別物であり、通常のトリアージへ進む
+- **Confirm**: 新しい Issue が既存ファイルの "Prior requests" リストに追加され、close される
+- **Reconsider**: out-of-scope ファイルが削除または更新され、Issue は通常のトリアージへ進む
+- **Disagree**: Issue 同士は関連するが別物であり、通常のトリアージへ進む
 
 ## When to write to `.out-of-scope/`
 
-**enhancement**（bug ではない）が `wontfix` として *却下* されたときだけだ。これは enhancement PR にも Issue とまったく同様に適用される — 却下された PR はここに記録され、同じリクエストが新しいコードとして戻ってこないようにする。
+**enhancement**（bug ではない）が `wontfix` として *却下* されたときだけだ。これは enhancement PR にも Issue とまったく同様に適用される。却下された PR はここに記録され、同じリクエストが新しいコードとして戻ってこないようにする。
 
 **実装済み（already implemented）** を理由に `wontfix` として close する場合は、ここに**書かない**。それは作られた機能であって却下されたものではない; 記録すれば dedup チェックが偽の却下で汚染される。代わりに、close コメントでその機能が既にどこにあるかを示す。
 
@@ -101,5 +101,5 @@ interface ThemeConfig {
 メンテナが過去に却下した概念について考えを変えた場合:
 
 - `.out-of-scope/` ファイルを削除する
-- スキルは古い Issue を再オープンする必要はない — それらは歴史的記録だ
+- スキルは古い Issue を再オープンする必要はない。それらは歴史的記録だ
 - 再考のきっかけとなった新しい Issue は通常のトリアージへ進む

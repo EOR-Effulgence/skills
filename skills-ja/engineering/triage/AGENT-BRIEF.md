@@ -2,7 +2,7 @@
 
 agent brief とは、Issue や PR が `ready-for-agent` に移ったときに投稿する構造化コメントだ。AFK エージェントが作業の拠り所にする権威ある仕様書である。元の body と議論はコンテキストにすぎず、agent brief こそが契約（contract）だ。
 
-brief は **エージェントが何をすべきか** を述べ、それは両方の surface に及ぶ: Issue なら、ゼロから変更を作ること; PR なら、*既存の diff に対して* 残された作業 — 仕上げる、隙間を埋める、レビュー指摘に対応する。どちらでも原則は同じで、下記の PR 例がその違いを示す。
+brief は **エージェントが何をすべきか** を述べ、それは両方の surface に及ぶ: Issue なら、ゼロから変更を作ること; PR なら、*既存の diff に対して* 残された作業だ: 仕上げる、隙間を埋める、レビュー指摘に対応する。どちらでも原則は同じで、下記の PR 例がその違いを示す。
 
 ## Principles
 
@@ -12,7 +12,7 @@ Issue は数日から数週間 `ready-for-agent` に留まることがある。�
 
 - **やる**: Interface、型、振る舞いの契約を記述する
 - **やる**: エージェントが探すべき / 変更すべき、具体的な型・関数シグネチャ・config の形を名指しする
-- **やるな**: ファイルパスを参照する — 陳腐化する
+- **やるな**: ファイルパスを参照する。陳腐化する
 - **やるな**: 行番号を参照する
 - **やるな**: 現在の実装構造がそのまま残ると仮定する
 
@@ -53,9 +53,9 @@ Describe what should happen after the agent's work is complete.
 Be specific about edge cases and error conditions.
 
 **Key interfaces:**
-- `TypeName` — what needs to change and why
-- `functionName()` return type — what it currently returns vs what it should return
-- Config shape — any new configuration options needed
+- `TypeName`: what needs to change and why
+- `functionName()` return type: what it currently returns vs what it should return
+- Config shape: any new configuration options needed
 
 **Acceptance criteria:**
 - [ ] Specific, testable criterion 1
@@ -87,7 +87,7 @@ Truncation should break at the last word boundary before 1024 characters
 and append "..." to indicate truncation.
 
 **Key interfaces:**
-- The `SkillMetadata` type's `description` field — no type change needed,
+- The `SkillMetadata` type's `description` field: no type change needed,
   but the validation/processing logic that populates it needs to respect
   word boundaries
 - Any function that reads SKILL.md frontmatter and extracts the description
@@ -125,7 +125,7 @@ requested the feature. When triaging new issues, these files should be
 checked for matches.
 
 **Key interfaces:**
-- Markdown file format in `.out-of-scope/` — each file should have a
+- Markdown file format in `.out-of-scope/`: each file should have a
   `# Concept Name` heading, a `**Decision:**` line, a `**Reason:**` line,
   and a `**Prior requests:**` list with issue links
 - The triage workflow should read all `.out-of-scope/*.md` files early
@@ -162,7 +162,7 @@ remain: errors are still printed as human text (not JSON), and the new flag has
 no test coverage.
 
 **Desired behavior:**
-With `--json`, all output — including errors — is well-formed JSON on stdout,
+With `--json`, all output (including errors) is well-formed JSON on stdout,
 and the command's exit codes are unchanged. The existing human-readable output
 is untouched when the flag is absent.
 
