@@ -1,17 +1,34 @@
 {
   "name": "eor-skills",
   "owner": { "name": "EOR-Effulgence" },
-  "description": "Matt Pocock's agent skills in both the English original and a Japanese localization — install either or both. 本家の英語版と日本語版の skill セットを一括で install できる marketplace。",
+  "description": "Matt Pocock's agent skills in both the English original and a Japanese localization: install either or both. 本家の英語版と日本語版の skill セットを一括で install できる marketplace。",
   "plugins": [
     {
       "name": "matt-pocock-skills-ja",
       "source": "./",
-      "description": "Matt Pocock's engineering/productivity skills (Japanese localization). Triggers fire on Japanese keywords. 日本語版 — 「壁打ち」「規律でデバッグ」等の日本語トリガーで発火"
+      "description": "Matt Pocock's engineering/productivity skills (Japanese localization). Triggers fire on Japanese keywords. 日本語版: 「壁打ち」「規律でデバッグ」等の日本語トリガーで発火",
+      "category": "engineering",
+      "keywords": [
+        "engineering",
+        "skills",
+        "japanese",
+        "tdd",
+        "code-review",
+        "grilling"
+      ]
     },
     {
       "name": "mattpocock-skills",
       "source": { "source": "github", "repo": "mattpocock/skills" },
-      "description": "Matt Pocock's engineering/productivity skills (English original). Triggers fire on English keywords."
+      "description": "Matt Pocock's engineering/productivity skills (English original). Triggers fire on English keywords.",
+      "category": "engineering",
+      "keywords": [
+        "engineering",
+        "skills",
+        "tdd",
+        "code-review",
+        "grilling"
+      ]
     }
   ]
 }
