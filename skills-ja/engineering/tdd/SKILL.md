@@ -23,7 +23,7 @@ TDD は red → green のループだ。このスキルは、そのループが�
 
 こう問え。「public interface は何か、どの seam をテストすべきか?」
 
-その interface の形そのものが問われているとき——Module がどれだけ deep か、seam をどこに置くべきか、Interface が何を露出すべきか——語彙のために `/codebase-design` スキルを使え。Module / Interface / Depth / Seam / Adapter / Leverage / Locality の用語はそこが共通の出所だ。走らせるセッションではなく、参照するリファレンスとして扱え。
+その interface の形そのものが問われているとき——Module がどれだけ deep か、seam をどこに置くべきか、Interface が何を露出すべきか——語彙のために Skill tool を "codebase-design" で呼べ。Module / Interface / Depth / Seam / Adapter / Leverage / Locality の用語はそこが共通の出所だ。走らせるセッションではなく、参照するリファレンスとして扱え。
 
 ## アンチパターン
 

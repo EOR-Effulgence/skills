@@ -10,7 +10,7 @@ description: 固定点（commit / branch / tag / merge-base）以降の変更を
 
 両軸は **parallel sub-agent** として走らせ、互いの context を汚染しないようにする。その後、このスキルが両者の findings を集約する。
 
-issue tracker は事前に渡されているはずだ — `docs/agents/issue-tracker.md` が無ければ `/setup-matt-pocock-skills` を実行しろ。
+issue tracker は事前に渡されているはずだ。`docs/agents/issue-tracker.md` が無ければ、ユーザーに `/setup-matt-pocock-skills` の実行を促せ。
 
 ## Process
 
@@ -56,8 +56,6 @@ diff コマンドを一度だけ確定する: `git diff <fixed-point>...HEAD`（
 - **Refused Bequest** — 継承したものの大半を無視または override する subclass や実装者。→ 継承をやめ、composition を使う。
 
 ### 4. 両 sub-agent を parallel で spawn する
-
-2 つの `Agent` tool 呼び出しを 1 つのメッセージで送る。両方とも `general-purpose` subagent を使う。
 
 **Standards sub-agent prompt** — 含めるもの:
 

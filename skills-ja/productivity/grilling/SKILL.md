@@ -7,10 +7,16 @@ description: 計画・判断・アイデアについてユーザーを容赦な�
 
 ツリーは **ラウンド** 単位で進める。**frontier** とは、前提条件がすでに決着している判断すべて — まだ聞いていない答えを推測せずに _いま_ 問える質問だ。frontier 全体を 1 ラウンドで問え: 各質問に番号を振り、推奨する答えを添えろ。そしてユーザーの回答を待ってから次のラウンドへ進め。
 
-各質問はこの形式で出せ:
+1 ラウンドはこの形式で出せ:
 
 ```
 ❓ **Q1** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
+
+➡️ <your recommended answer>
+
+---
+
+❓ **Q2** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
 
 ➡️ <your recommended answer>
 ```

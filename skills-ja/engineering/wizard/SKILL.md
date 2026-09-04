@@ -5,9 +5,9 @@ description: 人間にしか踏めない手順を案内する、対話的な bas
 
 # Wizard
 
-**wizard** とは、手でやるのも面倒なら毎回 AI に説明し直すのも面倒な手作業の手順を、人間に一段ずつ案内する bash スクリプトだ。各 URL を開き、何をクリックして何をコピーするかを正確に告げ、値を取り込み、あるべき場所（`.env`、GitHub secrets）へ書き込み、各段階で確認を取り、あとどれだけ残っているかを示す。サードパーティサービスの設定、一度きりの migration、プロジェクトをある状態から別の状態へ移すこと、いずれにも使える。
+**wizard** とは、手でやるのも面倒なら毎回 AI に説明し直すのも面倒な手作業の手順を、人間に一段ずつ案内する bash スクリプトだ。各 URL を開き、何をクリックして何をコピーするかを正確に告げ、値を取り込み、あるべき場所（`.env`、GitHub secrets）へ書き込み、各段階で確認を取り、あと何 stage 残っているかを示す。サードパーティサービスの設定、一度きりの migration、プロジェクトをある状態から別の状態へ移すこと、いずれにも使える。
 
-心地よい UX は [template.sh](template.sh) で解決済みだ — 残り時間付きの進捗表示、確認ゲート、クロスプラットフォームな URL オープン（WSL 含む）、伏せ字での secret 入力、冪等な `.env` upsert、`gh secret`/`gh variable` への書き込み、締めのサマリー。**あなたの仕事は手順をスコープし、その stage を書き起こすことだけだ。** `STAGES` マーカーより上のライブラリはどの wizard でも同一であり、その一貫性こそが要点だ — 決して手で編集するな。
+心地よい UX は [template.sh](template.sh) で解決済みだ — stage 単位の進捗表示、確認ゲート、クロスプラットフォームな URL オープン（WSL 含む）、伏せ字での secret 入力、冪等な `.env` upsert、`gh secret`/`gh variable` への書き込み、締めのサマリー。**あなたの仕事は手順をスコープし、その stage を書き起こすことだけだ。** `STAGES` マーカーより上のライブラリはどの wizard でも同一であり、その一貫性こそが要点だ — 決して手で編集するな。
 
 wizard はデフォルトで一過性のものだ — 1 回の実行のために作り、scratch か `scripts/` のパスに保存し、仕事が終われば消す。リポジトリに置くべき再現可能なセットアップ経路をユーザーが望むときにだけ commit しろ。
 
@@ -32,7 +32,7 @@ stage ごとに、人間が辿る正確な経路を書け: どの URL を開き�
 
 ### 3. wizard を書く
 
-`template.sh` を対象パスへコピーする。サンプルの stage を、依存順に並べた 1 ステップ 1 `stage` へ置き換える。ライブラリのヘルパー — `stage`、`say`/`step`、`open_url`、`ask`/`ask_secret`、`write_env`、`set_secret`/`set_var`、`pause`/`confirm` — を使い、`TOTAL_STAGES` と `TOTAL_MINUTES` に正直な見積もりを入れる（残り時間表示がこれで動く）。
+`template.sh` を対象パスへコピーする。サンプルの stage を、依存順に並べた 1 ステップ 1 `stage` へ置き換える。ライブラリのヘルパー — `stage`、`say`/`step`、`open_url`、`ask`/`ask_secret`、`write_env`、`set_secret`/`set_var`、`pause`/`confirm` — を使い、`TOTAL_STAGES` に書いた stage 数を入れる（進捗表示がこれで動く）。`stage` に渡すのは名前だけで、所要時間は取らない。
 
 template が定めた水準を保て: 値を尋ねる前に URL を開く、secret には `ask_secret` を使う、永続化する値はすべて `write_env`、CI が実際に必要とする値だけを `set_secret`、不可逆な操作の前には `confirm`。各 `stage` は画面をクリアし、現在のステップだけが見えるようにする — 人間に必要なものが流れて消えないよう、1 stage は 1 つの焦点の絞られたタスクに留めろ。マーカーより上のライブラリには手を触れるな。
 

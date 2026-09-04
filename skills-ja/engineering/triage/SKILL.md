@@ -40,7 +40,7 @@ PR の場合、同じ state を添付コードに対して読む: `ready-for-age
 
 トリアージ済みの Issue はいずれも、ちょうど 1 つの category ロールと 1 つの state ロールを持つべきだ。state ロールが矛盾する場合は、それを指摘し、他の何かをする前にメンテナに確認する。
 
-これらは正準（canonical）なロール名だ — Issue トラッカーで実際に使われる label 文字列は異なることがある。その対応表は渡されているはずだ - なければ `/setup-matt-pocock-skills` を実行する。
+これらは正準（canonical）なロール名だ — Issue トラッカーで実際に使われる label 文字列は異なることがある。その対応表は渡されているはずだ。なければ、ユーザーに `/setup-matt-pocock-skills` の実行を促せ。
 
 State transition: label の無い Issue は通常まず `needs-triage` へ行く; そこから `needs-info`、`ready-for-agent`、`ready-for-human`、`wontfix` のいずれかへ移る。`needs-info` は報告者が返答すると `needs-triage` へ戻る。メンテナはいつでも上書きできる — 異常に見える transition は指摘し、進める前に確認する。
 
@@ -73,7 +73,7 @@ PR がスコープに入る場合、これらの bucket に外部 PR を含め�
 
 3. **主張を検証する。** どんな詰めよりも先に、主張が成り立つか確かめる。bug なら、報告者の手順から再現する。PR なら、diff が主張どおりに動くか確かめる — checkout して、関連するテストやコマンドを走らせる。何が起きたかを報告する: 確認できた（コードパス付き）、失敗した、または詳細不足（強い `needs-info` シグナル）。検証が確認できると、agent brief は格段に強くなる。
 
-4. **詰める（必要なら）。** リクエストに肉付けが必要なら、`/grilling` と `/domain-modeling` スキルを一緒に走らせる — 一度に 1 ラウンド分の質問を投げて形になるまで詰め、domain の用語を研ぎ澄まし、判断が固まり次第 `CONTEXT.md`/ADR をその場で更新する。
+4. **詰める（必要なら）。** リクエストに肉付けが必要なら、Skill tool を "grilling" と "domain-modeling" の 2 回呼ぶ — 一度に 1 ラウンド分の質問を投げて形になるまで詰め、domain の用語を研ぎ澄まし、判断が固まり次第 `CONTEXT.md`/ADR をその場で更新する。
 
 5. **結果を適用する:**
    - `ready-for-agent` — agent brief コメントを投稿する（[AGENT-BRIEF.md](AGENT-BRIEF.md)）。

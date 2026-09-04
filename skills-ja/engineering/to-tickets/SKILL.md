@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 計画・仕様・会話を **ticket** 群 — それぞれが自分を **block** する ticket を宣言する tracer-bullet vertical slice — に分割する。
 
-issue tracker と triage ラベルの語彙は事前に提示されているはずだ — もし無ければ `/setup-matt-pocock-skills` を走らせる。
+issue tracker と triage ラベルの語彙は事前に提示されているはずだ。もし無ければ、ユーザーに `/setup-matt-pocock-skills` の実行を促せ。
 
 ## Process
 

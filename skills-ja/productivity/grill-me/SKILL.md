@@ -4,4 +4,4 @@ description: 計画や設計を研ぎ澄ますための容赦ない interview。
 disable-model-invocation: true
 ---
 
-`/grilling` セッションを実行する。
+Skill tool を "grilling" で呼ぶ。
