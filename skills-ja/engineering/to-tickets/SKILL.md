@@ -60,7 +60,7 @@ issue tracker と triage ラベルの語彙は事前に提示されているは�
 承認された ticket を公開する。**どう**公開するかは `/setup-matt-pocock-skills` が設定した tracker による。ticket 自体はどちらでも同じで、blocking edges の形だけが変わる:
 
 - **ローカルファイル** → ticket ごとに 1 ファイルを `.scratch/<feature-slug>/issues/<NN>-<slug>.md` の下に書く。依存順（ブロッカーが先）に `01` から採番する。各ファイルの「Blocked by」に依存する番号/タイトルを列挙する。下記の ticket ごとのファイルテンプレートを使う。1 ファイルにつき 1 ticket、決して 1 つの結合ファイルにしない。
-- **実際の issue tracker（GitHub、Linear、…）** → 各 ticket の blocking edges が実在の識別子を参照できるよう、依存順（ブロッカーが先）に ticket ごとに 1 issue を公開する。ネイティブな blocking / sub-issue 関係があればそれを使い、なければ各 ticket の「Blocked by」にブロックする issue を設定する。指示がない限り `ready-for-agent` triage ラベルを付ける。これらの ticket は構成上エージェントが着手可能だ。
+- **実際の issue tracker（GitHub、Linear、…）** → 各 ticket の blocking edges が実在の識別子を参照できるよう、依存順（ブロッカーが先）に ticket ごとに 1 issue を公開する。ネイティブな blocking 関係があればそれを使い、なければ各 ticket の「Blocked by」にブロックする issue を設定する。元が既存の issue なら、各 ticket をその sub-issue にする（tracker doc の操作）。指示がない限り `ready-for-agent` triage ラベルを付ける。これらの ticket は構成上エージェントが着手可能だ。
 
 **frontier** を進める: ブロッカーがすべて完了している ticket。純粋に線形なチェーンなら上から下へという意味だ。
 
@@ -98,7 +98,7 @@ tracker 上の親 issue への参照（元資料が既存 issue だった場合�
 
 ## Blocked by
 
-- ブロックしている各 ticket への参照、または "None: can start immediately"。
+- ブロックしている各 ticket への参照、または "None: can start immediately"。ブロッカーをネイティブな edge として設定したときは、この節を省く。
 
 </issue-template>
 

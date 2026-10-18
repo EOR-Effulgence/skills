@@ -83,7 +83,7 @@ JA の companion（`tests.md` 等）は fork へ symlink のため、**fork 編�
 
 本家 `mattpocock/skills` の promoted skill (engineering 18 + productivity 7) を全て日本語化し、`caveman`（本家削除済み・fork 固有）を維持している。
 
-### engineering (18)
+### engineering (20)
 
 | skill | 用途 |
 |---|---|
@@ -98,12 +98,14 @@ JA の companion（`tests.md` 等）は fork へ symlink のため、**fork 編�
 | `to-tickets` | 計画 / spec を tracer bullet の独立 ticket に分割 |
 | `wayfinder` | decision ticket を subagent で潰していく探索 |
 | `implement` | spec / ticket を TDD + code-review で実装 |
+| `implement-spec` | spec 全体を task graph として subagent で並列に実装し、1 本の integration branch に載せる |
 | `prototype` | 使い捨てプロトタイプ（共有可能な HTML logic デモ または UI バリエーション） |
 | `research` | background agent で調査し Markdown にまとめる |
-| `domain-modeling` | ドメインモデリング + CONTEXT.md / ADR 整備 |
+| `domain-modeling` | ドメインモデリング + GLOSSARY.md / ADR 整備 |
 | `codebase-design` | Ousterhout 流 deep module 設計（design it twice / deepening） |
 | `code-review` | 変更を dimension 別にレビュー |
-| `resolving-merge-conflicts` | merge / rebase conflict を意図を汲んで解消 |
+| `pr` | PR の本文の形（変更を示す最小の図、before/after の証拠、merge の危険度） |
+| `retro` | セッションを振り返り、agent の環境（navigation、自動チェック、coding standards など）の改善を提案 |
 | `wizard` | 人間にしか踏めない手順を案内する対話的 bash wizard を生成 |
 
 ### productivity (8)

@@ -1,11 +1,11 @@
 ---
 name: domain-modeling
-description: プロジェクトの domain model を構築し研ぎ澄ます。コードベースの用語を議論するとき、`CONTEXT.md` を書く / 編集するとき、ADR を記録する / 編集するときに使用。Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a CONTEXT.md, or recording or editing an ADR. 日本語トリガー例 / "ドメインモデルを固めたい" "用語を統一したい" "ADR を書きたい" / English / "pin down the ubiquitous language" "record an architectural decision"
+description: プロジェクトの domain model を構築し研ぎ澄ます。コードベースの用語を議論するとき、`GLOSSARY.md` を書く / 編集するとき、ADR を記録する / 編集するときに使用。Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a GLOSSARY.md, or recording or editing an ADR. 日本語トリガー例 / "ドメインモデルを固めたい" "用語を統一したい" "ADR を書きたい" / English / "pin down the ubiquitous language" "record an architectural decision"
 ---
 
 # Domain Modeling
 
-設計を進めながら、プロジェクトの domain model を能動的に構築し研ぎ澄ませ。これは *能動的* な規律だ ── 用語に挑み、エッジケースのシナリオを考案し、用語集と決定事項が固まった瞬間に書き留める。(語彙のために `CONTEXT.md` を *読むだけ* なら、このスキルではない ── それはどのスキルでもできる一行の習慣にすぎない。このスキルは、モデルを消費するだけでなく、モデルを *変える* ときのためのものだ。)
+設計を進めながら、プロジェクトの domain model を能動的に構築し研ぎ澄ませ。これは *能動的* な規律だ ── 用語に挑み、エッジケースのシナリオを考案し、用語集と決定事項が固まった瞬間に書き留める。(語彙のために `GLOSSARY.md` を *読むだけ* なら、このスキルではない ── それはどのスキルでもできる一行の習慣にすぎない。このスキルは、モデルを消費するだけでなく、モデルを *変える* ときのためのものだ。)
 
 ## ファイル構成
 
@@ -13,7 +13,7 @@ description: プロジェクトの domain model を構築し研ぎ澄ます。�
 
 ```
 /
-├── CONTEXT.md
+├── GLOSSARY.md
 ├── docs/
 │   └── adr/
 │       ├── 0001-event-sourced-orders.md
@@ -21,29 +21,29 @@ description: プロジェクトの domain model を構築し研ぎ澄ます。�
 └── src/
 ```
 
-root に `CONTEXT-MAP.md` が存在するなら、その repo は複数の context を持つ。map は各 context がどこにあるかを指し示す:
+root に `GLOSSARY-MAP.md` が存在するなら、その repo は複数の context を持つ。map は各 context がどこにあるかを指し示す:
 
 ```
 /
-├── CONTEXT-MAP.md
+├── GLOSSARY-MAP.md
 ├── docs/
 │   └── adr/                          ← system-wide decisions
 ├── src/
 │   ├── ordering/
-│   │   ├── CONTEXT.md
+│   │   ├── GLOSSARY.md
 │   │   └── docs/adr/                 ← context-specific decisions
 │   └── billing/
-│       ├── CONTEXT.md
+│       ├── GLOSSARY.md
 │       └── docs/adr/
 ```
 
-ファイルは lazy に作れ ── 書くべきものができたときにだけ作る。`CONTEXT.md` が存在しないなら、最初の用語が解決したときに作る。`docs/adr/` が存在しないなら、最初の ADR が必要になったときに作る。
+ファイルは lazy に作れ ── 書くべきものができたときにだけ作る。`GLOSSARY.md` が存在しないなら、最初の用語が解決したときに作る。`docs/adr/` が存在しないなら、最初の ADR が必要になったときに作る。
 
 ## セッション中
 
 ### 用語集に照らして挑む
 
-ユーザーが `CONTEXT.md` の既存の言語と衝突する用語を使ったら、その場で指摘しろ。「あなたの用語集は 'cancellation' を X と定義しているが、あなたは Y を意味しているように見える ── どちらだ?」
+ユーザーが `GLOSSARY.md` の既存の言語と衝突する用語を使ったら、その場で指摘しろ。「あなたの用語集は 'cancellation' を X と定義しているが、あなたは Y を意味しているように見える ── どちらだ?」
 
 ### 曖昧な言語を研ぎ澄ます
 
@@ -57,11 +57,11 @@ domain の関係が議論されているとき、具体的なシナリオでス�
 
 ユーザーが何かの動作を述べたら、コードがそれに同意するか確認しろ。矛盾を見つけたら表に出せ。「あなたのコードは Order 全体を cancel しているが、あなたはたった今、部分的な cancellation が可能だと言った ── どちらが正しい?」
 
-### CONTEXT.md をその場で更新する
+### GLOSSARY.md をその場で更新する
 
-用語が解決したら、その場で `CONTEXT.md` を更新しろ。これらをまとめて後回しにするな ── 起きたそばから捕まえろ。フォーマットは [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md) を使え。
+用語が解決したら、その場で `GLOSSARY.md` を更新しろ。これらをまとめて後回しにするな ── 起きたそばから捕まえろ。フォーマットは [GLOSSARY-FORMAT.md](./GLOSSARY-FORMAT.md) を使え。
 
-`CONTEXT.md` は実装の詳細を完全に排除すべきだ。`CONTEXT.md` を spec、scratch pad、あるいは実装上の決定の置き場として扱うな。それは用語集であり、それ以外の何物でもない。
+`GLOSSARY.md` は実装の詳細を完全に排除すべきだ。`GLOSSARY.md` を spec、scratch pad、あるいは実装上の決定の置き場として扱うな。それは用語集であり、それ以外の何物でもない。
 
 ### ADR は控えめに提案する
 
