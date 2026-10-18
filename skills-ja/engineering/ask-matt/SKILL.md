@@ -1,6 +1,6 @@
 ---
 name: ask-matt
-description: 状況にどの skill / flow が合うかを尋ねる。このリポジトリの skill 群を横断する router。Ask which skill or flow fits your situation. A router over the skills in this repo. 日本語トリガー例 / "どのスキルを使えばいい" "この状況に合う flow は" / English / "ask matt" "which skill fits"
+description: 状況にどの skill / flow が合うかを尋ねる。このリポジトリの skill 群を横断する router。Ask which skill or flow fits your situation. A router over the skills in this repo. 日本語トリガー例 / "どの skill を使えばいい" "この状況に合う flow は" / English / "ask matt" "which skill fits"
 disable-model-invocation: true
 ---
 
@@ -84,7 +84,7 @@ main flow から完全に外れたもの。
 
 - **`/grill-me`**: `/grill-with-docs` と同じ容赦ない interview だが、**stateless** だ: ローカルに何も保存せず、`GLOSSARY.md` も作らない。**working directory の中で作業していない** ときに手を伸ばせ。plan、design、文章、リポジトリの無いもの全般を研ぎ澄ますとき。working directory の中にいるなら代わりに `/grill-with-docs` を使え: 同じ interview を走らせたうえで paper trail を残すので、厳密にそちらが優る。
 - **`/grilling`**: interview の primitive そのもの。 ラウンド、frontier、事実を調べるのは agent の仕事で判断はあなたのもの、という原則。`/grill-me` と `/grill-with-docs` が名前の付いた 2 つの入口であり、`/triage`、`/wayfinder`、`/improve-codebase-architecture` はいずれも内部でこれを走らせる。ラッパー無しの interview が欲しいときだけ直接手を伸ばせ。
-- **`/prototype`**: 1 つの design 上の問いに答える、小さな使い捨てプログラム。 この状態モデルはしっくりくるか、あるいはこの UI はどう見えるべきか。「使い捨て」はコードの書き方に対する制約であって、破棄する約束ではない: 答えは実コードへ畳み込まれ、プロトタイプ自体は main の外の `prototype/<name>` ブランチに **一次情報 (primary source)** として残し、実装 Issue からそこを指す。main flow のステップ 2 の迂回路だが、design 上の問いが紙の上で決着しづらいときはいつでも手を伸ばせ。
+- **`/prototype`**: 1 つの design 上の問いに答える、小さな使い捨てプログラム。 この状態モデルはしっくりくるか、あるいはこの UI はどう見えるべきか。「使い捨て」はコードの書き方に対する制約であって、破棄する約束ではない: 答えは実コードへ畳み込まれ、プロトタイプ自体は main の外の `prototype/<name>` branch に **一次情報 (primary source)** として残し、実装 Issue からそこを指す。main flow のステップ 2 の迂回路だが、design 上の問いが紙の上で決着しづらいときはいつでも手を伸ばせ。
 - **`/research`**: 読み込みの下働きを **background agent** に委譲する。 **一次情報** に対して問いを調査し、引用付きの Markdown ファイルをリポジトリに残す。それが読んでいるあいだ、作業を続けろ。生まれるファイルは、main flow の `/grill-with-docs` へ *持ち込む* ためのものだ。research は思考に燃料を与えるのであって、思考を置き換えはしない。
 - **`/to-questionnaire`**: 詰まりの原因が自分の頭の中でもコードベースでもなく **他人の頭の中** にあるとき、その人に記入してもらう questionnaire を書く。`/grill-me` の逆だ: 主題についてあなたを詰めるのではなく、**送付**（誰に送るのか、何を返してほしいのか）についてあなたを詰め、質問をその欠落へ向ける。返ってきたものは `/grill-with-docs` や `/to-spec` の材料になる。
 - **`/wizard`**: **人間にしか**踏めない手順のためのもの。 インフラの払い出し、認証情報や CI secret の設定、不慣れなサードパーティのダッシュボードのクリック作業、一度きりの migration や切り替え。各 URL を開き、各値を取り込み、`.env` と GitHub secrets へ書き込む対話的な bash スクリプトを生成し、その手順を毎回 agent に説明し直すものではなくす。model-invoked なので、あなたにしか越えられない壁に当たった瞬間に agent が自分で手を伸ばす。agent が自分でできることなら自分でやるべきだ。これは人間が本当に loop の中にいる場合のためのものだ。

@@ -4,7 +4,7 @@ description: 現在の会話を spec に変換し、プロジェクトの issue 
 disable-model-invocation: true
 ---
 
-このスキルは現在の会話コンテキストとコードベース理解を取り、spec を生成する。ユーザーへインタビューしてはいけない。すでに知っていることを統合するだけだ。
+この skill は現在の会話 context とコードベース理解を取り、spec を生成する。ユーザーへインタビューしてはいけない。すでに知っていることを統合するだけだ。
 
 issue tracker と triage ラベルの語彙は事前に提示されているはずだ。もし無ければ、ユーザーに `/setup-matt-pocock-skills` の実行を促せ。
 

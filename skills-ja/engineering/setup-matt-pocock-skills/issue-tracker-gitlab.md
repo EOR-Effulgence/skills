@@ -26,11 +26,11 @@
 
 GitHub と違い、GitLab は issue と MR を別々に番号付けするので、どちらの surface を maintainer が指しているか分かれば `#42` は一意だ。
 
-## スキルが「issue tracker に publish せよ」と言ったら
+## skill が「issue tracker に publish せよ」と言ったら
 
 GitLab issue を作る。
 
-## スキルが「関連チケットを fetch せよ」と言ったら
+## skill が「関連チケットを fetch せよ」と言ったら
 
 `glab issue view <number> --comments` を実行する。
 

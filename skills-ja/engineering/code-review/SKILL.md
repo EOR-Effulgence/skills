@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: 固定点（commit / branch / tag / merge-base）以降の変更を、Standards 軸（コードがこのリポジトリの文書化されたコーディング標準に従っているか）と Spec 軸（コードが起点となった issue/spec の要求に合致しているか）の 2 軸でレビューする。両レビューを parallel sub-agent で走らせ、並べて報告する。Review changes since a fixed point along two axes (Standards and Spec), running both reviews in parallel sub-agents and reporting them side by side. 日本語トリガー例 / "このブランチをレビューして" "PR をレビューして" "X 以降の変更をレビュー" / English / "review this branch" "review since X"
+description: 固定点（commit / branch / tag / merge-base）以降の変更を、Standards 軸（コードがこのリポジトリの文書化されたコーディング標準に従っているか）と Spec 軸（コードが起点となった issue/spec の要求に合致しているか）の 2 軸でレビューする。両レビューを parallel sub-agent で走らせ、並べて報告する。Review changes since a fixed point along two axes (Standards and Spec), running both reviews in parallel sub-agents and reporting them side by side. 日本語トリガー例 / "この branch をレビューして" "PR をレビューして" "X 以降の変更をレビュー" / English / "review this branch" "review since X"
 ---
 
 ユーザーが指定した固定点と `HEAD` の間の diff を 2 軸でレビューする:
@@ -8,7 +8,7 @@ description: 固定点（commit / branch / tag / merge-base）以降の変更を
 - **Standards**: コードがこのリポジトリの文書化されたコーディング標準に準拠しているか?
 - **Spec**: コードが起点となった issue / spec を忠実に実装しているか?
 
-両軸は **parallel sub-agent** として走らせ、互いの context を汚染しないようにする。その後、このスキルが両者の findings を集約する。
+両軸は **parallel sub-agent** として走らせ、互いの context を汚染しないようにする。その後、この skill が両者の findings を集約する。
 
 issue tracker は事前に渡されているはずだ。渡されていなければ、ユーザーに `/setup-matt-pocock-skills` の実行を促せ。
 

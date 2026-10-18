@@ -8,7 +8,7 @@ deepening の候補を評価するときは、その依存を分類する。カ�
 
 ### 1. In-process
 
-純粋な計算、in-memory な状態、I/O なし。常に deepen 可能だ。module をマージし、新しい Interface を通して直接テストする。Adapter は不要。
+純粋な計算、in-memory な状態、I/O なし。常に deepen 可能だ。module を merge し、新しい Interface を通して直接テストする。Adapter は不要。
 
 ### 2. Local-substitutable
 
@@ -18,7 +18,7 @@ deepening の候補を評価するときは、その依存を分類する。カ�
 
 ネットワーク境界の向こうにある自前のサービス（マイクロサービス、内部 API）。Seam に **port**（interface）を定義する。deep module がロジックを所有し、transport は **adapter** として注入する。テストは in-memory adapter を使う。本番は HTTP/gRPC/queue adapter を使う。
 
-推奨の形: *「Seam に port を定義し、本番向けに HTTP adapter を、テスト向けに in-memory adapter を実装する。そうすればネットワークをまたいでデプロイされていても、ロジックは 1 つの deep module に収まる。」*
+推奨の形: *「Seam に port を定義し、本番向けに HTTP adapter を、テスト向けに in-memory adapter を実装する。そうすればネットワークをまたいで deploy されていても、ロジックは 1 つの deep module に収まる。」*
 
 ### 4. True external (Mock)
 

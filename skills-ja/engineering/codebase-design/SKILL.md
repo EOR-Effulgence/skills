@@ -1,6 +1,6 @@
 ---
 name: codebase-design
-description: deep module を設計するための共通語彙。ユーザーがある module の Interface を設計・改善したい、deepening の機会を見つけたい、Seam をどこに置くか決めたい、コードをよりテスト可能・AI 走査可能にしたいとき、あるいは別のスキルが deep-module 語彙を必要とするときに使う。Shared vocabulary for designing deep modules. Use when designing or improving a module's interface, finding deepening opportunities, deciding where a seam goes, or making code more testable and AI-navigable. 日本語トリガー例 / "module を設計して" "deepening の機会を探して" "Seam をどこに置く" / English / "design a deep module" "find deepening opportunities"
+description: deep module を設計するための共通語彙。ユーザーがある module の Interface を設計・改善したい、deepening の機会を見つけたい、Seam をどこに置くか決めたい、コードをよりテスト可能・AI 走査可能にしたいとき、あるいは別の skill が deep-module 語彙を必要とするときに使う。Shared vocabulary for designing deep modules. Use when designing or improving a module's interface, finding deepening opportunities, deciding where a seam goes, or making code more testable and AI-navigable. 日本語トリガー例 / "module を設計して" "deepening の機会を探して" "Seam をどこに置く" / English / "design a deep module" "find deepening opportunities"
 ---
 
 # Codebase Design
@@ -111,4 +111,4 @@ Interface を設計するときは、こう問え:
 ## さらに深く
 
 - **依存を踏まえてクラスタを deepen する**: [DEEPENING.md](DEEPENING.md) を参照。 依存カテゴリ、Seam の規律、そして layer を重ねるのではなく置き換えるテスト手法。
-- **代替 Interface を探索する**: [DESIGN-IT-TWICE.md](DESIGN-IT-TWICE.md) を参照。 並列サブエージェントを立ち上げて Interface を複数の極端に異なるやり方で設計し、Depth・Locality・Seam の配置で比較する。
+- **代替 Interface を探索する**: [DESIGN-IT-TWICE.md](DESIGN-IT-TWICE.md) を参照。 並列 subagent を立ち上げて Interface を複数の極端に異なるやり方で設計し、Depth・Locality・Seam の配置で比較する。

@@ -12,9 +12,9 @@ issue tracker と triage ラベルの語彙は事前に提示されているは�
 
 ## Process
 
-### 1. コンテキストを集める
+### 1. context を集める
 
-すでに会話コンテキストに入っているものを土台に作業する。ユーザーが引数として参照（仕様のパス、issue 番号や URL）を渡してきたら、それを取得して本文とコメントを全部読む。
+すでに会話 context に入っているものを土台に作業する。ユーザーが引数として参照（仕様のパス、issue 番号や URL）を渡してきたら、それを取得して本文とコメントを全部読む。
 
 ### 2. コードベースを探索（任意）
 
@@ -30,14 +30,14 @@ issue tracker と triage ラベルの語彙は事前に提示されているは�
 
 - 各スライスは、狭くても全レイヤ（schema・API・UI・tests）を端から端まで貫く COMPLETE なパスを切る。垂直であり、ひとつのレイヤだけの水平スライスにしない
 - 完了したスライスは単体でデモまたは検証ができる
-- 各スライスは 1 つの新鮮なコンテキストウィンドウに収まるサイズにする
+- 各スライスは 1 つの新鮮な context window に収まるサイズにする
 - prefactoring があるなら先に済ませる
 
 </vertical-slice-rules>
 
 各 ticket に **blocking edges**（それが着手できる前に完了していなければならない他の ticket）を与える。ブロッカーが無い ticket はすぐに着手できる。
 
-**wide refactor は vertical slicing の例外だ。** **wide refactor** とは、1 つの機械的な変更（カラムのリネーム、共有シンボルの再型付け）でありながら、その **blast radius** がコードベース全体に扇状に広がるものを指す。単一の編集が数千の call sites を一斉に壊し、どんな vertical slice も green で着地できない。これを tracer bullet に押し込もうとするな。**expand–contract** として順序立てる。まず expand: 何も壊さないよう、古い形の隣に新しい形を足す。次に call sites を blast radius でサイズ決めしたバッチ（パッケージ単位、ディレクトリ単位）で移行する。各バッチは expand によってブロックされる個別の ticket とし、古い形がまだ存在するのでバッチからバッチへ CI を green に保つ。最後に contract: どの呼び出し元も残っていなくなったら古い形を削除する。これは移行バッチすべてによってブロックされる ticket とする。バッチ単体でも green を保てない場合は、順序はそのままに、全バッチがブロックする最終の integrate-and-verify ticket をブロックする形で共有の統合ブランチを持たせる。green はそこでのみ約束される。
+**wide refactor は vertical slicing の例外だ。** **wide refactor** とは、1 つの機械的な変更（カラムのリネーム、共有シンボルの再型付け）でありながら、その **blast radius** がコードベース全体に扇状に広がるものを指す。単一の編集が数千の call sites を一斉に壊し、どんな vertical slice も green で着地できない。これを tracer bullet に押し込もうとするな。**expand–contract** として順序立てる。まず expand: 何も壊さないよう、古い形の隣に新しい形を足す。次に call sites を blast radius でサイズ決めしたバッチ（パッケージ単位、ディレクトリ単位）で移行する。各バッチは expand によってブロックされる個別の ticket とし、古い形がまだ存在するのでバッチからバッチへ CI を green に保つ。最後に contract: どの呼び出し元も残っていなくなったら古い形を削除する。これは移行バッチすべてによってブロックされる ticket とする。バッチ単体でも green を保てない場合は、順序はそのままに、全バッチがブロックする最終の integrate-and-verify ticket をブロックする形で共有の統合 branch を持たせる。green はそこでのみ約束される。
 
 ### 4. ユーザーに確認する
 
@@ -51,7 +51,7 @@ issue tracker と triage ラベルの語彙は事前に提示されているは�
 
 - 粒度は適切か？（粗すぎる / 細かすぎる）
 - blocking edges は正しいか。各 ticket は本当にそれをゲートする ticket にだけ依存しているか？
-- マージや更なる分割をすべき ticket はあるか？
+- merge や更なる分割をすべき ticket はあるか？
 
 ユーザーが分解を承認するまで反復する。
 
@@ -60,7 +60,7 @@ issue tracker と triage ラベルの語彙は事前に提示されているは�
 承認された ticket を公開する。**どう**公開するかは `/setup-matt-pocock-skills` が設定した tracker による。ticket 自体はどちらでも同じで、blocking edges の形だけが変わる:
 
 - **ローカルファイル** → ticket ごとに 1 ファイルを `.scratch/<feature-slug>/issues/<NN>-<slug>.md` の下に書く。依存順（ブロッカーが先）に `01` から採番する。各ファイルの「Blocked by」に依存する番号/タイトルを列挙する。下記の ticket ごとのファイルテンプレートを使う。1 ファイルにつき 1 ticket、決して 1 つの結合ファイルにしない。
-- **実際の issue tracker（GitHub、Linear、…）** → 各 ticket の blocking edges が実在の識別子を参照できるよう、依存順（ブロッカーが先）に ticket ごとに 1 issue を公開する。ネイティブな blocking 関係があればそれを使い、なければ各 ticket の「Blocked by」にブロックする issue を設定する。元が既存の issue なら、各 ticket をその sub-issue にする（tracker doc の操作）。指示がない限り `ready-for-agent` triage ラベルを付ける。これらの ticket は構成上エージェントが着手可能だ。
+- **実際の issue tracker（GitHub、Linear、…）** → 各 ticket の blocking edges が実在の識別子を参照できるよう、依存順（ブロッカーが先）に ticket ごとに 1 issue を公開する。ネイティブな blocking 関係があればそれを使い、なければ各 ticket の「Blocked by」にブロックする issue を設定する。元が既存の issue なら、各 ticket をその sub-issue にする（tracker doc の操作）。指示がない限り `ready-for-agent` triage ラベルを付ける。これらの ticket は構成上 agent が着手可能だ。
 
 **frontier** を進める: ブロッカーがすべて完了している ticket。純粋に線形なチェーンなら上から下へという意味だ。
 

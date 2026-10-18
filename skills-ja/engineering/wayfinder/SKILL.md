@@ -1,10 +1,10 @@
 ---
 name: wayfinder
-description: 一つのエージェントセッションに収まらない巨大な作業を、issue tracker 上の decision ticket の共有マップとして計画し、目的地への道筋が明確になるまで一つずつ解決する。Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear. 日本語トリガー例 / "大きな作業を計画して" "decision ticket のマップを作って" "作業を細分化して計画" / English / "plan this big effort" "chart the map" "work through the map"
+description: 一つの agent セッションに収まらない巨大な作業を、issue tracker 上の decision ticket の共有マップとして計画し、目的地への道筋が明確になるまで一つずつ解決する。Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear. 日本語トリガー例 / "大きな作業を計画して" "decision ticket のマップを作って" "作業を細分化して計画" / English / "plan this big effort" "chart the map" "work through the map"
 disable-model-invocation: true
 ---
 
-漠然としたアイデアが届いた。一つのエージェントセッションには大きすぎ、霧に包まれている。ここから**目的地**への道はまだ見えない。Wayfinding とは、目的地に突進することではなく、その道を見つけることだ。このスキルは、その道をリポジトリの issue tracker 上の**共有マップ**として描き出し、その **decision ticket**（解決が「決定」であってビルドの実行スライスではない問い）を、道筋が明確になるまで一つずつ処理する。
+漠然としたアイデアが届いた。一つの agent セッションには大きすぎ、霧に包まれている。ここから**目的地**への道はまだ見えない。Wayfinding とは、目的地に突進することではなく、その道を見つけることだ。この skill は、その道をリポジトリの issue tracker 上の**共有マップ**として描き出し、その **decision ticket**（解決が「決定」であって build の実行スライスではない問い）を、道筋が明確になるまで一つずつ処理する。
 
 目的地は取り組みごとに異なり、それに名前を付けることが charting の最初の行為であり、それがすべてのチケットを形づくる。目的地は、引き渡して反復する仕様かもしれないし、計画を始める前に固める決定かもしれないし、データ構造の migration のようにその場で加える変更かもしれない。マップはドメイン非依存だ。エンジニアリング作業でも、コース教材でも、この形に合うものなら何でもよい。
 
@@ -54,7 +54,7 @@ Wayfinder はデフォルトで**計画**だ。各チケットは一つの決定
 
 ### チケット
 
-各チケットはマップの**子 issue** であり、tracker の issue id がその同一性を表す。本体は問いであり、100K token のエージェントセッション一つに収まるサイズにする。
+各チケットはマップの**子 issue** であり、tracker の issue id がその同一性を表す。本体は問いであり、100K token の agent セッション一つに収まるサイズにする。
 
 ```markdown
 ## Question
@@ -72,12 +72,12 @@ Wayfinder はデフォルトで**計画**だ。各チケットは一つの決定
 
 ## Ticket Types
 
-すべてのチケットは **HITL**(human in the loop、自ら発言する人間と*ともに*進める)か、**AFK**(エージェント単独で進める)のいずれかだ。HITL チケットはそのライブなやり取りを通じてのみ解決する。エージェントが人間の側を代弁することは決してない(自分の問いに自分で答える grilling エージェントは、これを破っている)。
+すべてのチケットは **HITL**(human in the loop、自ら発言する人間と*ともに*進める)か、**AFK**(agent 単独で進める)のいずれかだ。HITL チケットはそのライブなやり取りを通じてのみ解決する。 agent が人間の側を代弁することは決してない(自分の問いに自分で答える grilling agent は、これを破っている)。
 
 - **Research** (AFK): ドキュメント・サードパーティ API・ナレッジベースのようなローカルリソースを読み、決定が待っている事実を浮かび上がらせる。Skill tool を "research" で呼ぶ **subagent** が解決する。現在の作業ディレクトリの外の知識が必要なときに使う。
 - **Prototype** (HITL): 反応の対象となる安価で粗い具体的な成果物（アウトライン、ざっくりした試案、スタブ、または Skill tool を "prototype" で呼んで作る UI/ロジックのコード）を作り、議論の解像度を上げる。プロトタイプはアセットとしてリンクする。「どう見えるべきか」「どう振る舞うべきか」が核心的な問いのときに使う。
 - **Grilling** (HITL): 会話。デフォルトのケース。Skill tool を "grilling" と "domain-modeling" の 2 回、必ず呼ぶ。
-- **Task** (HITL または AFK): *決定*を下す前に済ませておかなければならない手作業。決めること・プロトタイプ・リサーチは何もないが、それが終わるまで議論がブロックされる。API を評価できるようサービスにサインアップする、アクセスを払い出す、形を見られるようデータを移す、といったもの。これは決定するのではなく*実行する*唯一の種別だ。そして目的地を届けることによってではなく、決定のブロックを解除することによって存在意義を得る。可能な場合はエージェントが単独で進め(AFK)、そうでなければ人間に正確なチェックリストを手渡す(HITL)。作業が完了した時点で解決とする。答えには、実施した内容と、後続チケットが依存する結果的な事実(認証情報の場所、新しい URL、行数)を記録する。
+- **Task** (HITL または AFK): *決定*を下す前に済ませておかなければならない手作業。決めること・プロトタイプ・リサーチは何もないが、それが終わるまで議論がブロックされる。API を評価できるようサービスにサインアップする、アクセスを払い出す、形を見られるようデータを移す、といったもの。これは決定するのではなく*実行する*唯一の種別だ。そして目的地を届けることによってではなく、決定のブロックを解除することによって存在意義を得る。可能な場合は agent が単独で進め(AFK)、そうでなければ人間に正確なチェックリストを手渡す(HITL)。作業が完了した時点で解決とする。答えには、実施した内容と、後続チケットが依存する結果的な事実(認証情報の場所、新しい URL、行数)を記録する。
 
 ## Fog of war
 

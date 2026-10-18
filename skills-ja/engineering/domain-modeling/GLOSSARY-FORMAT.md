@@ -51,7 +51,7 @@ _Avoid_: Client, buyer, account
 - **Ordering ↔ Billing**: Shared types for `CustomerId` and `Money`
 ```
 
-スキルはどの構造が当てはまるかを推論する:
+skill はどの構造が当てはまるかを推論する:
 
 - `GLOSSARY-MAP.md` が存在するなら、それを読んで context を見つける
 - root `GLOSSARY.md` だけが存在するなら、単一 context

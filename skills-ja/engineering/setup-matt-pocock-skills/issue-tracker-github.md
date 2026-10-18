@@ -26,11 +26,11 @@
 
 GitHub は issue と PR で番号空間を 1 つ共有するので、素の `#42` はどちらの可能性もある。`gh pr view 42` で解決し、`gh issue view 42` にフォールバックする。
 
-## スキルが「issue tracker に publish せよ」と言ったら
+## skill が「issue tracker に publish せよ」と言ったら
 
 GitHub issue を作る。
 
-## スキルが「関連チケットを fetch せよ」と言ったら
+## skill が「関連チケットを fetch せよ」と言ったら
 
 上の **issue を読む** と同じ方法で読む。
 
