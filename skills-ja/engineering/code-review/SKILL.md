@@ -10,7 +10,7 @@ description: 固定点（commit / branch / tag / merge-base）以降の変更を
 
 両軸は **parallel sub-agent** として走らせ、互いの context を汚染しないようにする。その後、このスキルが両者の findings を集約する。
 
-issue tracker は事前に渡されているはずだ。`docs/agents/issue-tracker.md` が無ければ、ユーザーに `/setup-matt-pocock-skills` の実行を促せ。
+issue tracker は事前に渡されているはずだ。渡されていなければ、ユーザーに `/setup-matt-pocock-skills` の実行を促せ。
 
 ## Process
 
@@ -26,14 +26,14 @@ diff コマンドを一度だけ確定する: `git diff <fixed-point>...HEAD`（
 
 起点となった spec を、次の順で探せ:
 
-1. commit メッセージ内の issue 参照（`#123`、`Closes #45`、GitLab の `!67` など）。`docs/agents/issue-tracker.md` のワークフローで fetch する。
+1. commit メッセージ内の issue 参照（`#123`、`Closes #45`、GitLab の `!67` など）。tracker doc のワークフローで fetch する。
 2. ユーザーが引数として渡したパス。
 3. branch 名や機能に一致する、`docs/`、`specs/`、`.scratch/` 配下の spec ファイル。
 4. 何も見つからなければ、spec の場所をユーザーに尋ねる。無いと言われた場合、**Spec** sub-agent は skip して「no spec available」と報告する。
 
 ### 3. standards の出所を特定する
 
-コードをどう書くべきかを文書化しているものすべて。例えば `CODING_STANDARDS.md` や `CONTRIBUTING.md`。
+コードをどう書くべきかを文書化しているファイルを、repo の中からすべて探せ。`CODING_STANDARDS.md` や `CONTRIBUTING.md` があれば、必ずリストに入れる。
 
 リポジトリが文書化しているものに加えて、Standards 軸は常に下記の **smell baseline** を携える。これは Fowler の code smell（_Refactoring_、ch.3）の固定セットで、リポジトリが何も文書化していなくても適用される。これを縛るルールは 2 つ:
 
@@ -56,6 +56,8 @@ diff コマンドを一度だけ確定する: `git diff <fixed-point>...HEAD`（
 - **Refused Bequest**: 継承したものの大半を無視または override する subclass や実装者。→ 継承をやめ、composition を使う。
 
 ### 4. 両 sub-agent を parallel で spawn する
+
+両 sub-agent の呼び出しは、まとめて foreground で発行し、返ってきたレポートを集約しろ。
 
 **Standards sub-agent prompt**: 含めるもの
 

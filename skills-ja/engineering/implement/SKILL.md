@@ -6,10 +6,12 @@ disable-model-invocation: true
 
 ユーザーが spec または ticket 群で説明した作業を実装する。
 
-合意済みの seam では、可能な限り /tdd を使う。
+ユーザーが ticket の参照を渡したら、issue tracker から取得し、始める前にそのタイトルを示せ。参照が曖昧なら尋ねろ。
+
+合意済みの seam では、可能な限り Skill tool を "tdd" で呼ぶ。
 
 typecheck をこまめに実行し、単一の test ファイルもこまめに実行し、full test suite は最後に一度だけ実行する。
 
-完了したら、/code-review を使って作業をレビューする。
+完了したら、Skill tool を "code-review" で呼んで作業をレビューする。
 
 作業を current branch に commit する。

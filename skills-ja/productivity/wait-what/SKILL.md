@@ -4,4 +4,4 @@ description: 止まれ。直前のメッセージは伝わっていない。言�
 disable-model-invocation: true
 ---
 
-待て、いまの話でどこへ辿り着いたのか理解できていない。言い直せ: 少しだけ context を添え、ASD-STE100 Simplified Technical English に相当する平易さで話し（一文一義、専門用語は使う前に定義する、修飾を積まない）、`CONTEXT.md` の ubiquitous language を使え（リポジトリに複数ある場合は `CONTEXT-MAP.md` を辿って正しいものを選べ）。
+待て、いまの話でどこへ辿り着いたのか理解できていない。言い直せ: 少しだけ context を添え、ASD-STE100 Simplified Technical English に相当する平易さで話し（一文一義、専門用語は使う前に定義する、修飾を積まない）、`GLOSSARY.md` の ubiquitous language を使え（リポジトリに複数ある場合は `GLOSSARY-MAP.md` を辿って正しいものを選べ）。

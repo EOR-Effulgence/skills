@@ -11,7 +11,7 @@ disable-model-invocation: true
 このコマンドはプロジェクトのドメインモデルに _informed_ され、共有された設計 vocabulary の上に成り立つ:
 
 - アーキテクチャの vocabulary（**module**、**interface**、**depth**、**seam**、**adapter**、**leverage**、**locality**）とその原則（the deletion test、"the interface is the test surface"、"one adapter = hypothetical seam, two = real"）については Skill tool を "codebase-design" で呼ぶ。これらの用語をすべての提案で正確に使い、"component"、"service"、"API"、"boundary" へ流れるな。
-- `CONTEXT.md` のドメイン言語は良い seam に名前を与える。`docs/adr/` の ADR はこのコマンドが蒸し返すべきでない決定を記録している。
+- `GLOSSARY.md` のドメイン言語は良い seam に名前を与える。`docs/adr/` の ADR はこのコマンドが蒸し返すべきでない決定を記録している。
 
 ## Process
 
@@ -22,7 +22,7 @@ disable-model-invocation: true
 - ユーザーが方向を指定したなら（Module、サブシステム、痛点）、それを採り、以下の推論はスキップする。
 - そうでなければ、commit history をそれなりの範囲まで遡り（`git log --oneline`）、コードベースの hot spot（何度も出てくるファイルや領域）を見つけ、それらのパスに最初に注意を引かせる。変更が散らばっていて明確な hot spot が無ければ、網を広げる。
 
-まず、着手する領域のプロジェクトの domain glossary（`CONTEXT.md`）と ADR を読む。
+まず、着手する領域のプロジェクトの domain glossary（`GLOSSARY.md`）と ADR を読む。
 
 次に sub-agent を立ててコードベースを歩かせる。硬直したヒューリスティックに従うな。有機的に探索し、摩擦を感じた場所を書き留めろ:
 
@@ -51,7 +51,7 @@ shallow だと疑うものには **deletion test** を適用しろ: それを削
 
 レポートの末尾は **Top recommendation** セクションで締める: どの候補を最初に取り組むか、そしてなぜか。
 
-**ドメインには CONTEXT.md の vocabulary を、アーキテクチャには `/codebase-design` の vocabulary を使え。** `CONTEXT.md` が "Order" を定義しているなら、"the Order intake module" と言え。"the FooBarHandler" でも、"the Order service" でもない。
+**ドメインには GLOSSARY.md の vocabulary を、アーキテクチャには `/codebase-design` の vocabulary を使え。** `GLOSSARY.md` が "Order" を定義しているなら、"the Order intake module" と言え。"the FooBarHandler" でも、"the Order service" でもない。
 
 **ADR との衝突**: 候補が既存の ADR と矛盾する場合、その ADR を見直す価値があるほど摩擦が本物のときだけ表に出す。カード内で明確に印を付ける（例: warning callout: _"contradicts ADR-0007, but worth reopening because…"_）。ある ADR が禁じる理論上のリファクタをすべて列挙するな。
 
@@ -65,7 +65,7 @@ shallow だと疑うものには **deletion test** を適用しろ: それを削
 
 判断が固まり次第、副作用がインラインで発生する。進めながらドメインモデルを最新に保つため Skill tool を "domain-modeling" で呼べ:
 
-- **deepen した Module を `CONTEXT.md` に無い概念にちなんで命名しようとしているか?** その用語を `CONTEXT.md` に追加する。ファイルが存在しなければ遅延的に作成する。
-- **会話中に曖昧な用語を研ぎ澄ましたか?** その場で `CONTEXT.md` を更新する。
+- **deepen した Module を `GLOSSARY.md` に無い概念にちなんで命名しようとしているか?** その用語を `GLOSSARY.md` に追加する。ファイルが存在しなければ遅延的に作成する。
+- **会話中に曖昧な用語を研ぎ澄ましたか?** その場で `GLOSSARY.md` を更新する。
 - **ユーザーが load-bearing な理由で候補を却下したか?** ADR を提案し、こう枠づける: _"Want me to record this as an ADR so future architecture reviews don't re-suggest it?"_ その理由が、将来の探索者が同じことを再提案しないために実際に必要になるときだけ提案しろ。一時的な理由（"not worth it right now"）や自明な理由はスキップする。
 - **deepen した Module の代替 interface を探りたいか?** Skill tool を "codebase-design" で呼び、その design-it-twice の並列 sub-agent パターンを使う。

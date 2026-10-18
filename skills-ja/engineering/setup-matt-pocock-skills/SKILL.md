@@ -10,7 +10,7 @@ engineering skills が前提とするリポジトリ単位の設定を scaffold 
 
 - **Issue tracker**: issue がどこに存在するか（デフォルトは GitHub。ローカル markdown も標準でサポート）
 - **Triage labels**: 5 つの canonical な triage ロールに使う文字列
-- **Domain docs**: `CONTEXT.md` と ADR がどこに存在するか、およびそれらを読むための consumer ルール
+- **Domain docs**: `GLOSSARY.md` と ADR がどこに存在するか、およびそれらを読むための consumer ルール
 
 これは prompt 駆動の skill であり、決定論的なスクリプトではない。探索し、見つけたものを提示し、ユーザーに確認を取ってから書き込む。
 
@@ -22,7 +22,7 @@ engineering skills が前提とするリポジトリ単位の設定を scaffold 
 
 - `git remote -v` と `.git/config`: これは GitHub リポジトリか？ どのリポジトリか？
 - リポジトリルートの `AGENTS.md` と `CLAUDE.md`: どちらかが存在するか？ どちらかに既に `## Agent skills` セクションがあるか？
-- リポジトリルートの `CONTEXT.md` と `CONTEXT-MAP.md`
+- リポジトリルートの `GLOSSARY.md` と `GLOSSARY-MAP.md`
 - `docs/adr/` および任意の `src/*/docs/adr/` ディレクトリ
 - `docs/agents/`: この skill の過去の出力が既に存在するか？
 - `.scratch/`: ローカル markdown の issue tracker 規約が既に使われている兆候
@@ -56,9 +56,9 @@ engineering skills が前提とするリポジトリ単位の設定を scaffold 
 
 デフォルトは 5 つの canonical なロールで、各ラベル文字列はその名前と等しい: `needs-triage`、`needs-info`、`ready-for-agent`、`ready-for-human`、`wontfix`。**yes** ならそのまま書く。ユーザーが no と言った場合のみ（通常はトラッカーが既に別名を使っているため。例: `needs-triage` に対して `bug:triage`）override を集め、`triage` が重複を作らず既存のラベルを適用するようにする。
 
-**Section C: Domain docs.** デフォルトは **single-context**、つまりリポジトリルートに `CONTEXT.md` 1 つ + `docs/adr/` だ。これはほぼすべてのリポジトリに合う。尋ねずに書く。
+**Section C: Domain docs.** デフォルトは **single-context**、つまりリポジトリルートに `GLOSSARY.md` 1 つ + `docs/adr/` だ。これはほぼすべてのリポジトリに合う。尋ねずに書く。
 
-**multi-context**（ルートの `CONTEXT-MAP.md` が context ごとの `CONTEXT.md` ファイルを指す）を提示するのは、探索で monorepo のシグナルを見つけたときだけ。その場合はどのレイアウトを望むか確認する。
+**multi-context**（ルートの `GLOSSARY-MAP.md` が context ごとの `GLOSSARY.md` ファイルを指す）を提示するのは、探索で monorepo のシグナルを見つけたときだけ。その場合はどのレイアウトを望むか確認する。
 
 ### 3. 確認して編集する
 
@@ -100,6 +100,8 @@ engineering skills が前提とするリポジトリ単位の設定を scaffold 
 ```
 
 `### Triage labels` サブブロックを含め、`docs/agents/triage-labels.md` を書くのは、`triage` がインストール済みで Section B を実行したときのみ。そうでなければ両方とも省く。
+
+Section B を GitHub か GitLab で実行したときは、tracker に無い設定済みのラベルをそれぞれ作る（`gh label create` / `glab label create`）。
 
 次に、この skill フォルダ内の seed テンプレートを出発点として docs ファイルを書く:
 

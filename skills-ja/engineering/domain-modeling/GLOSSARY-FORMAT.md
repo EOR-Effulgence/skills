@@ -1,4 +1,4 @@
-# CONTEXT.md フォーマット
+# GLOSSARY.md フォーマット
 
 ## 構造
 
@@ -31,18 +31,18 @@ _Avoid_: Client, buyer, account
 
 ## 単一 context vs 複数 context の repo
 
-**単一 context(ほとんどの repo):** repo root に `CONTEXT.md` が一つ。
+**単一 context(ほとんどの repo):** repo root に `GLOSSARY.md` が一つ。
 
-**複数 context:** repo root の `CONTEXT-MAP.md` が、各 context・その所在・相互の関係を列挙する:
+**複数 context:** repo root の `GLOSSARY-MAP.md` が、各 context・その所在・相互の関係を列挙する:
 
 ```md
 # Context Map
 
 ## Contexts
 
-- [Ordering](./src/ordering/CONTEXT.md): receives and tracks customer orders
-- [Billing](./src/billing/CONTEXT.md): generates invoices and processes payments
-- [Fulfillment](./src/fulfillment/CONTEXT.md): manages warehouse picking and shipping
+- [Ordering](./src/ordering/GLOSSARY.md): receives and tracks customer orders
+- [Billing](./src/billing/GLOSSARY.md): generates invoices and processes payments
+- [Fulfillment](./src/fulfillment/GLOSSARY.md): manages warehouse picking and shipping
 
 ## Relationships
 
@@ -53,8 +53,8 @@ _Avoid_: Client, buyer, account
 
 スキルはどの構造が当てはまるかを推論する:
 
-- `CONTEXT-MAP.md` が存在するなら、それを読んで context を見つける
-- root `CONTEXT.md` だけが存在するなら、単一 context
-- どちらも存在しないなら、最初の用語が解決したときに root `CONTEXT.md` を lazy に作る
+- `GLOSSARY-MAP.md` が存在するなら、それを読んで context を見つける
+- root `GLOSSARY.md` だけが存在するなら、単一 context
+- どちらも存在しないなら、最初の用語が解決したときに root `GLOSSARY.md` を lazy に作る
 
 複数の context が存在するとき、現在の話題がどれに関係するかを推論しろ。不明確なら、尋ねろ。
