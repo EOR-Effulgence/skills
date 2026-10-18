@@ -36,7 +36,7 @@ _Avoid_: Client, buyer, account
 **複数 context:** repo root の `GLOSSARY-MAP.md` が、各 context・その所在・相互の関係を列挙する:
 
 ```md
-# Context Map
+# Glossary Map
 
 ## Contexts
 
