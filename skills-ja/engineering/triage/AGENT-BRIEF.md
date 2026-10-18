@@ -1,8 +1,8 @@
 # Writing Agent Briefs
 
-agent brief とは、Issue や PR が `ready-for-agent` に移ったときに投稿する構造化コメントだ。AFK エージェントが作業の拠り所にする権威ある仕様書である。元の body と議論はコンテキストにすぎず、agent brief こそが契約（contract）だ。
+agent brief とは、Issue や PR が `ready-for-agent` に移ったときに投稿する構造化コメントだ。AFK agent が作業の拠り所にする権威ある仕様書である。元の body と議論は context にすぎず、agent brief こそが契約（contract）だ。
 
-brief は **エージェントが何をすべきか** を述べ、それは両方の surface に及ぶ: Issue なら、ゼロから変更を作ること; PR なら、*既存の diff に対して* 残された作業だ: 仕上げる、隙間を埋める、レビュー指摘に対応する。どちらでも原則は同じで、下記の PR 例がその違いを示す。
+brief は **agent が何をすべきか** を述べ、それは両方の surface に及ぶ: Issue なら、ゼロから変更を作ること; PR なら、*既存の diff に対して* 残された作業だ: 仕上げる、隙間を埋める、レビュー指摘に対応する。どちらでも原則は同じで、下記の PR 例がその違いを示す。
 
 ## Principles
 
@@ -11,14 +11,14 @@ brief は **エージェントが何をすべきか** を述べ、それは両�
 Issue は数日から数週間 `ready-for-agent` に留まることがある。その間にコードベースは変わる。ファイルが rename・移動・refactor されても有用であり続けるように brief を書く。
 
 - **やる**: Interface、型、振る舞いの契約を記述する
-- **やる**: エージェントが探すべき / 変更すべき、具体的な型・関数シグネチャ・config の形を名指しする
+- **やる**: agent が探すべき / 変更すべき、具体的な型・関数シグネチャ・config の形を名指しする
 - **やるな**: ファイルパスを参照する。陳腐化する
 - **やるな**: 行番号を参照する
 - **やるな**: 現在の実装構造がそのまま残ると仮定する
 
 ### Behavioral, not procedural
 
-システムが **何を** すべきかを記述し、**どう** 実装するかは書かない。エージェントはコードベースを新鮮に探索し、自分で実装判断を下す。
+システムが **何を** すべきかを記述し、**どう** 実装するかは書かない。 agent はコードベースを新鮮に探索し、自分で実装判断を下す。
 
 - **良い:** "The `SkillConfig` type should accept an optional `schedule` field of type `CronExpression`"
 - **悪い:** "Open src/types/skill.ts and add a schedule field on line 42"
@@ -27,14 +27,14 @@ Issue は数日から数週間 `ready-for-agent` に留まることがある。�
 
 ### Complete acceptance criteria
 
-エージェントは、いつ完了したかを知る必要がある。すべての agent brief は、具体的でテスト可能な acceptance criteria を持たねばならない。各基準は独立に検証可能であるべきだ。
+agent は、いつ完了したかを知る必要がある。すべての agent brief は、具体的でテスト可能な acceptance criteria を持たねばならない。各基準は独立に検証可能であるべきだ。
 
 - **良い:** "Running `gh issue list --label needs-triage` returns issues that have been through initial classification"
 - **悪い:** "Triage should work correctly"
 
 ### Explicit scope boundaries
 
-何がスコープ外かを述べる。これはエージェントが gold-plating したり、隣接機能について勝手な仮定をするのを防ぐ。
+何がスコープ外かを述べる。これは agent が gold-plating したり、隣接機能について勝手な仮定をするのを防ぐ。
 
 ## Template
 
@@ -147,7 +147,7 @@ checked for matches.
 
 ### Good agent brief (PR)
 
-PR の場合、"Current behavior" は diff の状態を記述し、brief はエージェントにゼロから作らせるのではなく、それを仕上げる / 直すよう求める。
+PR の場合、"Current behavior" は diff の状態を記述し、brief は agent にゼロから作らせるのではなく、それを仕上げる / 直すよう求める。
 
 ```markdown
 ## Agent Brief

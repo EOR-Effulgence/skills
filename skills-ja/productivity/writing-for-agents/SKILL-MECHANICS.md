@@ -15,7 +15,7 @@ model-invocation を選ぶのは、agent 自身が skill に到達しなけれ�
 
 ## invocation で分割する
 
-分割の invocation 側の切り口（sequence 側の切り口は `SKILL.md` にある）: それ単独で発火させるべき別個の leading word がある（実際に自分のプロンプトで使うトリガー語だ）か、別の skill が到達しなければならないとき、model-invoked な skill として切り出せ。新しく常時ロードされる description の分だけ context load を払うので、その独立した到達性はその対価に見合わなければならない。
+分割の invocation 側の切り口（sequence 側の切り口は `SKILL.md` にある）: それ単独で発火させるべき別個の leading word がある（実際に自分の prompt で使うトリガー語だ）か、別の skill が到達しなければならないとき、model-invoked な skill として切り出せ。新しく常時ロードされる description の分だけ context load を払うので、その独立した到達性はその対価に見合わなければならない。
 
 ## Router skills
 

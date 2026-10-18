@@ -1,7 +1,7 @@
 ---
 name: caveman
 description: >
-  超圧縮コミュニケーションモード。技術的精度を完全に保ったまま、冗語・冠詞・社交辞令を捨ててトークン使用量を約 75% 削減する。
+  超圧縮コミュニケーションモード。技術的精度を完全に保ったまま、冗語・冠詞・社交辞令を捨てて token 使用量を約 75% 削減する。
   ユーザーが「caveman mode」「talk like caveman」「use caveman」「less tokens」「be brief」または `/caveman` を発したときに使用。
 ---
 

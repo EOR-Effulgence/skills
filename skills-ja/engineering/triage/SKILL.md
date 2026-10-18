@@ -1,6 +1,6 @@
 ---
 name: triage
-description: Issue と外部 PR を、トリアージロールからなる state machine で流す。分類し、検証し、必要なら詰め、agent 向けの brief を書く。Move issues and external PRs through a state machine of triage roles, categorising, verifying, grilling if needed, and writing agent-ready briefs. 日本語トリガー例 / "Issue を作成して" "トリアージして" "入ってきたバグをレビューして" "AFK エージェント向けに Issue を整えて" / English / "triage this" "prepare issues for an AFK agent"
+description: Issue と外部 PR を、トリアージロールからなる state machine で流す。分類し、検証し、必要なら詰め、agent 向けの brief を書く。Move issues and external PRs through a state machine of triage roles, categorising, verifying, grilling if needed, and writing agent-ready briefs. 日本語トリガー例 / "Issue を作成して" "トリアージして" "入ってきたバグをレビューして" "AFK agent 向けに Issue を整えて" / English / "triage this" "prepare issues for an AFK agent"
 disable-model-invocation: true
 ---
 
@@ -32,11 +32,11 @@ disable-model-invocation: true
 
 - `needs-triage`: メンテナが評価する必要がある
 - `needs-info`: 報告者からの追加情報を待っている
-- `ready-for-agent`: 完全に仕様化済み、AFK エージェントに渡せる
+- `ready-for-agent`: 完全に仕様化済み、AFK agent に渡せる
 - `ready-for-human`: 人間による実装が必要
 - `wontfix`: 対応しない
 
-PR の場合、同じ state を添付コードに対して読む: `ready-for-agent` は brief が添付済みで、エージェントが diff に対して次の一手を打つべき状態を意味する; `ready-for-human` は人間が merge できる状態を意味する。
+PR の場合、同じ state を添付コードに対して読む: `ready-for-agent` は brief が添付済みで、 agent が diff に対して次の一手を打つべき状態を意味する; `ready-for-human` は人間が merge できる状態を意味する。
 
 トリアージ済みの Issue はいずれも、ちょうど 1 つの category ロールと 1 つの state ロールを持つべきだ。state ロールが矛盾する場合は、それを指摘し、他の何かをする前にメンテナに確認する。
 
@@ -67,7 +67,7 @@ PR がスコープに入る場合、これらの bucket に外部 PR を含め�
 
 ## Triage a specific issue or PR
 
-1. **コンテキストを集める。** Issue または PR の全体（body、コメント、label、author、日付; PR なら diff も）を読む。過去のトリアージノートを解析し、解決済みの質問を再度尋ねないようにする。プロジェクトの domain glossary を使ってコードベースを探索し、その領域の ADR を尊重する。コードベースに対して 2 つのチェックを走らせる: (a) **冗長性（redundancy）**: 要求された振る舞いの既存実装を、リクエストの文言だけでなく domain の概念で検索し、どこを探したか報告する。見つかれば、それは実装済みの `wontfix`（step 5）だ。(b) **過去の却下（prior rejection）**: `.out-of-scope/*.md` を読み、このリクエストに似たものを表に出す。
+1. **context を集める。** Issue または PR の全体（body、コメント、label、author、日付; PR なら diff も）を読む。過去のトリアージノートを解析し、解決済みの質問を再度尋ねないようにする。プロジェクトの domain glossary を使ってコードベースを探索し、その領域の ADR を尊重する。コードベースに対して 2 つのチェックを走らせる: (a) **冗長性（redundancy）**: 要求された振る舞いの既存実装を、リクエストの文言だけでなく domain の概念で検索し、どこを探したか報告する。見つかれば、それは実装済みの `wontfix`（step 5）だ。(b) **過去の却下（prior rejection）**: `.out-of-scope/*.md` を読み、このリクエストに似たものを表に出す。
 
 2. **推奨する。** メンテナに、category と state の推奨を根拠付きで伝え、加えてリクエストに関連するコードベースの短いサマリー（実装済みかどうかを含む）を伝える。指示を待つ。
 

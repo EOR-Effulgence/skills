@@ -40,7 +40,7 @@ ADR は `docs/adr/` に置き、連番を使う: `0001-slug.md`、`0002-slug.md`
 
 - **アーキテクチャの形。** 「monorepo を使う。」「write model は event-sourced、read model は Postgres に projection される。」
 - **context 間の統合パターン。** 「Ordering と Billing は同期的な HTTP ではなく domain event で通信する。」
-- **lock-in を伴う技術選定。** データベース、message bus、auth provider、デプロイ先。すべての library ではなく ── 差し替えに四半期かかるものだけ。
+- **lock-in を伴う技術選定。** データベース、message bus、auth provider、 deploy 先。すべての library ではなく ── 差し替えに四半期かかるものだけ。
 - **境界とスコープの決定。** 「Customer データは Customer context が所有し、他の context は ID でのみ参照する。」明示的な no は yes と同じくらい価値がある。
 - **自明な道からの意図的な逸脱。** 「X という理由で ORM ではなく手書き SQL を使う。」まっとうな読者なら逆を仮定するあらゆるもの。これらは、意図的だったものを次のエンジニアが「修正」するのを止める。
 - **コードに現れない制約。** 「compliance 要件のため AWS は使えない。」「partner API の契約により応答時間は 200ms 未満でなければならない。」

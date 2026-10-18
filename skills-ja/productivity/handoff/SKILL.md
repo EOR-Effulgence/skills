@@ -1,15 +1,15 @@
 ---
 name: handoff
-description: 現在の会話を、別のエージェントが引き継げる handoff ドキュメントに圧縮する。Compact the current conversation into a handoff document for another agent to pick up. 日本語トリガー例 / "次セッションへ作業を渡す" "ハンドオフを書いて" / English / "hand this off" "create a handoff"
+description: 現在の会話を、別の agent が引き継げる handoff ドキュメントに圧縮する。Compact the current conversation into a handoff document for another agent to pick up. 日本語トリガー例 / "次セッションへ作業を渡す" "ハンドオフを書いて" / English / "hand this off" "create a handoff"
 argument-hint: "次セッションは何に使うのか？"
 disable-model-invocation: true
 ---
 
-新しいエージェントが作業を継続できるよう、現在の会話を要約した handoff ドキュメントを書く。保存先は **ユーザー OS の temporary ディレクトリ**（`$TMPDIR`、無ければ `/tmp`。Windows では `%TEMP%`）。現在のワークスペースには保存しない。
+新しい agent が作業を継続できるよう、現在の会話を要約した handoff ドキュメントを書く。保存先は **ユーザー OS の temporary ディレクトリ**（`$TMPDIR`、無ければ `/tmp`。Windows では `%TEMP%`）。現在のワークスペースには保存しない。
 
-ドキュメントには「suggested skills」セクションを含め、次のエージェントが Skill tool で呼ぶべき skill を名指しする。
+ドキュメントには「suggested skills」セクションを含め、次の agent が Skill tool で呼ぶべき skill を名指しする。
 
-他のアーティファクト（spec・計画・ADR・issue・コミット・diff）にすでに記録されている内容は重複させない。代わりにパスや URL で参照する。
+他のアーティファクト（spec・計画・ADR・issue・ commit ・diff）にすでに記録されている内容は重複させない。代わりにパスや URL で参照する。
 
 機密情報（API キー、パスワード、個人を特定できる情報）は伏せる。
 
