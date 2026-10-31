@@ -3,7 +3,7 @@ name: research
 description: 信頼性の高い一次情報源に対して問いを調査し、その結果を repo 内の Markdown ファイルとして記録する。Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. 日本語トリガー例 / "このトピックを調査して" "docs や API の事実を集めて" "調査を background agent に任せて" / English / "research this topic" "gather docs/API facts" "delegate the reading to a background agent"
 ---
 
-**background agent** を立ち上げて調査させ、それが読んでいる間も自分は作業を続けろ。新しい context window で起動しろ。
+**background agent** を立ち上げて調査させ、それが読んでいる間も自分は作業を続けろ。その agent は新しい context window で起動しろ。
 
 その agent の仕事:
 
