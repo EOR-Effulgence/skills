@@ -22,7 +22,7 @@ engineering skills が前提とするリポジトリ単位の設定を scaffold 
 
 - `git remote -v` と `.git/config`: これは GitHub リポジトリか？ どのリポジトリか？
 - リポジトリルートの `AGENTS.md` と `CLAUDE.md`: どちらかが存在するか？ どちらかに既に `## Agent skills` セクションがあるか？
-- リポジトリルートの `GLOSSARY.md` と `GLOSSARY-MAP.md`
+- リポジトリルートの `GLOSSARY.md` と `GLOSSARY-MAP.md`、および旧名の `CONTEXT.md` / `CONTEXT-MAP.md`。旧名のファイルがあれば、`GLOSSARY` の名前へ `git mv` し、`docs/agents/domain.md` 内のその名前も書き換えることを提案する。
 - `docs/adr/` および任意の `src/*/docs/adr/` ディレクトリ
 - `docs/agents/`: この skill の過去の出力が既に存在するか？
 - `.scratch/`: ローカル markdown の issue tracker 規約が既に使われている兆候
@@ -47,6 +47,8 @@ engineering skills が前提とするリポジトリ単位の設定を scaffold 
 - **Other**（Jira、Linear など）: ユーザーにワークフローを 1 段落で説明してもらう。skill はそれを自由記述の散文として記録する
 
 選択を `docs/agents/issue-tracker.md` に記録する。GitHub と GitLab のテンプレートは「PRs as a request surface」フラグを持ち、デフォルトは **off** だ。off のまま放置し、話題にも出すな。外部 PR を triage キューに入れたいユーザーは後でファイル内のフラグを切り替えられる。
+
+GitHub や GitLab の tracker には、到達できる repo が要る。ユーザーがどちらかを選び、そのホストを指す `git remote` が無いときは、repo の URL をユーザーから聞いて接続してから先へ進む（必要なら `git init`、そして `git remote add origin <url>`）。このディレクトリの中で `gh repo view` / `glab repo view` がプロジェクトを表示できれば完了だ。表示できなければ止まり、何が足りないかをユーザーに伝える。
 
 **Section B: Triage label vocabulary.** `triage` skill がインストールされていなければ（探索で分かる）このセクションはまるごと飛ばす。未インストールの skill にラベルは要らない。
 
