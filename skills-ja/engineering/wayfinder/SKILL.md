@@ -112,7 +112,7 @@ Wayfinder はデフォルトで**計画**だ。各チケットは一つの決定
 2. **フロンティアをマップ化する。** 再び grill するが、今度は**幅優先**で。どれか一本の筋を深掘りするのではなく空間全体に扇状に広げ、開いている決定と、いま踏み出せる最初のステップを浮かび上がらせる。**これで霧が一つも出てこないなら**（目的地への道はすでに明確で、旅全体が 1 セッションに収まるほど小さいなら）マップは要らない。そこで止まり、どう進めたいかをユーザーに尋ねる。
 3. **マップを作成する**(ラベル `wayfinder:map`): Destination と Notes を埋め、Decisions-so-far は空、霧は **Not yet specified** に素描する。
 4. **いま特定できるチケットを作成する**。マップの子 issue として作り、そして **second pass** でブロックのエッジを配線する(issue が互いを参照するには先に id が必要だ)。相互参照もこのパスで、実在の id を使って書け: プレースホルダの `#<n>` は無関係な issue に自動リンクされる。配線によってチケットはフロンティアとブロック済みに仕分けられる。まだ特定できないものはすべて霧、つまり **Not yet specified** セクションに留まる。
-5. **research subagent を起動する。** いま作成した各 `research` チケットについて、Skill tool を "research" で呼ぶ subagent を立ち上げて並列に解決し、その調査結果を使い捨ての `research/<name>` branch に取り込み、チケットからの context pointer を残す。branch は push するが、PR は開くな: 決して merge しないものだからだ。
+5. **research subagent を起動する。** いま作成した各 `research` チケットについて、Skill tool を "research" で呼ぶ subagent を新しい context window で立ち上げて並列に解決し、その調査結果を使い捨ての `research/<name>` branch に取り込み、チケットからの context pointer を残す。branch は push するが、PR は開くな: 決して merge しないものだからだ。
 6. 止まる。charting は 1 セッション分の作業だ。手作業では何も解決しない。
 
 ### Work through the map

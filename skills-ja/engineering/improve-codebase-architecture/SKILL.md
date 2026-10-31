@@ -24,7 +24,7 @@ disable-model-invocation: true
 
 まず、着手する領域のプロジェクトの domain glossary（`GLOSSARY.md`）と ADR を読む。
 
-次に sub-agent を立ててコードベースを歩かせる。硬直したヒューリスティックに従うな。有機的に探索し、摩擦を感じた場所を書き留めろ:
+次に新しい context window で sub-agent を立て、コードベースを歩かせる。硬直したヒューリスティックに従うな。有機的に探索し、摩擦を感じた場所を書き留めろ:
 
 - 1 つの概念を理解するのに、多くの小さな Module を行き来する必要があるのはどこか?
 - Module が **shallow**（interface が implementation とほぼ同じ複雑さ）なのはどこか?

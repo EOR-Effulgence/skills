@@ -21,7 +21,7 @@
 `yes` に設定した場合、MR は issue と同じラベルと状態を通り、`glab mr` の同等物を使う:
 
 - **MR を読む**: `glab mr view <number> --comments`、差分は `glab mr diff <number>`。
-- **triage 対象の外部 MR を一覧する**: `glab mr list -F json` の後、author がプロジェクトの member/owner でない MR だけ残す（maintainer の作業中のものではなく、contributor の MR）。
+- **triage 対象の外部 MR を一覧する**: `glab mr list -O json` の後、author がプロジェクトの member/owner でない MR だけ残す（maintainer の作業中のものではなく、contributor の MR）。
 - **コメント / ラベル / クローズ**: `glab mr note`、`glab mr update --label`/`--unlabel`、`glab mr close`。
 
 GitHub と違い、GitLab は issue と MR を別々に番号付けするので、どちらの surface を maintainer が指しているか分かれば `#42` は一意だ。
@@ -39,8 +39,8 @@ GitLab issue を作る。
 `/wayfinder` が使う。**map** は 1 つの issue で、**child** issue をチケットとして持つ。
 
 - **Map**: `wayfinder:map` ラベルを付けた 1 つの issue。Notes / Decisions-so-far / Fog の body を保持する。`glab issue create --label wayfinder:map`。（native epic を持つ GitLab のティアでは、代わりに epic が map を保持してもよい。ラベル付き issue はどこでも動く。）
-- **Child ticket**: description の先頭に `Part of #<map>` を持ち、`wayfinder:<type>`（`research`/`prototype`/`grilling`/`task`）ラベルを持つ issue。claim されると、チケットは駆動している dev にアサインされる。
+- **Child ticket**: description の先頭に `Part of #<map>` を持ち、map にリンクされ（`glab issue create --linked-issues <map> --link-type relates_to`）、`wayfinder:<type>`（`research`/`prototype`/`grilling`/`task`）ラベルを持つ issue。claim されると、チケットは駆動している dev にアサインされる。
 - **Blocking**: GitLab の **native blocking link**（canonical で UI 上でも見える表現）。`/blocked_by #<n>` クイックアクションを note として投稿して追加する（`glab issue note <child> --message "/blocked_by #<blocker>"`）。native blocking link は Premium/Ultimate の機能だ。free ティア（または利用不可の場合）は、description の先頭の `Blocked by: #<n>, #<n>` 行にフォールバックする。すべての blocker が close されればチケットは unblock される。
-- **Frontier query**: `glab issue list -O json` を map の child にスコープし、open な blocker を持つもの（open な issue への native な `blocked_by` link（`glab api projects/:id/issues/<child-iid>/links`）、または `Blocked by` 行の open な issue）や assignee のあるものを落とす。map の順序で最初のものが勝つ。
+- **Frontier query**: map の child を `glab api projects/:id/issues/<map>/links` で一覧し、`wayfinder:<type>` ラベルを持つ open な issue を残す。そこから open な blocker を持つもの（open な issue への native な `blocked_by` link（`glab api projects/:id/issues/<child-iid>/links`）、または `Blocked by` 行の open な issue）や assignee のあるものを落とす。map の順序で最初のものが勝つ。
 - **Claim**: `glab issue update <n> --assignee @me`。セッション最初の書き込み。
 - **Resolve**: `glab issue note <n> --message "<answer>"`、次に `glab issue close <n>`、次に map の Decisions-so-far に context ポインタ（gist + リンク）を追記する。

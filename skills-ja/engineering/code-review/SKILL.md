@@ -8,7 +8,7 @@ description: 固定点（commit / branch / tag / merge-base）以降の変更を
 - **Standards**: コードがこのリポジトリの文書化されたコーディング標準に準拠しているか?
 - **Spec**: コードが起点となった issue / spec を忠実に実装しているか?
 
-両軸は **parallel sub-agent** として走らせ、互いの context を汚染しないようにする。その後、この skill が両者の findings を集約する。
+両軸は **parallel sub-agent** として走らせ、互いの context を汚染しないようにする。その後、この skill が両者の findings を集約する。sub-agent はどれも新しい context window で起動しろ。
 
 issue tracker は事前に渡されているはずだ。渡されていなければ、ユーザーに `/setup-matt-pocock-skills` の実行を促せ。
 
