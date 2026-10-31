@@ -18,7 +18,7 @@ subagent を立ち上げる前に、選ばれた候補について問題空間�
 
 ### 2. subagent を立ち上げる
 
-3 つ以上の subagent を並列で立ち上げる。それぞれが deepen した module に対して **極端に異なる** Interface を生み出さねばならない。
+3 つ以上の subagent を、それぞれ新しい context window で並列に立ち上げる。それぞれが deepen した module に対して **極端に異なる** Interface を生み出さねばならない。
 
 各 subagent には個別の technical brief（ファイルパス、結合の詳細、[DEEPENING.md](DEEPENING.md) の依存カテゴリ、Seam の背後に何があるか）を渡して prompt する。この brief は Step 1 のユーザー向け問題空間説明とは独立している。各 agent に異なる設計制約を与える:
 
