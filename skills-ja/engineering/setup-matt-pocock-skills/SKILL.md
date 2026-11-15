@@ -66,7 +66,7 @@ GitHub や GitLab の tracker には、到達できる repo が要る。ユー�
 
 ユーザーに次のドラフトを見せる:
 
-- `CLAUDE.md` / `AGENTS.md` のうち編集対象に追加する `## Agent skills` ブロック（選定ルールは step 4 参照）
+- `CLAUDE.md` / `AGENTS.md` のうち編集対象に追加する `## Agent skills` ブロック（選定ルールはステップ 4 参照）
 - `docs/agents/issue-tracker.md`、`docs/agents/domain.md`、`docs/agents/triage-labels.md` の内容（最後の 1 つは `triage` がインストール済みのときのみ）
 
 書き込む前に編集させる。
