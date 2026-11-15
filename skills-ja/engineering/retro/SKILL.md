@@ -28,7 +28,7 @@ disable-model-invocation: true
 
 ### 実装と review
 
-すべての作業は、実装と review の 2 段階を通ることを忘れるな。実装の agent は最も **context pressure** が大きい。探索、コードを書くこと、失敗のデバッグを担う。
+すべての作業は、実装と review の 2 つのステージを通ることを忘れるな。実装の agent は最も **context pressure** が大きい。探索、コードを書くこと、失敗のデバッグを担う。
 
 review の agent は context pressure が最も小さい。diff を受け取るので探索は要らない。コードを書いたりデバッグしたりする必要もないことが多い。
 
