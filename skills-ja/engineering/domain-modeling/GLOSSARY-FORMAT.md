@@ -14,11 +14,11 @@
 _Avoid_: Purchase, transaction
 
 **Invoice**:
-A request for payment sent to a customer after delivery.
+A request for payment for an **Order**, sent to its **Customer** after delivery.
 _Avoid_: Bill, payment request
 
 **Customer**:
-A person or organization that places orders.
+A person or organization that places an **Order**.
 _Avoid_: Client, buyer, account
 ```
 
@@ -26,6 +26,7 @@ _Avoid_: Client, buyer, account
 
 - **意見を持て。** 同じ概念に複数の語が存在するなら、最良の一つを選び、他は `_Avoid_` の下に挙げろ。
 - **定義を締めろ。** 最大でも 1〜2 文。それが何を *する* かではなく、何で *ある* かを定義しろ。
+- **定義の中に出てくる他の用語は太字にしろ。** 定義が別の用語に触れるときは `**Order**` のように書き、二つの用語がどう関係するかは周りの文で述べろ。
 - **この project の context に固有の用語だけを含めろ。** 一般的なプログラミング概念(timeout、error type、utility パターン)は、project がそれらを多用していても含めない。用語を追加する前に問え ── これはこの context に固有の概念か、それとも一般的なプログラミング概念か? 前者だけが含まれる。
 - **自然なまとまりが現れたら、用語を subheading の下にグループ化しろ。** すべての用語が単一の凝集した領域に属するなら、フラットなリストで構わない。
 
